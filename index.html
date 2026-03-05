@@ -233,6 +233,10 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
 .footer-wa svg{width:16px;height:16px}
 
 /* ── UTILS ── */
+
+.resto-map-link{display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,.4);font-size:11px;text-decoration:none;margin-left:10px;border:1px solid rgba(255,255,255,.12);padding:3px 9px;border-radius:2px;vertical-align:middle;transition:all .2s}
+.resto-map-link:hover{color:var(--gold-light);border-color:rgba(184,149,90,.4)}
+
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 @media(max-width:768px){
@@ -263,7 +267,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
     <p class="hero-sub">Guía de huéspedes · Aldea Mayab</p>
     <div class="hero-divider"></div>
     <p class="hero-tagline">Tours, actividades y gastronomía en Bacalar</p>
-    <a href="#tours" class="hero-cta" onclick="showPage('tours'); setTimeout(()=>{ const el=document.getElementById('tours'); if(el) el.scrollIntoView({behavior:'smooth'}); },100)">Explorar</a>
+    <a href="#" class="hero-cta" onclick="event.preventDefault();showPage('tours');setTimeout(function(){var el=document.getElementById('tours-section');if(el)el.scrollIntoView({behavior:'smooth'})},50)">Explorar</a>
   </div>
   <div class="scroll-hint"><div class="scroll-line"></div>Descubrir</div>
 </section>
@@ -657,7 +661,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
       <p class="resto-desc">Un café-restaurante muy querido en el centro, famoso por su pan artesanal, café orgánico y desayunos creativos que mezclan sabores mexicanos e internacionales.</p>
       <div class="resto-meta">
         <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span class="resto-price">$280 – $380 MXN / persona</span></div>
-        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/enamorabacalar" target="_blank">@enamorabacalar</a><a href="https://maps.google.com/?q=Enamora+Bacalar" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,.35);font-size:11px;text-decoration:none;margin-left:12px;transition:color .2s" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='rgba(255,255,255,.35)'"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Ver en Maps</a></div>
+        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/enamorabacalar" target="_blank">@enamorabacalar</a><a href="https://maps.google.com/?q=Enamora+Bacalar" target="_blank" class="resto-map-link"><svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Maps</a></div>
       </div>
     </div>
     <div class="resto-card reveal">
@@ -666,7 +670,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
       <p class="resto-desc">Moderno y relajado, combina café, panadería y cocina inspirada en ingredientes del Caribe mexicano. Perfecto para un brunch tranquilo junto a la laguna.</p>
       <div class="resto-meta">
         <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span class="resto-price">$250 – $350 MXN / persona</span></div>
-        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/bamoabacalar" target="_blank">@bamoabacalar</a><a href="https://maps.google.com/?q=BAMOA+Cafe+Bacalar" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,.35);font-size:11px;text-decoration:none;margin-left:12px;transition:color .2s" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='rgba(255,255,255,.35)'"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Ver en Maps</a></div>
+        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/bamoabacalar" target="_blank">@bamoabacalar</a><a href="https://maps.google.com/?q=BAMOA+Cafe+Bacalar" target="_blank" class="resto-map-link"><svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Maps</a></div>
       </div>
     </div>
     <div class="resto-card reveal">
@@ -675,7 +679,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
       <p class="resto-desc">Panadería artesanal muy popular, conocida por su repostería estilo francés y desayunos frescos como chilaquiles o chapatas con ingredientes de alta calidad.</p>
       <div class="resto-meta">
         <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span class="resto-price">$250 – $350 MXN / persona</span></div>
-        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/madre_masa_bacalar" target="_blank">@madre_masa_bacalar</a><a href="https://maps.google.com/?q=Madre+Masa+Bacalar" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,.35);font-size:11px;text-decoration:none;margin-left:12px;transition:color .2s" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='rgba(255,255,255,.35)'"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Ver en Maps</a></div>
+        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/madre_masa_bacalar" target="_blank">@madre_masa_bacalar</a><a href="https://maps.google.com/?q=Madre+Masa+Bacalar" target="_blank" class="resto-map-link"><svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Maps</a></div>
       </div>
     </div>
   </div>
@@ -695,7 +699,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
       <p class="resto-desc">Restaurante contemporáneo dentro del hotel AMAINAH, con vista espectacular a la laguna y una propuesta gastronómica cuidada y elegante. Ideal para una comida tranquila frente al agua.</p>
       <div class="resto-meta">
         <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span class="resto-price">$300 – $500 MXN / persona</span></div>
-        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/vicaro.mx" target="_blank">@vicaro.mx</a><a href="https://maps.google.com/?q=Vicaro+Bacalar+AMAINAH" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,.35);font-size:11px;text-decoration:none;margin-left:12px;transition:color .2s" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='rgba(255,255,255,.35)'"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Ver en Maps</a></div>
+        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/vicaro.mx" target="_blank">@vicaro.mx</a><a href="https://maps.google.com/?q=Vicaro+Bacalar+AMAINAH" target="_blank" class="resto-map-link"><svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Maps</a></div>
       </div>
     </div>
     <div class="resto-card reveal">
@@ -704,7 +708,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
       <p class="resto-desc">Uno de los lugares más icónicos de Bacalar para comer frente a la laguna. Jardín tropical, muelle para nadar y menú de cocina latina con mariscos, tacos y platos para compartir.</p>
       <div class="resto-meta">
         <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span class="resto-price">$350 – $600 MXN / persona</span></div>
-        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/laplayitabacalar" target="_blank">@laplayitabacalar</a><a href="https://maps.google.com/?q=La+Playita+Bacalar" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,.35);font-size:11px;text-decoration:none;margin-left:12px;transition:color .2s" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='rgba(255,255,255,.35)'"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Ver en Maps</a></div>
+        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/laplayitabacalar" target="_blank">@laplayitabacalar</a><a href="https://maps.google.com/?q=La+Playita+Bacalar" target="_blank" class="resto-map-link"><svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Maps</a></div>
       </div>
     </div>
     <div class="resto-card reveal">
@@ -714,7 +718,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
       <p class="resto-desc">Restaurante relajado y querido en el centro, conocido por su cocina saludable con bowls, tostadas, smoothies y opciones vegetarianas o veganas con ingredientes frescos.</p>
       <div class="resto-meta">
         <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span class="resto-price">$250 – $450 MXN / persona</span></div>
-        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/yerbabuenabacalar" target="_blank">@yerbabuenabacalar</a><a href="https://maps.google.com/?q=Yerbabuena+Bacalar" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,.35);font-size:11px;text-decoration:none;margin-left:12px;transition:color .2s" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='rgba(255,255,255,.35)'"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Ver en Maps</a></div>
+        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/yerbabuenabacalar" target="_blank">@yerbabuenabacalar</a><a href="https://maps.google.com/?q=Yerbabuena+Bacalar" target="_blank" class="resto-map-link"><svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Maps</a></div>
       </div>
     </div>
   </div>
@@ -734,7 +738,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
       <p class="resto-desc">Considerado por muchos el mejor restaurante de Bacalar. Propuesta gastronómica creativa, muy cuidada y con producto de gran calidad. Pequeño y muy solicitado — reserva con anticipación.</p>
       <div class="resto-meta">
         <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span class="resto-price">$400 – $700 MXN / persona</span></div>
-        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/cheuinic" target="_blank">@cheuinic</a><a href="https://maps.google.com/?q=Cheuinic+Bacalar" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,.35);font-size:11px;text-decoration:none;margin-left:12px;transition:color .2s" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='rgba(255,255,255,.35)'"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Ver en Maps</a></div>
+        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/cheuinic" target="_blank">@cheuinic</a><a href="https://maps.google.com/?q=Cheuinic+Bacalar" target="_blank" class="resto-map-link"><svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Maps</a></div>
       </div>
     </div>
     <div class="resto-card reveal">
@@ -743,7 +747,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
       <p class="resto-desc">Cocina mexicana contemporánea que reinterpreta recetas tradicionales con técnicas modernas y excelente presentación. Gran opción para descubrir sabores locales en ambiente elegante y relajado.</p>
       <div class="resto-meta">
         <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span class="resto-price">$500 – $900 MXN / persona</span></div>
-        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/nixtamalbacalar" target="_blank">@nixtamalbacalar</a><a href="https://maps.google.com/?q=Nixtamal+Bacalar" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,.35);font-size:11px;text-decoration:none;margin-left:12px;transition:color .2s" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='rgba(255,255,255,.35)'"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Ver en Maps</a></div>
+        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/nixtamalbacalar" target="_blank">@nixtamalbacalar</a><a href="https://maps.google.com/?q=Nixtamal+Bacalar" target="_blank" class="resto-map-link"><svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Maps</a></div>
       </div>
     </div>
     <div class="resto-card reveal">
@@ -752,7 +756,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
       <p class="resto-desc">Excelente opción italiana en Bacalar con pastas frescas, pizzas y ambiente acogedor. Perfecto si buscas un cambio de cocina durante tu estancia.</p>
       <div class="resto-meta">
         <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span class="resto-price">$450 – $750 MXN / persona</span></div>
-        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/trattoriadel46" target="_blank">@trattoriadel46</a><a href="https://maps.google.com/?q=La+Trattoria+del+46+Bacalar" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,.35);font-size:11px;text-decoration:none;margin-left:12px;transition:color .2s" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='rgba(255,255,255,.35)'"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Ver en Maps</a></div>
+        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/trattoriadel46" target="_blank">@trattoriadel46</a><a href="https://maps.google.com/?q=La+Trattoria+del+46+Bacalar" target="_blank" class="resto-map-link"><svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Maps</a></div>
       </div>
     </div>
   </div>
@@ -773,7 +777,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
       <p class="resto-desc">Uno de los lugares con más ambiente del centro. Combina restaurante y bar con música en vivo, buena energía y excelentes cócteles. También sirven pizzas y platos para cenar.</p>
       <div class="resto-meta">
         <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span class="resto-price">$350 – $700 MXN / persona</span></div>
-        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/lacatrinabacalar" target="_blank">@lacatrinabacalar</a><a href="https://maps.google.com/?q=La+Catrina+Bacalar" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,.35);font-size:11px;text-decoration:none;margin-left:12px;transition:color .2s" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='rgba(255,255,255,.35)'"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Ver en Maps</a></div>
+        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/lacatrinabacalar" target="_blank">@lacatrinabacalar</a><a href="https://maps.google.com/?q=La+Catrina+Bacalar" target="_blank" class="resto-map-link"><svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Maps</a></div>
       </div>
     </div>
     <div class="resto-card reveal">
@@ -783,7 +787,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
       <p class="resto-desc">Espacio moderno con muy buen ambiente nocturno, conocido por sus eventos, DJs invitados y carta de cócteles creativa. Uno de los mejores lugares para continuar la noche en Bacalar.</p>
       <div class="resto-meta">
         <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span class="resto-price">$300 – $600 MXN / persona</span></div>
-        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/sakbacalar" target="_blank">@sakbacalar</a><a href="https://maps.google.com/?q=SAK+Bacalar" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,.35);font-size:11px;text-decoration:none;margin-left:12px;transition:color .2s" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='rgba(255,255,255,.35)'"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Ver en Maps</a></div>
+        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/sakbacalar" target="_blank">@sakbacalar</a><a href="https://maps.google.com/?q=SAK+Bacalar" target="_blank" class="resto-map-link"><svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Maps</a></div>
       </div>
     </div>
     <div class="resto-card reveal">
@@ -793,7 +797,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
       <p class="resto-desc">Probablemente el bar mejor ubicado de Bacalar, justo en el centro. Famoso por sus cócteles, margaritas y mezcal, además de su concepto original que mezcla bar con heladería artesanal.</p>
       <div class="resto-meta">
         <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span class="resto-price">$300 – $600 MXN / persona</span></div>
-        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/theiscreambar" target="_blank">@theiscreambar</a><a href="https://maps.google.com/?q=I+Scream+Bar+Bacalar" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,.35);font-size:11px;text-decoration:none;margin-left:12px;transition:color .2s" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='rgba(255,255,255,.35)'"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Ver en Maps</a></div>
+        <div class="resto-meta-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://instagram.com/theiscreambar" target="_blank">@theiscreambar</a><a href="https://maps.google.com/?q=I+Scream+Bar+Bacalar" target="_blank" class="resto-map-link"><svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Maps</a></div>
       </div>
     </div>
   </div>
@@ -824,7 +828,7 @@ function showPage(page) {
   document.getElementById('tab-gastro').classList.toggle('active', page === 'gastro');
   document.getElementById('nav-tours-links').style.display = page === 'tours' ? 'flex' : 'none';
   document.getElementById('nav-gastro-links').style.display = page === 'gastro' ? 'flex' : 'none';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo(0, 0);
   setTimeout(triggerReveal, 100);
 }
 
@@ -886,12 +890,15 @@ function submitForm() {
     'Personas: ' + (personas||'—') + '\n' +
     (notas ? 'Notas: ' + notas + '\n' : '')
   );
-  window.open('mailto:grupolagunacollection@gmail.com?subject=' + subject + '&body=' + body);
-
+  // Show success first, then open mail client
   document.getElementById('booking-form-wrap').style.display = 'none';
   const s = document.getElementById('form-success');
   s.style.display = 'block';
   s.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  // Open mail client after short delay so UI updates first
+  setTimeout(function() {
+    window.location.href = 'mailto:grupolagunacollection@gmail.com?subject=' + subject + '&body=' + body;
+  }, 400);
 }
 
 // ── SCROLL REVEAL ──
