@@ -3,759 +3,1028 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lagoona · Tours Aldea Mayab · Bacalar</title>
+<title>Lagoona · Aldea Mayab · Bacalar</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --sand: #f5efe6;
-    --sand-dark: #e8ddd0;
-    --teal: #1a4a4a;
-    --teal-mid: #2d6b6b;
-    --teal-light: #4a9090;
-    --gold: #b8955a;
-    --gold-light: #d4b07a;
-    --ink: #1c1c1c;
-    --muted: #7a7068;
-    --white: #ffffff;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{background:var(--sand);color:var(--ink);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden}
+:root{
+  --sand:#f5efe6;--sand-dark:#e8ddd0;
+  --teal:#1a4a4a;--teal-mid:#2d6b6b;--teal-light:#4a9090;
+  --gold:#b8955a;--gold-light:#d4b07a;
+  --ink:#1c1c1c;--muted:#7a7068;
+  --night:#0e1a1a;--night-mid:#1a2e2e;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--sand);color:var(--ink);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden}
 
-  /* ─── HERO ─── */
-  .hero{
-    height:100vh;min-height:600px;
-    position:relative;display:flex;flex-direction:column;
-    align-items:center;justify-content:center;overflow:hidden;
-  }
-  .hero-bg{
-    position:absolute;inset:0;
-    background:url('https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=1600&q=80') center/cover no-repeat;
-  }
-  .hero-overlay{
-    position:absolute;inset:0;
-    background:linear-gradient(to bottom,rgba(10,35,35,0.72) 0%,rgba(10,35,35,0.45) 60%,rgba(10,35,35,0.8) 100%);
-  }
-  .hero-content{position:relative;z-index:2;text-align:center;padding:0 20px;animation:fadeUp 1.2s ease forwards}
-  .hero-eyebrow{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-light);font-weight:300;margin-bottom:24px}
-  .hero-brand{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(64px,13vw,120px);color:#fff;letter-spacing:.14em;line-height:.9;margin-bottom:12px}
-  .hero-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(17px,2.8vw,24px);color:rgba(255,255,255,.6);letter-spacing:.04em;margin-bottom:36px}
-  .hero-divider{width:50px;height:1px;background:var(--gold);margin:0 auto 32px}
-  .hero-tagline{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.4);line-height:2}
-  .hero-cta{
-    margin-top:40px;display:inline-block;
-    background:var(--gold);color:#fff;
-    font-size:11px;letter-spacing:.25em;text-transform:uppercase;
-    padding:14px 36px;text-decoration:none;
-    transition:background .25s ease;font-weight:400;
-  }
-  .hero-cta:hover{background:var(--gold-light)}
-  .scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.3);font-size:10px;letter-spacing:.25em;text-transform:uppercase;animation:fadeUp 2s 1.2s ease forwards;opacity:0}
-  .scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s ease-in-out infinite}
-  @keyframes scrollPulse{0%,100%{opacity:.4;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.3)}}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+/* ── TAB SYSTEM ── */
+.page{display:none;min-height:100vh}
+.page.active{display:block}
 
-  /* ─── NAV ─── */
-  .sticky-nav{
-    position:sticky;top:0;z-index:100;
-    background:rgba(26,74,74,.97);backdrop-filter:blur(10px);
-    border-bottom:1px solid rgba(184,149,90,.2);
-    padding:0 30px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;
-  }
-  .nav-logo{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:20px;color:#fff;letter-spacing:.15em;padding:16px 0;white-space:nowrap}
-  .nav-logo span{color:var(--gold)}
-  .nav-links{display:flex;gap:4px;flex-wrap:wrap;padding:8px 0}
-  .nav-links a{color:rgba(255,255,255,.55);text-decoration:none;font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:8px 12px;border-radius:2px;transition:all .25s ease}
-  .nav-links a:hover{color:var(--gold-light);background:rgba(184,149,90,.1)}
-  .nav-reserve{background:var(--gold);color:#fff !important;padding:8px 18px !important;border-radius:0 !important}
-  .nav-reserve:hover{background:var(--gold-light) !important}
+/* ── TOP NAV ── */
+.top-nav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(26,74,74,.97);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(184,149,90,.2);
+  padding:0 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;
+}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;font-weight:400;font-size:21px;
+  color:#fff;letter-spacing:.18em;padding:15px 0;white-space:nowrap;cursor:pointer;
+  text-decoration:none;
+}
+.nav-logo .dot{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:2px;flex-wrap:wrap;padding:6px 0}
 
-  /* ─── WELCOME STRIP ─── */
-  .welcome-strip{background:var(--teal);padding:56px 20px;text-align:center;position:relative;overflow:hidden}
-  .welcome-strip::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(184,149,90,.04) 40px,rgba(184,149,90,.04) 41px)}
-  .welcome-strip p{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,3vw,28px);font-style:italic;color:rgba(255,255,255,.75);max-width:680px;margin:0 auto;line-height:1.8;position:relative;z-index:1}
-  .welcome-strip p strong{color:var(--gold-light);font-style:normal;font-weight:400}
-  .muelle-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(184,149,90,.15);border:1px solid rgba(184,149,90,.3);color:var(--gold-light);font-size:10px;letter-spacing:.25em;text-transform:uppercase;padding:10px 20px;margin-top:24px;position:relative;z-index:1}
-  .muelle-badge svg{width:14px;height:14px;opacity:.7}
+/* Page tabs */
+.tab-btn{
+  color:rgba(255,255,255,.5);background:none;border:none;cursor:pointer;
+  font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  padding:9px 14px;transition:all .25s ease;
+}
+.tab-btn:hover{color:var(--gold-light);background:rgba(184,149,90,.08)}
+.tab-btn.active{color:var(--gold-light);border-bottom:2px solid var(--gold)}
+.tab-divider{width:1px;height:16px;background:rgba(255,255,255,.12);margin:0 4px}
 
-  /* ─── SECTION ─── */
-  .section{padding:80px 20px;max-width:1140px;margin:0 auto}
-  .section-intro{text-align:center;margin-bottom:60px}
-  .section-label{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);font-weight:400;margin-bottom:14px}
-  .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,6vw,56px);font-weight:300;color:var(--teal);line-height:1.1;margin-bottom:18px}
-  .section-title em{font-style:italic;color:var(--teal-mid)}
-  .section-desc{max-width:520px;margin:0 auto;font-size:14px;line-height:1.9;color:var(--muted)}
+/* Scroll-links within tours page */
+.nav-scroll{color:rgba(255,255,255,.5);background:none;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:9px 14px;transition:all .25s ease;text-decoration:none}
+.nav-scroll:hover{color:var(--gold-light)}
+.nav-reserve{background:var(--gold) !important;color:#fff !important;padding:9px 18px !important}
+.nav-reserve:hover{background:var(--gold-light) !important}
 
-  /* ─── TOURS GRID ─── */
-  .tours-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:2px;background:var(--sand-dark);border:2px solid var(--sand-dark)}
-  .tour-card{background:var(--sand);padding:0;position:relative;transition:all .3s ease;overflow:hidden;display:flex;flex-direction:column}
-  .tour-photo{width:100%;height:200px;object-fit:cover;display:block;transition:transform .5s ease}
-  .tour-card:hover .tour-photo{transform:scale(1.04)}
-  .tour-photo-wrap{overflow:hidden;position:relative}
-  .tour-photo-tag{position:absolute;bottom:12px;left:12px;background:rgba(26,74,74,.85);backdrop-filter:blur(4px);color:rgba(255,255,255,.9);font-size:9px;letter-spacing:.25em;text-transform:uppercase;padding:5px 12px}
-  .tour-body{padding:32px 30px;flex:1;display:flex;flex-direction:column}
-  .tour-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--gold);transition:height .4s ease;z-index:2}
-  .tour-card:hover::before{height:100%}
-  .tour-card:hover{background:#fff;box-shadow:0 20px 60px rgba(26,74,74,.1)}
-  .tour-number{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--sand-dark);line-height:1;margin-bottom:12px;transition:color .3s}
-  .tour-card:hover .tour-number{color:rgba(184,149,90,.2)}
-  .tour-name{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--teal);margin-bottom:10px;line-height:1.2}
-  .tour-desc{font-size:13px;line-height:1.8;color:var(--muted);margin-bottom:20px;flex:1}
-  .tour-includes{margin-bottom:20px}
-  .tour-includes-title{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--teal-light);margin-bottom:8px;font-weight:400}
-  .includes-list{display:flex;flex-wrap:wrap;gap:5px}
-  .includes-pill{background:rgba(26,74,74,.07);color:var(--teal);font-size:11px;padding:3px 9px;border-radius:20px;font-weight:300}
+/* ── HERO ── */
+.hero{height:100vh;min-height:600px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=1600&q=80') center/cover no-repeat}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,35,35,.72) 0%,rgba(10,35,35,.42) 60%,rgba(10,35,35,.82) 100%)}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 20px;animation:fadeUp 1.2s ease forwards}
+.hero-eyebrow{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-light);font-weight:300;margin-bottom:24px}
+.hero-brand{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(64px,13vw,120px);color:#fff;letter-spacing:.14em;line-height:.9;margin-bottom:12px}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(17px,2.8vw,24px);color:rgba(255,255,255,.6);letter-spacing:.04em;margin-bottom:36px}
+.hero-divider{width:50px;height:1px;background:var(--gold);margin:0 auto 32px}
+.hero-tagline{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.4);line-height:2}
+.hero-cta{margin-top:40px;display:inline-block;background:var(--gold);color:#fff;font-size:11px;letter-spacing:.25em;text-transform:uppercase;padding:14px 36px;text-decoration:none;transition:background .25s ease;font-weight:400}
+.hero-cta:hover{background:var(--gold-light)}
+.scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.3);font-size:10px;letter-spacing:.25em;text-transform:uppercase;animation:fadeUp 2s 1.2s ease forwards;opacity:0}
+.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:.4;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.3)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 
-  /* price section — equal weight private & shared */
-  .tour-prices{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
-  .price-box{border:1px solid var(--sand-dark);padding:14px 12px;text-align:center;position:relative}
-  .price-box.private-box{background:var(--teal);border-color:var(--teal)}
-  .price-box-label{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;font-weight:400}
-  .price-box.private-box .price-box-label{color:rgba(255,255,255,.45)}
-  .price-box-amount{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--teal);line-height:1}
-  .price-box.private-box .price-box-amount{color:var(--gold-light)}
-  .price-box-sub{font-size:10px;color:var(--muted);margin-top:4px;line-height:1.4}
-  .price-box.private-box .price-box-sub{color:rgba(255,255,255,.35)}
+/* ── WELCOME ── */
+.welcome-strip{background:var(--teal);padding:56px 20px;text-align:center;position:relative;overflow:hidden}
+.welcome-strip::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(184,149,90,.04) 40px,rgba(184,149,90,.04) 41px)}
+.welcome-strip p{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,3vw,28px);font-style:italic;color:rgba(255,255,255,.75);max-width:680px;margin:0 auto;line-height:1.8;position:relative;z-index:1}
+.welcome-strip p strong{color:var(--gold-light);font-style:normal;font-weight:400}
+.muelle-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(184,149,90,.15);border:1px solid rgba(184,149,90,.3);color:var(--gold-light);font-size:10px;letter-spacing:.25em;text-transform:uppercase;padding:10px 20px;margin-top:24px;position:relative;z-index:1}
 
-  .tour-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:16px;border-top:1px solid var(--sand-dark);flex-wrap:wrap}
-  .schedule-label{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-  .schedule-times{display:flex;gap:5px;flex-wrap:wrap}
-  .time-badge{background:var(--teal);color:rgba(255,255,255,.85);font-size:11px;padding:4px 9px;letter-spacing:.04em}
-  .reserve-btn{
-    background:var(--gold);color:#fff;border:none;cursor:pointer;
-    font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;
-    padding:10px 18px;font-weight:400;transition:background .25s ease;white-space:nowrap;
-    text-decoration:none;display:inline-block;
-  }
-  .reserve-btn:hover{background:var(--gold-light)}
+/* ── SECTIONS ── */
+.section{padding:80px 20px;max-width:1140px;margin:0 auto}
+.section-intro{text-align:center;margin-bottom:60px}
+.section-label{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);font-weight:400;margin-bottom:14px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,6vw,56px);font-weight:300;color:var(--teal);line-height:1.1;margin-bottom:18px}
+.section-title em{font-style:italic;color:var(--teal-mid)}
+.section-desc{max-width:520px;margin:0 auto;font-size:14px;line-height:1.9;color:var(--muted)}
 
-  /* ─── KAYAK FEATURE ─── */
-  .kayak-feature{background:#fff;border-top:1px solid var(--sand-dark);border-bottom:1px solid var(--sand-dark);padding:80px 20px}
-  .kayak-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-  .kayak-text .section-label,.kayak-text .section-title{text-align:left}
-  .kayak-text p{font-size:14px;line-height:1.9;color:var(--muted);margin-bottom:28px}
-  .kayak-prices{display:flex;gap:16px;flex-wrap:wrap}
-  .kayak-price-card{flex:1;min-width:130px;border:1px solid var(--sand-dark);padding:24px;text-align:center}
-  .kayak-price-card.featured{background:var(--teal);border-color:var(--teal)}
-  .kp-type{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-  .kayak-price-card.featured .kp-type{color:rgba(255,255,255,.45)}
-  .kp-price{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:400;color:var(--teal)}
-  .kayak-price-card.featured .kp-price{color:var(--gold-light)}
-  .kp-sub{font-size:11px;color:var(--muted);margin-top:4px}
-  .kayak-price-card.featured .kp-sub{color:rgba(255,255,255,.35)}
-  .kayak-photo{width:100%;height:420px;object-fit:cover;display:block}
+/* ── TOURS GRID ── */
+.tours-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:2px;background:var(--sand-dark);border:2px solid var(--sand-dark)}
+.tour-card{background:var(--sand);position:relative;overflow:hidden;display:flex;flex-direction:column;transition:all .3s ease}
+.tour-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--gold);transition:height .4s ease;z-index:2}
+.tour-card:hover::before{height:100%}
+.tour-card:hover{background:#fff;box-shadow:0 20px 60px rgba(26,74,74,.1)}
+.tour-photo-wrap{overflow:hidden;position:relative;flex-shrink:0}
+.tour-photo{width:100%;height:200px;object-fit:cover;display:block;transition:transform .5s ease}
+.tour-card:hover .tour-photo{transform:scale(1.04)}
+.tour-photo-tag{position:absolute;bottom:12px;left:12px;background:rgba(26,74,74,.85);backdrop-filter:blur(4px);color:rgba(255,255,255,.9);font-size:9px;letter-spacing:.25em;text-transform:uppercase;padding:5px 12px}
+.tour-body{padding:30px 28px;flex:1;display:flex;flex-direction:column}
+.tour-number{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:var(--sand-dark);line-height:1;margin-bottom:10px;transition:color .3s}
+.tour-card:hover .tour-number{color:rgba(184,149,90,.2)}
+.tour-name{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--teal);margin-bottom:10px;line-height:1.2}
+.tour-desc{font-size:13px;line-height:1.8;color:var(--muted);margin-bottom:18px;flex:1}
+.tour-includes{margin-bottom:18px}
+.tour-includes-title{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--teal-light);margin-bottom:7px;font-weight:400}
+.includes-list{display:flex;flex-wrap:wrap;gap:5px}
+.includes-pill{background:rgba(26,74,74,.07);color:var(--teal);font-size:11px;padding:3px 9px;border-radius:20px}
+.tour-prices{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}
+.price-box{border:1px solid var(--sand-dark);padding:14px 12px;text-align:center}
+.price-box.private-box{background:var(--teal);border-color:var(--teal)}
+.price-box-label{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.price-box.private-box .price-box-label{color:rgba(255,255,255,.45)}
+.price-box-amount{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--teal);line-height:1}
+.price-box.private-box .price-box-amount{color:var(--gold-light)}
+.price-box-sub{font-size:10px;color:var(--muted);margin-top:4px;line-height:1.4}
+.price-box.private-box .price-box-sub{color:rgba(255,255,255,.35)}
+.tour-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:14px;border-top:1px solid var(--sand-dark);flex-wrap:wrap}
+.schedule-label{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.schedule-times{display:flex;gap:5px;flex-wrap:wrap}
+.time-badge{background:var(--teal);color:rgba(255,255,255,.85);font-size:11px;padding:4px 9px}
+.reserve-btn{background:var(--gold);color:#fff;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;padding:10px 18px;font-weight:400;transition:background .25s ease;white-space:nowrap;text-decoration:none;display:inline-block}
+.reserve-btn:hover{background:var(--gold-light)}
 
-  /* ─── ROUTE ─── */
-  .route-section{background:var(--teal);padding:80px 20px}
-  .route-inner{max-width:1100px;margin:0 auto}
-  .route-section .section-label,.route-section .section-title,.route-section .section-desc{text-align:center}
-  .route-section .section-title{color:#fff}
-  .route-section .section-desc{color:rgba(255,255,255,.45);margin-bottom:56px}
+/* ── KAYAK ── */
+.kayak-feature{background:#fff;border-top:1px solid var(--sand-dark);border-bottom:1px solid var(--sand-dark);padding:80px 20px}
+.kayak-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.kayak-text .section-label,.kayak-text .section-title{text-align:left}
+.kayak-text p{font-size:14px;line-height:1.9;color:var(--muted);margin-bottom:28px}
+.kayak-prices{display:flex;gap:16px;flex-wrap:wrap}
+.kayak-price-card{flex:1;min-width:130px;border:1px solid var(--sand-dark);padding:24px;text-align:center}
+.kayak-price-card.featured{background:var(--teal);border-color:var(--teal)}
+.kp-type{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.kayak-price-card.featured .kp-type{color:rgba(255,255,255,.45)}
+.kp-price{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:400;color:var(--teal)}
+.kayak-price-card.featured .kp-price{color:var(--gold-light)}
+.kp-sub{font-size:11px;color:var(--muted);margin-top:4px}
+.kayak-price-card.featured .kp-sub{color:rgba(255,255,255,.35)}
+.kayak-photo{width:100%;height:420px;object-fit:cover;display:block}
 
-  .route-visual{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;margin-bottom:40px}
-  .route-visual::before{content:'';position:absolute;top:80px;left:10%;right:10%;height:1px;background:linear-gradient(to right,transparent,var(--gold),var(--gold),transparent);opacity:.35;z-index:0}
-  .route-stop-card{display:flex;flex-direction:column;align-items:center;text-align:center;padding:20px 10px;position:relative;z-index:1;transition:transform .3s ease}
-  .route-stop-card:hover{transform:translateY(-6px)}
-  .stop-photo-wrap{width:120px;height:120px;border-radius:50%;overflow:hidden;border:3px solid rgba(184,149,90,.3);margin-bottom:16px;transition:border-color .3s ease}
-  .route-stop-card:hover .stop-photo-wrap{border-color:var(--gold)}
-  .stop-photo{width:100%;height:100%;object-fit:cover}
-  .stop-dot{width:10px;height:10px;border-radius:50%;background:var(--gold);margin:0 auto 12px;opacity:.6}
-  .stop-number{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--gold);opacity:.6;margin-bottom:4px;letter-spacing:.1em}
-  .stop-name{font-size:12px;color:rgba(255,255,255,.85);letter-spacing:.08em;line-height:1.4;font-weight:300}
-  .stop-type{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:11px;color:rgba(255,255,255,.35);margin-top:4px}
+/* ── ROUTE ── */
+.route-section{background:var(--teal);padding:80px 20px}
+.route-inner{max-width:1100px;margin:0 auto}
+.route-section .section-label,.route-section .section-title,.route-section .section-desc{text-align:center}
+.route-section .section-title{color:#fff}
+.route-section .section-desc{color:rgba(255,255,255,.45);margin-bottom:56px}
+.route-visual{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;margin-bottom:40px}
+.route-visual::before{content:'';position:absolute;top:60px;left:10%;right:10%;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:.35;z-index:0}
+.route-stop-card{display:flex;flex-direction:column;align-items:center;text-align:center;padding:20px 10px;position:relative;z-index:1;transition:transform .3s ease}
+.route-stop-card:hover{transform:translateY(-6px)}
+.stop-photo-wrap{width:110px;height:110px;border-radius:50%;overflow:hidden;border:3px solid rgba(184,149,90,.3);margin-bottom:14px;transition:border-color .3s ease}
+.route-stop-card:hover .stop-photo-wrap{border-color:var(--gold)}
+.stop-photo{width:100%;height:100%;object-fit:cover}
+.stop-number{font-family:'Cormorant Garamond',serif;font-size:12px;color:var(--gold);opacity:.6;margin-bottom:4px;letter-spacing:.1em}
+.stop-name{font-size:12px;color:rgba(255,255,255,.85);letter-spacing:.06em;line-height:1.4;font-weight:300}
+.stop-type{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:11px;color:rgba(255,255,255,.35);margin-top:4px}
 
-  /* ─── BOOKING FORM ─── */
-  .booking-section{padding:80px 20px;background:var(--sand)}
-  .booking-inner{max-width:760px;margin:0 auto}
-  .booking-section .section-intro{margin-bottom:48px}
-  .booking-card{background:#fff;padding:52px 48px;border:1px solid var(--sand-dark);position:relative}
-  .booking-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--gold),var(--teal-light))}
-  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
-  .form-group{display:flex;flex-direction:column;gap:6px}
-  .form-group.full{grid-column:span 2}
-  .form-label{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);font-weight:400}
-  .form-input,.form-select,.form-textarea{
-    width:100%;background:var(--sand);border:1px solid var(--sand-dark);
-    padding:12px 14px;font-family:'Jost',sans-serif;font-size:14px;font-weight:300;color:var(--ink);
-    outline:none;transition:border-color .25s ease;-webkit-appearance:none;
-    border-radius:0;
-  }
-  .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--teal-light);background:#fff}
-  .form-textarea{resize:vertical;min-height:90px}
-  .form-select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a7068' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
-  .form-submit{
-    width:100%;background:var(--teal);color:#fff;border:none;cursor:pointer;
-    font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;
-    padding:18px;font-weight:400;transition:background .25s ease;margin-top:8px;
-  }
-  .form-submit:hover{background:var(--teal-mid)}
-  .form-note{text-align:center;font-size:12px;color:var(--muted);margin-top:16px;line-height:1.7}
-  .form-note strong{color:var(--teal);font-weight:400}
-  .form-success{display:none;text-align:center;padding:40px 20px}
-  .form-success-icon{width:56px;height:56px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
-  .form-success-icon svg{width:24px;height:24px}
-  .form-success h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--teal);margin-bottom:10px}
-  .form-success p{font-size:14px;color:var(--muted);line-height:1.8}
+/* ── BOOKING ── */
+.booking-section{padding:80px 20px;background:var(--sand)}
+.booking-inner{max-width:780px;margin:0 auto}
+.booking-card{background:#fff;padding:52px 48px;border:1px solid var(--sand-dark);position:relative}
+.booking-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--gold),var(--teal-light))}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group.full{grid-column:span 2}
+.form-label{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.form-input,.form-select,.form-textarea{width:100%;background:var(--sand);border:1px solid var(--sand-dark);padding:12px 14px;font-family:'Jost',sans-serif;font-size:14px;font-weight:300;color:var(--ink);outline:none;transition:border-color .25s ease;-webkit-appearance:none;border-radius:0}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--teal-light);background:#fff}
+.form-textarea{resize:vertical;min-height:90px}
+.form-select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a7068' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.form-submit{width:100%;background:var(--teal);color:#fff;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;padding:18px;font-weight:400;transition:background .25s ease;margin-top:8px}
+.form-submit:hover{background:var(--teal-mid)}
+.form-note{text-align:center;font-size:12px;color:var(--muted);margin-top:16px;line-height:1.7}
+.form-note strong{color:var(--teal);font-weight:400}
+.form-success{display:none;text-align:center;padding:40px 20px}
+.form-success-icon{width:56px;height:56px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.form-success-icon svg{width:24px;height:24px}
+.form-success h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--teal);margin-bottom:10px}
+.form-success p{font-size:14px;color:var(--muted);line-height:1.8}
+.whatsapp-link{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;padding:14px 28px;text-decoration:none;font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-top:20px;transition:background .2s}
+.whatsapp-link:hover{background:#1ebe5d}
+.whatsapp-link svg{width:18px;height:18px;fill:#fff}
 
-  /* ─── PRACTICAL ─── */
-  .practical{padding:80px 20px;background:#fff;border-top:1px solid var(--sand-dark)}
-  .practical-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px}
-  .info-block-title{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);font-weight:400;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--sand-dark)}
-  .info-item{margin-bottom:12px;font-size:13px;color:var(--muted);line-height:1.6;padding-left:12px;border-left:2px solid var(--sand-dark)}
-  .info-item strong{display:block;color:var(--teal);font-weight:400;margin-bottom:2px}
+/* ── PRACTICAL ── */
+.practical{padding:80px 20px;background:#fff;border-top:1px solid var(--sand-dark)}
+.practical-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px}
+.info-block-title{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);font-weight:400;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--sand-dark)}
+.info-item{margin-bottom:12px;font-size:13px;color:var(--muted);line-height:1.6;padding-left:12px;border-left:2px solid var(--sand-dark)}
+.info-item strong{display:block;color:var(--teal);font-weight:400;margin-bottom:2px}
 
-  /* ─── FOOTER ─── */
-  .footer-photo-strip{height:220px;background:url('https://images.unsplash.com/photo-1568393691622-c7ba131d63b4?w=1600&q=80') center/cover;position:relative;overflow:hidden}
-  .footer-photo-strip::after{content:'';position:absolute;inset:0;background:rgba(10,35,35,.55)}
-  footer{background:var(--teal);padding:56px 20px 36px;text-align:center}
-  .footer-logo{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:#fff;letter-spacing:.2em;margin-bottom:6px}
-  .footer-tagline{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:32px}
-  .footer-address{font-size:12px;color:rgba(255,255,255,.4);letter-spacing:.08em;line-height:2.2;margin-bottom:32px}
-  .footer-divider{width:40px;height:1px;background:var(--gold);margin:0 auto 28px;opacity:.4}
-  .footer-copy{font-size:11px;color:rgba(255,255,255,.2);letter-spacing:.08em}
+/* ── FOOTER ── */
+.footer-photo-strip{height:200px;background:url('https://images.unsplash.com/photo-1568393691622-c7ba131d63b4?w=1600&q=80') center/cover;position:relative}
+.footer-photo-strip::after{content:'';position:absolute;inset:0;background:rgba(10,35,35,.55)}
+footer{background:var(--teal);padding:56px 20px 36px;text-align:center}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:#fff;letter-spacing:.2em;margin-bottom:6px}
+.footer-tagline{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:32px}
+.footer-address{font-size:12px;color:rgba(255,255,255,.4);letter-spacing:.08em;line-height:2.2;margin-bottom:32px}
+.footer-divider{width:40px;height:1px;background:var(--gold);margin:0 auto 28px;opacity:.4}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.2);letter-spacing:.08em}
 
-  /* ─── UTILS ─── */
-  .reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}
-  .reveal.visible{opacity:1;transform:translateY(0)}
+/* ══════════════════════════════════
+   GASTRONOMÍA PAGE
+══════════════════════════════════ */
+.gastro-hero{
+  height:60vh;min-height:420px;position:relative;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;
+}
+.gastro-hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80') center/cover no-repeat}
+.gastro-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,20,10,.75),rgba(10,20,10,.5) 60%,rgba(10,20,10,.85))}
+.gastro-hero-content{position:relative;z-index:2;text-align:center;padding:0 20px;animation:fadeUp 1s ease forwards}
+.gastro-eyebrow{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-light);margin-bottom:20px}
+.gastro-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(42px,9vw,88px);color:#fff;letter-spacing:.1em;line-height:.95;margin-bottom:14px}
+.gastro-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(16px,2.5vw,22px);color:rgba(255,255,255,.55)}
 
-  @media(max-width:768px){
-    .kayak-inner{grid-template-columns:1fr}
-    .kayak-photo{display:none}
-    .practical-inner{grid-template-columns:1fr}
-    .nav-links{display:none}
-    .booking-card{padding:32px 20px}
-    .form-grid{grid-template-columns:1fr}
-    .form-group.full{grid-column:span 1}
-    .route-visual{grid-template-columns:1fr 1fr;gap:20px}
-    .route-visual::before{display:none}
-    .tour-prices{grid-template-columns:1fr}
-  }
+/* Gastro intro */
+.gastro-intro{background:var(--night);padding:56px 20px;text-align:center}
+.gastro-intro p{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2.2vw,21px);color:rgba(255,255,255,.7);max-width:700px;margin:0 auto;line-height:1.9;font-style:italic}
+.gastro-intro p strong{color:var(--gold-light);font-style:normal}
+
+/* Moment nav tabs */
+.moment-nav{background:var(--night-mid);padding:0 20px;display:flex;justify-content:center;gap:0;border-bottom:1px solid rgba(255,255,255,.06)}
+.moment-tab{background:none;border:none;cursor:pointer;padding:18px 28px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);transition:all .25s ease;border-bottom:2px solid transparent;position:relative}
+.moment-tab:hover{color:rgba(255,255,255,.75)}
+.moment-tab.active{color:var(--gold-light);border-bottom:2px solid var(--gold)}
+.moment-tab .tab-emoji{display:block;font-size:20px;margin-bottom:4px}
+
+/* Moment sections */
+.moment-section{display:none;background:var(--night);padding:60px 20px}
+.moment-section.active{display:block}
+.moment-section-inner{max-width:1000px;margin:0 auto}
+.moment-header{text-align:center;margin-bottom:52px}
+.moment-header h2{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,50px);font-weight:300;color:#fff;margin-bottom:8px}
+.moment-header h2 em{font-style:italic;color:var(--gold-light)}
+.moment-header p{font-size:13px;color:rgba(255,255,255,.4);letter-spacing:.15em;text-transform:uppercase}
+
+/* Restaurant cards */
+.resto-grid{display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.04)}
+.resto-card{background:var(--night);padding:40px 36px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:start;transition:background .25s ease;position:relative;overflow:hidden}
+.resto-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--gold);transform:scaleY(0);transform-origin:bottom;transition:transform .4s ease}
+.resto-card:hover::before{transform:scaleY(1)}
+.resto-card:hover{background:rgba(255,255,255,.03)}
+.resto-name{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:400;color:#fff;margin-bottom:10px;letter-spacing:.02em}
+.resto-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:16px;max-width:560px}
+.resto-meta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.resto-ig{display:inline-flex;align-items:center;gap:6px;color:var(--gold-light);font-size:11px;letter-spacing:.1em;text-decoration:none;transition:color .2s}
+.resto-ig:hover{color:#fff}
+.resto-ig svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
+.resto-map{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.35);font-size:11px;letter-spacing:.1em;text-decoration:none;transition:color .2s}
+.resto-map:hover{color:var(--gold-light)}
+.resto-map svg{width:13px;height:13px;fill:currentColor;flex-shrink:0}
+.resto-price-tag{background:rgba(184,149,90,.12);border:1px solid rgba(184,149,90,.25);color:var(--gold-light);font-size:12px;padding:8px 16px;text-align:center;white-space:nowrap;font-family:'Cormorant Garamond',serif;font-size:16px;align-self:center}
+.resto-price-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(184,149,90,.5);font-family:'Jost',sans-serif;display:block;margin-bottom:4px}
+
+/* Discount badge */
+.descuento-banner{background:linear-gradient(135deg,rgba(184,149,90,.15),rgba(184,149,90,.05));border:1px solid rgba(184,149,90,.25);padding:20px 28px;margin-bottom:32px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.descuento-pct{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--gold);line-height:1}
+.descuento-text{flex:1}
+.descuento-text strong{display:block;color:#fff;font-size:14px;font-weight:400;margin-bottom:4px;letter-spacing:.05em}
+.descuento-text span{font-size:12px;color:rgba(255,255,255,.45);line-height:1.6}
+
+/* ── UTILS ── */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  .kayak-inner{grid-template-columns:1fr}
+  .kayak-photo{display:none}
+  .practical-inner{grid-template-columns:1fr}
+  .booking-card{padding:32px 20px}
+  .form-grid{grid-template-columns:1fr}
+  .form-group.full{grid-column:span 1}
+  .route-visual{grid-template-columns:repeat(3,1fr);gap:20px}
+  .route-visual::before{display:none}
+  .moment-tab .tab-emoji{display:none}
+  .momento-tab{padding:14px 14px}
+  .resto-card{grid-template-columns:1fr}
+  .nav-right .nav-scroll:not(.nav-reserve){display:none}
+  .moment-nav{overflow-x:auto;justify-content:flex-start}
+  .moment-tab{white-space:nowrap}
+}
 </style>
 </head>
 <body>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">Aldea Mayab · Bacalar, Quintana Roo</p>
-    <h1 class="hero-brand">LAGOONA</h1>
-    <p class="hero-sub">Tours & Actividades en la Laguna</p>
-    <div class="hero-divider"></div>
-    <p class="hero-tagline">Experiencias curadas para huéspedes de Aldea Mayab</p>
-    <a href="#reservar" class="hero-cta">Reservar un tour</a>
-  </div>
-  <div class="scroll-hint">
-    <div class="scroll-line"></div>
-    Explorar
-  </div>
-</section>
-
-<!-- STICKY NAV -->
-<nav class="sticky-nav">
-  <div class="nav-logo">L<span>·</span>AGOONA</div>
-  <div class="nav-links">
-    <a href="#tours">Tours</a>
-    <a href="#kayak">Kayak</a>
-    <a href="#recorrido">Recorrido</a>
-    <a href="#reservar" class="nav-reserve">Reservar</a>
+<!-- ══ TOP NAV ══ -->
+<nav class="top-nav">
+  <a class="nav-logo" onclick="showPage('tours')" href="#">LAGOONA</a>
+  <div class="nav-right" id="nav-right">
+    <!-- Tours page links -->
+    <div id="tours-nav-links">
+      <a class="nav-scroll" href="#tours">Tours</a>
+      <a class="nav-scroll" href="#kayak">Kayak</a>
+      <a class="nav-scroll" href="#recorrido">Recorrido</a>
+      <a class="nav-scroll nav-reserve" href="#reservar">Reservar</a>
+    </div>
+    <div class="tab-divider" id="nav-divider"></div>
+    <button class="tab-btn active" id="tab-tours" onclick="showPage('tours')">Tours</button>
+    <button class="tab-btn" id="tab-gastro" onclick="showPage('gastro')">Gastronomía</button>
   </div>
 </nav>
 
-<!-- WELCOME -->
-<div class="welcome-strip">
-  <p>Bienvenido a <strong>Bacalar</strong>, la Laguna de los Siete Colores.<br>
-  Todos nuestros tours salen directamente desde el <strong>muelle de Aldea Mayab</strong> — sin traslados, sin esperas.</p>
-  <div class="muelle-badge">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 17l9-13 9 13"/><path d="M7 17h10"/><path d="M12 4v3"/></svg>
-    Salida desde Muelle Aldea Mayab
+<!-- ══════════════════ TOURS PAGE ══════════════════ -->
+<div class="page active" id="page-tours">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Aldea Mayab · Bacalar, Quintana Roo</p>
+      <h1 class="hero-brand">LAGOONA</h1>
+      <p class="hero-sub">Tours & Actividades en la Laguna</p>
+      <div class="hero-divider"></div>
+      <p class="hero-tagline">Experiencias curadas para huéspedes de Aldea Mayab</p>
+      <a href="#reservar" class="hero-cta">Reservar un tour</a>
+    </div>
+    <div class="scroll-hint"><div class="scroll-line"></div>Explorar</div>
+  </section>
+
+  <!-- WELCOME -->
+  <div class="welcome-strip">
+    <p>Bienvenido a <strong>Bacalar</strong>, la Laguna de los Siete Colores.<br>
+    Todos nuestros tours salen directamente desde el <strong>muelle de Aldea Mayab</strong> — sin traslados, sin esperas.</p>
+    <div class="muelle-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 17l9-13 9 13"/><path d="M7 17h10"/></svg>
+      Salida desde Muelle Aldea Mayab
+    </div>
   </div>
+
+  <!-- TOURS -->
+  <section id="tours">
+    <div class="section">
+      <div class="section-intro reveal">
+        <p class="section-label">Actividades en el Agua</p>
+        <h2 class="section-title">Elige tu <em>aventura</em></h2>
+        <p class="section-desc">Todos los tours incluyen guía bilingüe, chalecos, seguro y snacks. Precios en MXN. Salida desde el muelle de Aldea Mayab.</p>
+      </div>
+      <div class="tours-grid">
+
+        <!-- 01 PADDLE -->
+        <div class="tour-card reveal">
+          <div class="tour-photo-wrap">
+            <img class="tour-photo" src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=75" alt="Tour Paddle" loading="lazy">
+            <span class="tour-photo-tag">Kayak · SUP · 3 hrs</span>
+          </div>
+          <div class="tour-body">
+            <div class="tour-number">01</div>
+            <h3 class="tour-name">Tour Paddle</h3>
+            <p class="tour-desc">Kayak o surf de remo al amanecer por las áreas más impresionantes de la laguna. Picnic flotante en el Santuario de las Aves. Apto para todas las edades.</p>
+            <div class="tour-includes">
+              <p class="tour-includes-title">Incluye</p>
+              <div class="includes-list">
+                <span class="includes-pill">Guía bilingüe</span><span class="includes-pill">Snacks y frutas</span><span class="includes-pill">Chalecos</span><span class="includes-pill">Hielera</span><span class="includes-pill">Seguro</span>
+              </div>
+            </div>
+            <div class="tour-prices">
+              <div class="price-box"><p class="price-box-label">Compartido / persona</p><p class="price-box-amount">$550</p><p class="price-box-sub">MXN por persona</p></div>
+              <div class="price-box private-box"><p class="price-box-label">Tour Privado</p><p class="price-box-amount">$3,000</p><p class="price-box-sub">1–4 pax · +$400/extra</p></div>
+            </div>
+            <div class="tour-footer">
+              <div><p class="schedule-label">Horario</p><div class="schedule-times"><span class="time-badge">Al amanecer</span></div></div>
+              <a href="#reservar" class="reserve-btn" onclick="selectTour('Tour Paddle')">Reservar</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 02 VELERO -->
+        <div class="tour-card reveal">
+          <div class="tour-photo-wrap">
+            <img class="tour-photo" src="https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?w=600&q=75" alt="Tour Velero" loading="lazy">
+            <span class="tour-photo-tag">Velero · 3 hrs</span>
+          </div>
+          <div class="tour-body">
+            <div class="tour-number">02</div>
+            <h3 class="tour-name">Tour Velero</h3>
+            <p class="tour-desc">3 horas navegando la Laguna de los Siete Colores impulsados solo por el viento. Ecológico, silencioso y sostenible. Nada, toma fotos y aprende historia local a bordo.</p>
+            <div class="tour-includes">
+              <p class="tour-includes-title">Incluye</p>
+              <div class="includes-list">
+                <span class="includes-pill">Guía bilingüe</span><span class="includes-pill">Snacks y frutas</span><span class="includes-pill">Cervezas</span><span class="includes-pill">Kayaks</span><span class="includes-pill">Hielera</span><span class="includes-pill">Seguro</span>
+              </div>
+            </div>
+            <div class="tour-prices">
+              <div class="price-box"><p class="price-box-label">Compartido / persona</p><p class="price-box-amount">$800</p><p class="price-box-sub">MXN por persona</p></div>
+              <div class="price-box private-box"><p class="price-box-label">Tour Privado</p><p class="price-box-amount">$4,375</p><p class="price-box-sub">1–5 pax · +$625/extra</p></div>
+            </div>
+            <div class="tour-footer">
+              <div><p class="schedule-label">Horarios</p><div class="schedule-times"><span class="time-badge">8:00</span><span class="time-badge">11:00</span><span class="time-badge">15:00</span></div></div>
+              <a href="#reservar" class="reserve-btn" onclick="selectTour('Tour Velero')">Reservar</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03 LANCHA -->
+        <div class="tour-card reveal">
+          <div class="tour-photo-wrap">
+            <img class="tour-photo" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=75" alt="Tour Lancha" loading="lazy">
+            <span class="tour-photo-tag">Lancha · 3 hrs</span>
+          </div>
+          <div class="tour-body">
+            <div class="tour-number">03</div>
+            <h3 class="tour-name">Tour Lancha</h3>
+            <p class="tour-desc">Bote cómodo con sombra, sistema de sonido y tripulación amigable. Paradas en los sitios más relevantes de la laguna para nadar y relajarse.</p>
+            <div class="tour-includes">
+              <p class="tour-includes-title">Incluye</p>
+              <div class="includes-list">
+                <span class="includes-pill">Guía bilingüe</span><span class="includes-pill">Snacks y frutas</span><span class="includes-pill">Cervezas</span><span class="includes-pill">Kayaks</span><span class="includes-pill">Hielera</span><span class="includes-pill">Seguro</span>
+              </div>
+            </div>
+            <div class="tour-prices">
+              <div class="price-box"><p class="price-box-label">Compartido / persona</p><p class="price-box-amount">$450</p><p class="price-box-sub">MXN por persona</p></div>
+              <div class="price-box private-box"><p class="price-box-label">Tour Privado</p><p class="price-box-amount">$3,750</p><p class="price-box-sub">1–6 pax · +$300/extra</p></div>
+            </div>
+            <div class="tour-footer">
+              <div><p class="schedule-label">Horarios</p><div class="schedule-times"><span class="time-badge">8:00</span><span class="time-badge">11:00</span><span class="time-badge">15:00</span></div></div>
+              <a href="#reservar" class="reserve-btn" onclick="selectTour('Tour Lancha')">Reservar</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 04 PONTÓN -->
+        <div class="tour-card reveal">
+          <div class="tour-photo-wrap">
+            <img class="tour-photo" src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&q=75" alt="Tour Pontón" loading="lazy">
+            <span class="tour-photo-tag">Pontón · 3 hrs</span>
+          </div>
+          <div class="tour-body">
+            <div class="tour-number">04</div>
+            <h3 class="tour-name">Tour Pontón</h3>
+            <p class="tour-desc">Pontón estable con sombra y sistema de sonido para tu música favorita. Ideal para grupos y familias. Disfruta los siete colores de la laguna con total comodidad.</p>
+            <div class="tour-includes">
+              <p class="tour-includes-title">Incluye</p>
+              <div class="includes-list">
+                <span class="includes-pill">Guía bilingüe</span><span class="includes-pill">Snacks y frutas</span><span class="includes-pill">Cervezas</span><span class="includes-pill">Kayaks</span><span class="includes-pill">Hielera</span><span class="includes-pill">Seguro</span>
+              </div>
+            </div>
+            <div class="tour-prices">
+              <div class="price-box"><p class="price-box-label">Compartido / persona</p><p class="price-box-amount">$550</p><p class="price-box-sub">MXN por persona</p></div>
+              <div class="price-box private-box"><p class="price-box-label">Tour Privado</p><p class="price-box-amount">$4,375</p><p class="price-box-sub">1–6 pax · +$375/extra</p></div>
+            </div>
+            <div class="tour-footer">
+              <div><p class="schedule-label">Horarios</p><div class="schedule-times"><span class="time-badge">8:00</span><span class="time-badge">11:00</span><span class="time-badge">15:00</span></div></div>
+              <a href="#reservar" class="reserve-btn" onclick="selectTour('Tour Pontón')">Reservar</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 05 CATAMARÁN RECREATIVO -->
+        <div class="tour-card reveal">
+          <div class="tour-photo-wrap">
+            <img class="tour-photo" src="https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?w=600&q=75" alt="Catamarán Recreativo" loading="lazy">
+            <span class="tour-photo-tag">Catamarán a Vela</span>
+          </div>
+          <div class="tour-body">
+            <div class="tour-number">05</div>
+            <h3 class="tour-name">Catamarán Recreativo</h3>
+            <p class="tour-desc">Navega sin motor — sin ruido, sin contaminación. Rápido, maniobrable y emocionante. Una experiencia 100% sostenible con vistas espectaculares de la laguna.</p>
+            <div class="tour-includes">
+              <p class="tour-includes-title">Incluye</p>
+              <div class="includes-list">
+                <span class="includes-pill">Guía bilingüe</span><span class="includes-pill">Snacks y frutas</span><span class="includes-pill">Cervezas</span><span class="includes-pill">Kayaks</span><span class="includes-pill">Hielera</span><span class="includes-pill">Seguro</span>
+              </div>
+            </div>
+            <div class="tour-prices">
+              <div class="price-box"><p class="price-box-label">Compartido / persona</p><p class="price-box-amount">$800</p><p class="price-box-sub">MXN por persona</p></div>
+              <div class="price-box private-box"><p class="price-box-label">Tour Privado</p><p class="price-box-amount">$4,000</p><p class="price-box-sub">1–5 personas</p></div>
+            </div>
+            <div class="tour-footer">
+              <div><p class="schedule-label">Horarios</p><div class="schedule-times"><span class="time-badge">11:00</span><span class="time-badge">15:00</span></div></div>
+              <a href="#reservar" class="reserve-btn" onclick="selectTour('Catamarán Recreativo')">Reservar</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 06 CATAMARÁN PREMIUM -->
+        <div class="tour-card reveal">
+          <div class="tour-photo-wrap">
+            <img class="tour-photo" src="https://images.unsplash.com/photo-1559827291-72f975b32775?w=600&q=75" alt="Tour Catamarán Premium" loading="lazy">
+            <span class="tour-photo-tag">Catamarán 34 pies · Premium</span>
+          </div>
+          <div class="tour-body">
+            <div class="tour-number">06</div>
+            <h3 class="tour-name">Tour Catamarán</h3>
+            <p class="tour-desc">Catamarán de 34 pies con sombra, solarium, salón interior, sanitario y equipo de sonido. La experiencia más completa de la laguna para grupos de hasta 10 personas.</p>
+            <div class="tour-includes">
+              <p class="tour-includes-title">Incluye</p>
+              <div class="includes-list">
+                <span class="includes-pill">Guía bilingüe</span><span class="includes-pill">Snacks y frutas</span><span class="includes-pill">Cervezas</span><span class="includes-pill">Kayaks</span><span class="includes-pill">Hielera</span><span class="includes-pill">Seguro</span>
+              </div>
+            </div>
+            <div class="tour-prices">
+              <div class="price-box"><p class="price-box-label">Compartido / persona</p><p class="price-box-amount">$990</p><p class="price-box-sub">MXN por persona</p></div>
+              <div class="price-box private-box"><p class="price-box-label">Tour Privado</p><p class="price-box-amount">$15,000</p><p class="price-box-sub">1–10 pax · +$650/extra</p></div>
+            </div>
+            <div class="tour-footer">
+              <div><p class="schedule-label">Horarios</p><div class="schedule-times"><span class="time-badge">Comp. 11:00</span><span class="time-badge">Priv. 10:00</span><span class="time-badge">15:00</span></div></div>
+              <a href="#reservar" class="reserve-btn" onclick="selectTour('Tour Catamarán Premium')">Reservar</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 07 LAGUNA GRILL -->
+        <div class="tour-card reveal">
+          <div class="tour-photo-wrap">
+            <img class="tour-photo" src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&q=75" alt="Laguna Grill" loading="lazy">
+            <span class="tour-photo-tag">Gourmet · Privado · 4 hrs</span>
+          </div>
+          <div class="tour-body">
+            <div class="tour-number">07</div>
+            <h3 class="tour-name">Laguna Grill</h3>
+            <p class="tour-desc">Tour privado de 4 horas en bote o velero con parrillada de brochetas mar y tierra, guacamole y bebidas. La combinación perfecta de gastronomía y relajación en la laguna.</p>
+            <div class="tour-includes">
+              <p class="tour-includes-title">Incluye</p>
+              <div class="includes-list">
+                <span class="includes-pill">Brochetas mar & tierra</span><span class="includes-pill">Guacamole</span><span class="includes-pill">Guía bilingüe</span><span class="includes-pill">Cervezas</span><span class="includes-pill">Kayaks</span><span class="includes-pill">Seguro</span>
+              </div>
+            </div>
+            <div class="tour-prices">
+              <div class="price-box" style="grid-column:span 2;background:var(--teal);border-color:var(--teal)">
+                <p class="price-box-label" style="color:rgba(255,255,255,.45)">Solo Privado</p>
+                <p class="price-box-amount" style="color:var(--gold-light);font-size:30px">$6,000</p>
+                <p class="price-box-sub" style="color:rgba(255,255,255,.35)">1–4 personas · +$1,200 por persona extra</p>
+              </div>
+            </div>
+            <div class="tour-footer">
+              <div><p class="schedule-label">Horarios</p><div class="schedule-times"><span class="time-badge">10:00</span><span class="time-badge">15:00</span></div></div>
+              <a href="#reservar" class="reserve-btn" onclick="selectTour('Laguna Grill')">Reservar</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- KAYAK -->
+  <section id="kayak" class="kayak-feature">
+    <div class="kayak-inner">
+      <div class="kayak-text reveal">
+        <p class="section-label">Exploración Libre</p>
+        <h2 class="section-title">Kayak<br><em>a tu ritmo</em></h2>
+        <p>La forma más silenciosa y sustentable de conocer la laguna. Llega a rincones donde los botes no pueden entrar. Disponible todo el día desde el muelle de Aldea Mayab.</p>
+        <div class="kayak-prices">
+          <div class="kayak-price-card">
+            <p class="kp-type">Individual</p>
+            <p class="kp-price">$350</p>
+            <p class="kp-sub">Día completo · MXN</p>
+          </div>
+          <div class="kayak-price-card featured">
+            <p class="kp-type">Doble</p>
+            <p class="kp-price">$500</p>
+            <p class="kp-sub">Día completo · MXN</p>
+          </div>
+        </div>
+        <div style="margin-top:24px">
+          <a href="#reservar" class="reserve-btn" onclick="selectTour('Kayak')">Reservar Kayak</a>
+        </div>
+      </div>
+      <img class="kayak-photo" src="https://images.unsplash.com/photo-1504282831522-6d94a66b3ae5?w=800&q=80" alt="Kayak en Bacalar" loading="lazy">
+    </div>
+  </section>
+
+  <!-- RECORRIDO -->
+  <section id="recorrido" class="route-section">
+    <div class="route-inner">
+      <div class="section-intro reveal">
+        <p class="section-label">Laguna de Siete Colores</p>
+        <h2 class="section-title">El <em>recorrido</em></h2>
+        <p class="section-desc">Desde el muelle de Aldea Mayab navegamos por los puntos más icónicos de la laguna de Bacalar.</p>
+      </div>
+      <div class="route-visual">
+        <div class="route-stop-card reveal">
+          <div class="stop-photo-wrap"><img class="stop-photo" src="https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=300&q=70" alt="Isla de los Pájaros" loading="lazy"></div>
+          <p class="stop-number">I</p><p class="stop-name">Isla de los Pájaros</p><p class="stop-type">Santuario de aves</p>
+        </div>
+        <div class="route-stop-card reveal">
+          <div class="stop-photo-wrap"><img class="stop-photo" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300&q=70" alt="Cenote Cocalitos" loading="lazy"></div>
+          <p class="stop-number">II</p><p class="stop-name">Cenote Cocalitos</p><p class="stop-type">Estromatolitos únicos</p>
+        </div>
+        <div class="route-stop-card reveal">
+          <div class="stop-photo-wrap"><img class="stop-photo" src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=300&q=70" alt="Cenote Esmeralda" loading="lazy"></div>
+          <p class="stop-number">III</p><p class="stop-name">Cenote Esmeralda</p><p class="stop-type">Aguas cristalinas</p>
+        </div>
+        <div class="route-stop-card reveal">
+          <div class="stop-photo-wrap"><img class="stop-photo" src="https://images.unsplash.com/photo-1568393691622-c7ba131d63b4?w=300&q=70" alt="Cenote La Bruja" loading="lazy"></div>
+          <p class="stop-number">IV</p><p class="stop-name">Cenote La Bruja</p><p class="stop-type">Baño & snorkel</p>
+        </div>
+        <div class="route-stop-card reveal">
+          <div class="stop-photo-wrap"><img class="stop-photo" src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=300&q=70" alt="Canal de los Piratas" loading="lazy"></div>
+          <p class="stop-number">V</p><p class="stop-name">Canal de los Piratas</p><p class="stop-type">Historia maya</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING FORM -->
+  <section id="reservar" class="booking-section">
+    <div class="booking-inner">
+      <div class="section-intro reveal">
+        <p class="section-label">Proceso de Reserva</p>
+        <h2 class="section-title" style="color:var(--teal)">Reserva tu <em>experiencia</em></h2>
+        <p class="section-desc">Completa el formulario y nuestro equipo te contactará por WhatsApp para confirmar en menos de 24 horas.</p>
+      </div>
+      <div class="booking-card reveal">
+        <div id="booking-form-wrap">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="f-nombre">Nombre completo</label>
+              <input class="form-input" type="text" id="f-nombre" placeholder="Tu nombre">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-edificio">Edificio y departamento</label>
+              <input class="form-input" type="text" id="f-edificio" placeholder="Ej. Edificio A, Depto 204">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-whatsapp">WhatsApp</label>
+              <input class="form-input" type="tel" id="f-whatsapp" placeholder="+52 000 000 0000">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-personas">Número de personas</label>
+              <input class="form-input" type="number" id="f-personas" min="1" max="20" placeholder="¿Cuántos son?">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-tour">Tour de interés</label>
+              <select class="form-select" id="f-tour">
+                <option value="">Selecciona un tour</option>
+                <option value="Tour Paddle">Tour Paddle — $550 comp. / $3,000 privado</option>
+                <option value="Tour Velero">Tour Velero — $800 comp. / $4,375 privado</option>
+                <option value="Tour Lancha">Tour Lancha — $450 comp. / $3,750 privado</option>
+                <option value="Tour Pontón">Tour Pontón — $550 comp. / $4,375 privado</option>
+                <option value="Catamarán Recreativo">Catamarán Recreativo — $800 comp. / $4,000 privado</option>
+                <option value="Tour Catamarán Premium">Tour Catamarán Premium — $990 comp. / $15,000 privado</option>
+                <option value="Laguna Grill">Laguna Grill — $6,000 privado</option>
+                <option value="Kayak">Kayak Individual — $350 / día</option>
+                <option value="Kayak Doble">Kayak Doble — $500 / día</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-modalidad">Modalidad</label>
+              <select class="form-select" id="f-modalidad">
+                <option value="">Compartido o Privado</option>
+                <option>Compartido (me uno a grupo)</option>
+                <option>Privado (solo mi grupo)</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label class="form-label" for="f-fecha">Fecha preferida</label>
+              <input class="form-input" type="date" id="f-fecha">
+            </div>
+            <div class="form-group full">
+              <label class="form-label" for="f-notas">Comentarios o peticiones especiales</label>
+              <textarea class="form-textarea" id="f-notas" placeholder="Alergias, horario preferido, celebración especial..."></textarea>
+            </div>
+          </div>
+          <button class="form-submit" onclick="submitForm()">Enviar solicitud de reserva</button>
+          <p class="form-note">Confirmaremos por <strong>WhatsApp</strong> en menos de 24 horas.<br>
+          <strong>100% reembolso</strong> si cancelas con más de 24 hrs de anticipación.</p>
+        </div>
+        <div class="form-success" id="form-success">
+          <div class="form-success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h3>¡Solicitud enviada!</h3>
+          <p>Gracias por tu reserva. Nuestro equipo te contactará por WhatsApp en menos de 24 horas para confirmar los detalles de tu tour desde el muelle de Aldea Mayab.</p>
+          <a class="whatsapp-link" href="https://wa.me/529842411410" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16z"/></svg>
+            Escribir por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRACTICAL -->
+  <section class="practical">
+    <div class="section-intro reveal" style="max-width:900px;margin:0 auto 52px">
+      <p class="section-label">Información Práctica</p>
+      <h2 class="section-title" style="color:var(--teal)">Antes de <em>zarpar</em></h2>
+    </div>
+    <div class="practical-inner">
+      <div class="info-block reveal">
+        <p class="info-block-title">¿Qué llevar?</p>
+        <div class="info-item"><strong>Traje de baño</strong>Puesto desde que salgas de la villa</div>
+        <div class="info-item"><strong>Sombrero o gorra</strong>Protección solar esencial</div>
+        <div class="info-item"><strong>Toalla</strong>Para secarte entre paradas</div>
+        <div class="info-item"><strong>Ropa UV</strong>Recomendada para tours largos</div>
+        <div class="info-item"><strong>Efectivo extra</strong>Para propinas y recuerdos</div>
+      </div>
+      <div class="info-block reveal">
+        <p class="info-block-title">Notas Importantes</p>
+        <div class="info-item"><strong>Punto de salida</strong>Muelle de Aldea Mayab — sin traslados</div>
+        <div class="info-item"><strong>Accesibilidad</strong>No hay acceso para silla de ruedas ni carriola</div>
+        <div class="info-item"><strong>Bebés</strong>No contamos con asientos para bebés a bordo</div>
+        <div class="info-item"><strong>Salud</strong>No recomendable para condiciones cardíacas</div>
+        <div class="info-item"><strong>Temporada</strong>Horarios sujetos a cambio por temporada</div>
+      </div>
+      <div class="info-block reveal">
+        <p class="info-block-title">Pagos & Cancelación</p>
+        <div class="info-item"><strong>Tarjetas aceptadas</strong>Visa · Mastercard · Amex</div>
+        <div class="info-item"><strong>Reembolso total</strong>Cancelando con más de 24 hrs de anticipación</div>
+        <div class="info-item"><strong>Sin reembolso</strong>Cancelaciones con menos de 24 hrs</div>
+        <div class="info-item"><strong>WhatsApp</strong>+52 984 241 1410</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-photo-strip"></div>
+  <footer>
+    <p class="footer-logo">LAGOONA</p>
+    <p class="footer-tagline">Curated Vacation Homes · Aldea Mayab</p>
+    <div class="footer-divider"></div>
+    <p class="footer-address">
+      Carretera Chetumal-Cancún Km 10.6<br>
+      Residencial Aldea Mayab, Xul-Ha, Quintana Roo<br>
+      WhatsApp: +52 984 241 1410
+    </p>
+    <p class="footer-copy">© Lagoona Curated Vacation Homes · Todos los derechos reservados</p>
+  </footer>
 </div>
+<!-- /page-tours -->
 
-<!-- TOURS -->
-<section id="tours">
-  <div class="section">
-    <div class="section-intro reveal">
-      <p class="section-label">Actividades en el Agua</p>
-      <h2 class="section-title">Elige tu <em>aventura</em></h2>
-      <p class="section-desc">Todos los tours incluyen guía bilingüe, chalecos, seguro y snacks. Precios en MXN. Salida desde el muelle de Aldea Mayab.</p>
+
+<!-- ══════════════════ GASTRONOMÍA PAGE ══════════════════ -->
+<div class="page" id="page-gastro">
+
+  <section class="gastro-hero">
+    <div class="gastro-hero-bg"></div>
+    <div class="gastro-hero-overlay"></div>
+    <div class="gastro-hero-content">
+      <p class="gastro-eyebrow">Aldea Mayab · Bacalar</p>
+      <h1 class="gastro-title">BACALAR<br><em>en el Paladar</em></h1>
+      <p class="gastro-sub">Restaurantes & Bares · Guía Lagoona</p>
     </div>
+  </section>
 
-    <div class="tours-grid">
-
-      <!-- 01 PADDLE -->
-      <div class="tour-card reveal">
-        <div class="tour-photo-wrap">
-          <img class="tour-photo" src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=75" alt="Tour Paddle Bacalar" loading="lazy">
-          <span class="tour-photo-tag">Kayak · SUP · 3 hrs</span>
-        </div>
-        <div class="tour-body">
-          <div class="tour-number">01</div>
-          <h3 class="tour-name">Tour Paddle</h3>
-          <p class="tour-desc">Kayak o surf de remo al amanecer por las áreas más impresionantes de la laguna. Picnic flotante en el Santuario de las Aves. Apto para todas las edades y habilidades.</p>
-          <div class="tour-includes">
-            <p class="tour-includes-title">Incluye</p>
-            <div class="includes-list">
-              <span class="includes-pill">Guía bilingüe</span><span class="includes-pill">Snacks y frutas</span><span class="includes-pill">Chalecos</span><span class="includes-pill">Hielera</span><span class="includes-pill">Seguro</span>
-            </div>
-          </div>
-          <div class="tour-prices">
-            <div class="price-box">
-              <p class="price-box-label">Compartido / persona</p>
-              <p class="price-box-amount">$550</p>
-              <p class="price-box-sub">MXN por persona</p>
-            </div>
-            <div class="price-box private-box">
-              <p class="price-box-label">Tour Privado</p>
-              <p class="price-box-amount">$3,000</p>
-              <p class="price-box-sub">1–4 pax · +$400/extra</p>
-            </div>
-          </div>
-          <div class="tour-footer">
-            <div>
-              <p class="schedule-label">Horario</p>
-              <div class="schedule-times"><span class="time-badge">Al amanecer</span></div>
-            </div>
-            <a href="#reservar" class="reserve-btn">Reservar</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 02 VELERO -->
-      <div class="tour-card reveal">
-        <div class="tour-photo-wrap">
-          <img class="tour-photo" src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=75" alt="Tour Velero Bacalar" loading="lazy">
-          <span class="tour-photo-tag">Velero · 3 hrs</span>
-        </div>
-        <div class="tour-body">
-          <div class="tour-number">02</div>
-          <h3 class="tour-name">Tour Velero</h3>
-          <p class="tour-desc">3 horas navegando la Laguna de los Siete Colores impulsados solo por el viento. Ecológico, silencioso y sostenible. Nada, toma fotos y aprende historia local a bordo.</p>
-          <div class="tour-includes">
-            <p class="tour-includes-title">Incluye</p>
-            <div class="includes-list">
-              <span class="includes-pill">Guía bilingüe</span><span class="includes-pill">Snacks y frutas</span><span class="includes-pill">Cervezas</span><span class="includes-pill">Kayaks</span><span class="includes-pill">Hielera</span><span class="includes-pill">Seguro</span>
-            </div>
-          </div>
-          <div class="tour-prices">
-            <div class="price-box">
-              <p class="price-box-label">Compartido / persona</p>
-              <p class="price-box-amount">$800</p>
-              <p class="price-box-sub">MXN por persona</p>
-            </div>
-            <div class="price-box private-box">
-              <p class="price-box-label">Tour Privado</p>
-              <p class="price-box-amount">$4,375</p>
-              <p class="price-box-sub">1–5 pax · +$625/extra</p>
-            </div>
-          </div>
-          <div class="tour-footer">
-            <div>
-              <p class="schedule-label">Horarios</p>
-              <div class="schedule-times"><span class="time-badge">8:00</span><span class="time-badge">11:00</span><span class="time-badge">15:00</span></div>
-            </div>
-            <a href="#reservar" class="reserve-btn">Reservar</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 03 LANCHA -->
-      <div class="tour-card reveal">
-        <div class="tour-photo-wrap">
-          <img class="tour-photo" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=75" alt="Tour Lancha Bacalar" loading="lazy">
-          <span class="tour-photo-tag">Lancha · 3 hrs</span>
-        </div>
-        <div class="tour-body">
-          <div class="tour-number">03</div>
-          <h3 class="tour-name">Tour Lancha</h3>
-          <p class="tour-desc">Bote cómodo con sombra, sistema de sonido y tripulación amigable. Paradas en los sitios más relevantes de la laguna para nadar y relajarse. Bebidas y snacks incluidos.</p>
-          <div class="tour-includes">
-            <p class="tour-includes-title">Incluye</p>
-            <div class="includes-list">
-              <span class="includes-pill">Guía bilingüe</span><span class="includes-pill">Snacks y frutas</span><span class="includes-pill">Cervezas</span><span class="includes-pill">Kayaks</span><span class="includes-pill">Hielera</span><span class="includes-pill">Seguro</span>
-            </div>
-          </div>
-          <div class="tour-prices">
-            <div class="price-box">
-              <p class="price-box-label">Compartido / persona</p>
-              <p class="price-box-amount">$450</p>
-              <p class="price-box-sub">MXN por persona</p>
-            </div>
-            <div class="price-box private-box">
-              <p class="price-box-label">Tour Privado</p>
-              <p class="price-box-amount">$3,750</p>
-              <p class="price-box-sub">1–6 pax · +$300/extra</p>
-            </div>
-          </div>
-          <div class="tour-footer">
-            <div>
-              <p class="schedule-label">Horarios</p>
-              <div class="schedule-times"><span class="time-badge">8:00</span><span class="time-badge">11:00</span><span class="time-badge">15:00</span></div>
-            </div>
-            <a href="#reservar" class="reserve-btn">Reservar</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 04 PONTÓN -->
-      <div class="tour-card reveal">
-        <div class="tour-photo-wrap">
-          <img class="tour-photo" src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&q=75" alt="Tour Pontón Bacalar" loading="lazy">
-          <span class="tour-photo-tag">Pontón · 3 hrs</span>
-        </div>
-        <div class="tour-body">
-          <div class="tour-number">04</div>
-          <h3 class="tour-name">Tour Pontón</h3>
-          <p class="tour-desc">Pontón estable y con sombra con sistema de sonido para tu música favorita. Ideal para grupos y familias. Disfruta los siete colores de la laguna con total comodidad.</p>
-          <div class="tour-includes">
-            <p class="tour-includes-title">Incluye</p>
-            <div class="includes-list">
-              <span class="includes-pill">Guía bilingüe</span><span class="includes-pill">Snacks y frutas</span><span class="includes-pill">Cervezas</span><span class="includes-pill">Kayaks</span><span class="includes-pill">Hielera</span><span class="includes-pill">Seguro</span>
-            </div>
-          </div>
-          <div class="tour-prices">
-            <div class="price-box">
-              <p class="price-box-label">Compartido / persona</p>
-              <p class="price-box-amount">$550</p>
-              <p class="price-box-sub">MXN por persona</p>
-            </div>
-            <div class="price-box private-box">
-              <p class="price-box-label">Tour Privado</p>
-              <p class="price-box-amount">$4,375</p>
-              <p class="price-box-sub">1–6 pax · +$375/extra</p>
-            </div>
-          </div>
-          <div class="tour-footer">
-            <div>
-              <p class="schedule-label">Horarios</p>
-              <div class="schedule-times"><span class="time-badge">8:00</span><span class="time-badge">11:00</span><span class="time-badge">15:00</span></div>
-            </div>
-            <a href="#reservar" class="reserve-btn">Reservar</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 05 CATAMARÁN RECREATIVO -->
-      <div class="tour-card reveal">
-        <div class="tour-photo-wrap">
-          <img class="tour-photo" src="https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?w=600&q=75" alt="Catamarán Recreativo Bacalar" loading="lazy">
-          <span class="tour-photo-tag">Catamarán a Vela</span>
-        </div>
-        <div class="tour-body">
-          <div class="tour-number">05</div>
-          <h3 class="tour-name">Catamarán Recreativo</h3>
-          <p class="tour-desc">Navega sin motor — sin ruido, sin contaminación. Rápido, maniobrable y emocionante. Una experiencia 100% sostenible con vistas espectaculares de la laguna de Bacalar.</p>
-          <div class="tour-includes">
-            <p class="tour-includes-title">Incluye</p>
-            <div class="includes-list">
-              <span class="includes-pill">Guía bilingüe</span><span class="includes-pill">Snacks y frutas</span><span class="includes-pill">Cervezas</span><span class="includes-pill">Kayaks</span><span class="includes-pill">Hielera</span><span class="includes-pill">Seguro</span>
-            </div>
-          </div>
-          <div class="tour-prices">
-            <div class="price-box">
-              <p class="price-box-label">Compartido / persona</p>
-              <p class="price-box-amount">$800</p>
-              <p class="price-box-sub">MXN por persona</p>
-            </div>
-            <div class="price-box private-box">
-              <p class="price-box-label">Tour Privado</p>
-              <p class="price-box-amount">$4,000</p>
-              <p class="price-box-sub">1–5 personas</p>
-            </div>
-          </div>
-          <div class="tour-footer">
-            <div>
-              <p class="schedule-label">Horarios</p>
-              <div class="schedule-times"><span class="time-badge">11:00</span><span class="time-badge">15:00</span></div>
-            </div>
-            <a href="#reservar" class="reserve-btn">Reservar</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 06 TOUR CATAMARÁN GRANDE -->
-      <div class="tour-card reveal">
-        <div class="tour-photo-wrap">
-          <img class="tour-photo" src="https://images.unsplash.com/photo-1559827291-72f975b32775?w=600&q=75" alt="Tour Catamarán Premium Bacalar" loading="lazy">
-          <span class="tour-photo-tag">Catamarán 34 pies · Premium</span>
-        </div>
-        <div class="tour-body">
-          <div class="tour-number">06</div>
-          <h3 class="tour-name">Tour Catamarán</h3>
-          <p class="tour-desc">Catamarán de 34 pies con sombra, solarium, salón interior, sanitario y equipo de sonido. La experiencia más completa de la laguna para grupos de hasta 10 personas.</p>
-          <div class="tour-includes">
-            <p class="tour-includes-title">Incluye</p>
-            <div class="includes-list">
-              <span class="includes-pill">Guía bilingüe</span><span class="includes-pill">Snacks y frutas</span><span class="includes-pill">Cervezas</span><span class="includes-pill">Kayaks</span><span class="includes-pill">Hielera</span><span class="includes-pill">Seguro</span>
-            </div>
-          </div>
-          <div class="tour-prices">
-            <div class="price-box">
-              <p class="price-box-label">Compartido / persona</p>
-              <p class="price-box-amount">$990</p>
-              <p class="price-box-sub">MXN por persona</p>
-            </div>
-            <div class="price-box private-box">
-              <p class="price-box-label">Tour Privado</p>
-              <p class="price-box-amount">$15,000</p>
-              <p class="price-box-sub">1–10 pax · +$650/extra</p>
-            </div>
-          </div>
-          <div class="tour-footer">
-            <div>
-              <p class="schedule-label">Horarios</p>
-              <div class="schedule-times"><span class="time-badge">Comp. 11:00</span><span class="time-badge">Priv. 10:00</span><span class="time-badge">15:00</span></div>
-            </div>
-            <a href="#reservar" class="reserve-btn">Reservar</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 07 LAGUNA GRILL -->
-      <div class="tour-card reveal" style="grid-column:span 1">
-        <div class="tour-photo-wrap">
-          <img class="tour-photo" src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&q=75" alt="Laguna Grill Tour Bacalar" loading="lazy">
-          <span class="tour-photo-tag">Gourmet · Privado · 4 hrs</span>
-        </div>
-        <div class="tour-body">
-          <div class="tour-number">07</div>
-          <h3 class="tour-name">Laguna Grill</h3>
-          <p class="tour-desc">Tour privado de 4 horas en bote o velero con parrillada de brochetas mar y tierra, guacamole y bebidas. La combinación perfecta de gastronomía, paisaje y relajación en la laguna.</p>
-          <div class="tour-includes">
-            <p class="tour-includes-title">Incluye</p>
-            <div class="includes-list">
-              <span class="includes-pill">Brochetas mar & tierra</span><span class="includes-pill">Guacamole</span><span class="includes-pill">Guía bilingüe</span><span class="includes-pill">Cervezas</span><span class="includes-pill">Kayaks</span><span class="includes-pill">Hielera</span><span class="includes-pill">Seguro</span>
-            </div>
-          </div>
-          <div class="tour-prices">
-            <div class="price-box" style="grid-column:span 2;background:var(--teal);border-color:var(--teal)">
-              <p class="price-box-label" style="color:rgba(255,255,255,.45)">Solo Privado</p>
-              <p class="price-box-amount" style="color:var(--gold-light);font-size:30px">$6,000</p>
-              <p class="price-box-sub" style="color:rgba(255,255,255,.35)">1–4 personas · +$1,200 por persona extra</p>
-            </div>
-          </div>
-          <div class="tour-footer">
-            <div>
-              <p class="schedule-label">Horarios</p>
-              <div class="schedule-times"><span class="time-badge">10:00</span><span class="time-badge">15:00</span></div>
-            </div>
-            <a href="#reservar" class="reserve-btn">Reservar</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
+  <div class="gastro-intro">
+    <p>Aunque Bacalar conserva el encanto de pueblo tranquilo que nos enamoró, su escena gastronómica está viviendo una <strong>transformación vibrante</strong>. Chefs locales y apasionados experimentan con ingredientes frescos y técnicas que elevan la tradición a nuevas alturas.</p>
   </div>
-</section>
 
-<!-- KAYAK -->
-<section id="kayak" class="kayak-feature">
-  <div class="kayak-inner">
-    <div class="kayak-text reveal">
-      <p class="section-label">Exploración Libre</p>
-      <h2 class="section-title">Kayak<br><em>a tu ritmo</em></h2>
-      <p>La forma más silenciosa y sustentable de conocer la laguna. Llega a rincones donde los botes grandes no pueden entrar. Disponible todo el día desde el muelle de Aldea Mayab.</p>
-      <div class="kayak-prices">
-        <div class="kayak-price-card">
-          <p class="kp-type">Individual</p>
-          <p class="kp-price">$350</p>
-          <p class="kp-sub">Día completo · MXN</p>
-        </div>
-        <div class="kayak-price-card featured">
-          <p class="kp-type">Doble</p>
-          <p class="kp-price">$500</p>
-          <p class="kp-sub">Día completo · MXN</p>
-        </div>
-      </div>
-    </div>
-    <img class="kayak-photo" src="https://images.unsplash.com/photo-1504282831522-6d94a66b3ae5?w=800&q=80" alt="Kayak en Bacalar" loading="lazy">
-  </div>
-</section>
+  <!-- MOMENT TABS -->
+  <nav class="moment-nav">
+    <button class="moment-tab active" onclick="showMoment('desayuno')">
+      <span class="tab-emoji">☕</span>Desayunos
+    </button>
+    <button class="moment-tab" onclick="showMoment('comida')">
+      <span class="tab-emoji">☀️</span>Comidas
+    </button>
+    <button class="moment-tab" onclick="showMoment('cena')">
+      <span class="tab-emoji">🌙</span>Cenas
+    </button>
+    <button class="moment-tab" onclick="showMoment('bares')">
+      <span class="tab-emoji">🍸</span>Bares & Noche
+    </button>
+  </nav>
 
-<!-- RECORRIDO -->
-<section id="recorrido" class="route-section">
-  <div class="route-inner">
-    <div class="section-intro reveal">
-      <p class="section-label">Laguna de Siete Colores</p>
-      <h2 class="section-title">El <em>recorrido</em></h2>
-      <p class="section-desc">Desde el muelle de Aldea Mayab navegamos por los puntos más icónicos de la laguna.</p>
-    </div>
-
-    <div class="route-visual">
-      <div class="route-stop-card reveal">
-        <div class="stop-photo-wrap">
-          <img class="stop-photo" src="https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=300&q=70" alt="Isla de los Pájaros" loading="lazy">
-        </div>
-        <p class="stop-number">I</p>
-        <p class="stop-name">Isla de los Pájaros</p>
-        <p class="stop-type">Santuario de aves</p>
+  <!-- DESAYUNOS -->
+  <div class="moment-section active" id="moment-desayuno">
+    <div class="moment-section-inner">
+      <div class="moment-header">
+        <h2>Amanecer en <em>la Laguna</em></h2>
+        <p>Desayunos & Brunch · Café de especialidad hasta chilaquiles con vistas al azul</p>
       </div>
-      <div class="route-stop-card reveal">
-        <div class="stop-photo-wrap">
-          <img class="stop-photo" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300&q=70" alt="Cenote Cocalitos" loading="lazy">
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div>
+            <h3 class="resto-name">Enamora Bacalar</h3>
+            <p class="resto-desc">Un café-restaurante muy querido en el centro de Bacalar, famoso por su pan artesanal, café orgánico y desayunos creativos que mezclan sabores mexicanos e internacionales.</p>
+            <div class="resto-meta">
+              <a class="resto-ig" href="https://instagram.com/enamorabacalar" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                @enamorabacalar
+              </a>
+              <a class="resto-map" href="https://maps.google.com" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Ver en Maps
+              </a>
+            </div>
+          </div>
+          <div class="resto-price-tag"><span class="resto-price-label">Precio promedio</span>$280 – $380</div>
         </div>
-        <p class="stop-number">II</p>
-        <p class="stop-name">Cenote Cocalitos</p>
-        <p class="stop-type">Estromatolitos únicos</p>
-      </div>
-      <div class="route-stop-card reveal">
-        <div class="stop-photo-wrap">
-          <img class="stop-photo" src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=300&q=70" alt="Cenote Esmeralda" loading="lazy">
+        <div class="resto-card">
+          <div>
+            <h3 class="resto-name">BAMOA Cafe</h3>
+            <p class="resto-desc">Un lugar moderno y relajado que combina café, panadería y cocina inspirada en ingredientes del Caribe mexicano, perfecto para un brunch tranquilo.</p>
+            <div class="resto-meta">
+              <a class="resto-ig" href="https://instagram.com/bamoabacalar" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                @bamoabacalar
+              </a>
+              <a class="resto-map" href="https://maps.google.com" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Ver en Maps
+              </a>
+            </div>
+          </div>
+          <div class="resto-price-tag"><span class="resto-price-label">Precio promedio</span>$250 – $350</div>
         </div>
-        <p class="stop-number">III</p>
-        <p class="stop-name">Cenote Esmeralda</p>
-        <p class="stop-type">Aguas cristalinas</p>
-      </div>
-      <div class="route-stop-card reveal">
-        <div class="stop-photo-wrap">
-          <img class="stop-photo" src="https://images.unsplash.com/photo-1568393691622-c7ba131d63b4?w=300&q=70" alt="Cenote La Bruja" loading="lazy">
+        <div class="resto-card">
+          <div>
+            <h3 class="resto-name">Madre Masa</h3>
+            <p class="resto-desc">Panadería artesanal muy popular en Bacalar, conocida por su repostería estilo francés y desayunos frescos como chilaquiles o chapatas con ingredientes de alta calidad.</p>
+            <div class="resto-meta">
+              <a class="resto-ig" href="https://instagram.com/madre_masa_bacalar" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                @madre_masa_bacalar
+              </a>
+              <a class="resto-map" href="https://maps.google.com" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Ver en Maps
+              </a>
+            </div>
+          </div>
+          <div class="resto-price-tag"><span class="resto-price-label">Precio promedio</span>$250 – $350</div>
         </div>
-        <p class="stop-number">IV</p>
-        <p class="stop-name">Cenote La Bruja</p>
-        <p class="stop-type">Baño & snorkel</p>
-      </div>
-      <div class="route-stop-card reveal">
-        <div class="stop-photo-wrap">
-          <img class="stop-photo" src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=300&q=70" alt="Canal de los Piratas" loading="lazy">
-        </div>
-        <p class="stop-number">V</p>
-        <p class="stop-name">Canal de los Piratas</p>
-        <p class="stop-type">Historia maya</p>
       </div>
     </div>
   </div>
-</section>
 
-<!-- BOOKING FORM -->
-<section id="reservar" class="booking-section">
-  <div class="booking-inner">
-    <div class="section-intro reveal">
-      <p class="section-label">Proceso de Reserva</p>
-      <h2 class="section-title" style="color:var(--teal)">Reserva tu <em>experiencia</em></h2>
-      <p class="section-desc">Completa el formulario y nuestro equipo confirmará tu reserva en menos de 24 horas. Los tours salen desde el muelle de Aldea Mayab.</p>
-    </div>
-
-    <div class="booking-card reveal">
-      <div id="booking-form-wrap">
-        <div class="form-grid">
-          <div class="form-group">
-            <label class="form-label" for="f-nombre">Nombre completo</label>
-            <input class="form-input" type="text" id="f-nombre" placeholder="Tu nombre">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f-airbnb">Reserva Airbnb (código o #)</label>
-            <input class="form-input" type="text" id="f-airbnb" placeholder="Ej. HMWXXX123">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f-email">Correo electrónico</label>
-            <input class="form-input" type="email" id="f-email" placeholder="tu@email.com">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f-whatsapp">WhatsApp</label>
-            <input class="form-input" type="tel" id="f-whatsapp" placeholder="+52 000 000 0000">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f-tour">Tour de interés</label>
-            <select class="form-select" id="f-tour">
-              <option value="">Selecciona un tour</option>
-              <option>Tour Paddle — $550 compartido / $3,000 privado</option>
-              <option>Tour Velero — $800 compartido / $4,375 privado</option>
-              <option>Tour Lancha — $450 compartido / $3,750 privado</option>
-              <option>Tour Pontón — $550 compartido / $4,375 privado</option>
-              <option>Catamarán Recreativo — $800 compartido / $4,000 privado</option>
-              <option>Tour Catamarán Premium — $990 compartido / $15,000 privado</option>
-              <option>Laguna Grill — $6,000 privado</option>
-              <option>Kayak Individual — $350 / día</option>
-              <option>Kayak Doble — $500 / día</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f-modalidad">Modalidad</label>
-            <select class="form-select" id="f-modalidad">
-              <option value="">Compartido o Privado</option>
-              <option>Compartido (me uno a grupo)</option>
-              <option>Privado (solo mi grupo)</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f-fecha">Fecha preferida</label>
-            <input class="form-input" type="date" id="f-fecha">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f-personas">Número de personas</label>
-            <input class="form-input" type="number" id="f-personas" min="1" max="20" placeholder="¿Cuántos son?">
-          </div>
-          <div class="form-group full">
-            <label class="form-label" for="f-notas">Comentarios o peticiones especiales</label>
-            <textarea class="form-textarea" id="f-notas" placeholder="Alergias, horario preferido, celebración especial..."></textarea>
-          </div>
-        </div>
-        <button class="form-submit" onclick="submitForm()">Enviar solicitud de reserva</button>
-        <p class="form-note">Confirmaremos tu reserva en menos de <strong>24 horas</strong> vía WhatsApp o correo.<br>Recuerda: cancelación con <strong>100% de reembolso</strong> si cancelas con más de 24 hrs de anticipación.</p>
+  <!-- COMIDAS -->
+  <div class="moment-section" id="moment-comida">
+    <div class="moment-section-inner">
+      <div class="moment-header">
+        <h2>Bajo el Sol de <em>Bacalar</em></h2>
+        <p>Comidas & Lunch · Frescos, relajados, con toque auténtico del Caribe</p>
       </div>
-      <div class="form-success" id="form-success">
-        <div class="form-success-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg>
+      <div class="descuento-banner">
+        <div class="descuento-pct">10%</div>
+        <div class="descuento-text">
+          <strong>Descuento exclusivo para huéspedes de Aldea Mayab</strong>
+          <span>Menciona que te hospedas en Aldea Mayab al llegar a Yerbabuena y obtén 10% de descuento en tu cuenta.</span>
         </div>
-        <h3>¡Solicitud enviada!</h3>
-        <p>Gracias por tu reserva. Nuestro equipo se pondrá en contacto contigo en menos de 24 horas para confirmar los detalles de tu tour desde el muelle de Aldea Mayab.</p>
+      </div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div>
+            <h3 class="resto-name">Vícaro</h3>
+            <p class="resto-desc">Restaurante contemporáneo dentro del hotel AMAINAH, con vista espectacular a la laguna y una propuesta gastronómica cuidada y elegante, ideal para una comida tranquila frente al agua.</p>
+            <div class="resto-meta">
+              <a class="resto-ig" href="https://instagram.com/vicaro.mx" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                @vicaro.mx
+              </a>
+              <a class="resto-map" href="https://maps.google.com" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Ver en Maps</a>
+            </div>
+          </div>
+          <div class="resto-price-tag"><span class="resto-price-label">Precio promedio</span>$300 – $500</div>
+        </div>
+        <div class="resto-card">
+          <div>
+            <h3 class="resto-name">La Playita</h3>
+            <p class="resto-desc">Uno de los lugares más icónicos de Bacalar para comer frente a la laguna, con jardín tropical, muelle para nadar y un menú de cocina latina con mariscos, tacos y platos para compartir.</p>
+            <div class="resto-meta">
+              <a class="resto-ig" href="https://instagram.com/laplayitabacalar" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>@laplayitabacalar</a>
+              <a class="resto-map" href="https://maps.google.com" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Ver en Maps</a>
+            </div>
+          </div>
+          <div class="resto-price-tag"><span class="resto-price-label">Precio promedio</span>$350 – $600</div>
+        </div>
+        <div class="resto-card">
+          <div>
+            <h3 class="resto-name">Yerbabuena <span style="font-size:13px;color:var(--gold);font-family:'Jost',sans-serif;font-weight:300;letter-spacing:.1em">· 10% descuento</span></h3>
+            <p class="resto-desc">Restaurante relajado y muy querido en el centro, conocido por su cocina saludable con bowls, tostadas, smoothies y opciones vegetarianas o veganas con ingredientes frescos.</p>
+            <div class="resto-meta">
+              <a class="resto-ig" href="https://instagram.com/yerbabuenabacalar" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>@yerbabuenabacalar</a>
+              <a class="resto-map" href="https://maps.google.com" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Ver en Maps</a>
+            </div>
+          </div>
+          <div class="resto-price-tag"><span class="resto-price-label">Precio promedio</span>$250 – $450</div>
+        </div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- PRACTICAL -->
-<section class="practical">
-  <div class="section-intro reveal" style="max-width:900px;margin:0 auto 52px">
-    <p class="section-label">Información Práctica</p>
-    <h2 class="section-title" style="color:var(--teal)">Antes de <em>zarpar</em></h2>
+  <!-- CENAS -->
+  <div class="moment-section" id="moment-cena">
+    <div class="moment-section-inner">
+      <div class="moment-header">
+        <h2>Sabores de <em>Autor</em></h2>
+        <p>Cenas · La magia culinaria en su máximo esplendor, para disfrutar sin prisas</p>
+      </div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div>
+            <h3 class="resto-name">Cheuinic</h3>
+            <p class="resto-desc">Considerado por muchos como el mejor restaurante de Bacalar, con una propuesta gastronómica creativa, muy cuidada y con producto de gran calidad. Lugar pequeño y muy solicitado — <strong style="color:var(--gold-light)">reservar con anticipación</strong>.</p>
+            <div class="resto-meta">
+              <a class="resto-ig" href="https://instagram.com/cheuinic" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>@cheuinic</a>
+              <a class="resto-map" href="https://maps.google.com" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Ver en Maps</a>
+            </div>
+          </div>
+          <div class="resto-price-tag"><span class="resto-price-label">Precio promedio</span>$400 – $700</div>
+        </div>
+        <div class="resto-card">
+          <div>
+            <h3 class="resto-name">Nixtamal</h3>
+            <p class="resto-desc">Restaurante de cocina mexicana contemporánea que reinterpreta recetas tradicionales con técnicas modernas y excelente presentación. Gran opción para descubrir sabores locales en un ambiente elegante pero relajado.</p>
+            <div class="resto-meta">
+              <a class="resto-ig" href="https://instagram.com/nixtamalbacalar" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>@nixtamalbacalar</a>
+              <a class="resto-map" href="https://maps.google.com" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Ver en Maps</a>
+            </div>
+          </div>
+          <div class="resto-price-tag"><span class="resto-price-label">Precio promedio</span>$500 – $900</div>
+        </div>
+        <div class="resto-card">
+          <div>
+            <h3 class="resto-name">Trattoria del 46</h3>
+            <p class="resto-desc">Una excelente opción italiana en Bacalar, con pastas frescas, pizzas y un ambiente acogedor ideal para una cena tranquila. Perfecto si te apetece cambiar de la cocina mexicana durante tu estancia.</p>
+            <div class="resto-meta">
+              <a class="resto-ig" href="https://instagram.com/trattoriadel46" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>@trattoriadel46</a>
+              <a class="resto-map" href="https://maps.google.com" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Ver en Maps</a>
+            </div>
+          </div>
+          <div class="resto-price-tag"><span class="resto-price-label">Precio promedio</span>$450 – $750</div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="practical-inner">
-    <div class="info-block reveal">
-      <p class="info-block-title">¿Qué llevar?</p>
-      <div class="info-item"><strong>Traje de baño</strong>Puesto desde que salgas de la villa</div>
-      <div class="info-item"><strong>Sombrero o gorra</strong>Protección solar esencial</div>
-      <div class="info-item"><strong>Toalla</strong>Para secarte entre paradas</div>
-      <div class="info-item"><strong>Ropa UV</strong>Recomendada para tours de más de 2 hrs</div>
-      <div class="info-item"><strong>Efectivo extra</strong>Para propinas y recuerdos</div>
-    </div>
-    <div class="info-block reveal">
-      <p class="info-block-title">Notas Importantes</p>
-      <div class="info-item"><strong>Punto de salida</strong>Muelle de Aldea Mayab — sin traslados</div>
-      <div class="info-item"><strong>Accesibilidad</strong>No hay acceso para silla de ruedas ni carriola</div>
-      <div class="info-item"><strong>Bebés</strong>No contamos con asientos para bebés a bordo</div>
-      <div class="info-item"><strong>Salud</strong>No recomendable para condiciones cardíacas</div>
-      <div class="info-item"><strong>Temporada</strong>Horarios sujetos a cambio por temporada</div>
-    </div>
-    <div class="info-block reveal">
-      <p class="info-block-title">Pagos & Cancelación</p>
-      <div class="info-item"><strong>Tarjetas aceptadas</strong>Visa · Mastercard · Amex</div>
-      <div class="info-item"><strong>Reembolso total</strong>Si cancelas con más de 24 hrs de anticipación</div>
-      <div class="info-item"><strong>Sin reembolso</strong>Cancelaciones con menos de 24 hrs</div>
-      <div class="info-item"><strong>Paquetes privados</strong>Pregunta por alimentos y bebidas adicionales</div>
+
+  <!-- BARES -->
+  <div class="moment-section" id="moment-bares">
+    <div class="moment-section-inner">
+      <div class="moment-header">
+        <h2>Noches con <em>Alma</em></h2>
+        <p>Bares & Ambiente · Coctelería creativa, música en vivo y brindis bajo las estrellas</p>
+      </div>
+      <div class="descuento-banner">
+        <div class="descuento-pct">5%</div>
+        <div class="descuento-text">
+          <strong>Descuento exclusivo en La Catrina Bacalar</strong>
+          <span>Menciona que te hospedas en Aldea Mayab y obtén 5% de descuento en tu consumo.</span>
+        </div>
+      </div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div>
+            <h3 class="resto-name">La Catrina Bacalar <span style="font-size:13px;color:var(--gold);font-family:'Jost',sans-serif;font-weight:300;letter-spacing:.1em">· 5% descuento</span></h3>
+            <p class="resto-desc">Uno de los lugares con más ambiente del centro de Bacalar. Combina restaurante y bar con música en vivo, buena energía y excelentes cócteles, además de pizzas y platos ideales para cenar.</p>
+            <div class="resto-meta">
+              <a class="resto-ig" href="https://instagram.com/lacatrinabacalar" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>@lacatrinabacalar</a>
+              <a class="resto-map" href="https://maps.google.com" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Ver en Maps</a>
+            </div>
+          </div>
+          <div class="resto-price-tag"><span class="resto-price-label">Precio promedio</span>$350 – $700</div>
+        </div>
+        <div class="resto-card">
+          <div>
+            <h3 class="resto-name">I Scream Bar</h3>
+            <p class="resto-desc">Probablemente el bar mejor ubicado de Bacalar, justo en el centro y siempre con mucho ambiente por la noche. Famoso por sus cócteles, margaritas y mezcal, además de su concepto original que mezcla bar con heladería artesanal.</p>
+            <div class="resto-meta">
+              <a class="resto-ig" href="https://instagram.com/theiscreambar" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>@theiscreambar</a>
+              <a class="resto-map" href="https://maps.google.com" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Ver en Maps</a>
+            </div>
+          </div>
+          <div class="resto-price-tag"><span class="resto-price-label">Precio promedio</span>$300 – $600</div>
+        </div>
+        <div class="resto-card">
+          <div>
+            <h3 class="resto-name">SAK Bacalar</h3>
+            <p class="resto-desc">Un espacio moderno con muy buen ambiente nocturno, conocido por sus eventos, DJs invitados y una carta de cócteles creativa. Es uno de los mejores lugares para continuar la noche en Bacalar.</p>
+            <div class="resto-meta">
+              <a class="resto-ig" href="https://instagram.com/sakbacalar" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>@sakbacalar</a>
+              <a class="resto-map" href="https://maps.google.com" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Ver en Maps</a>
+            </div>
+          </div>
+          <div class="resto-price-tag"><span class="resto-price-label">Precio promedio</span>$300 – $600</div>
+        </div>
+      </div>
     </div>
   </div>
-</section>
 
-<!-- FOOTER PHOTO -->
-<div class="footer-photo-strip"></div>
-
-<!-- FOOTER -->
-<footer>
-  <p class="footer-logo">LAGOONA</p>
-  <p class="footer-tagline">Curated Vacation Homes · Aldea Mayab</p>
-  <div class="footer-divider"></div>
-  <p class="footer-address">
-    Aldea Mayab, Bacalar, Quintana Roo, México<br>
-    Muelle propio · Costera 67<br>
-    contacto@lagoona.mx · +52 (983) 000 0000
-  </p>
-  <p class="footer-copy">© Lagoona Curated Vacation Homes · Todos los derechos reservados</p>
-</footer>
+  <footer style="background:var(--night);padding:56px 20px 36px;text-align:center">
+    <p class="footer-logo">LAGOONA</p>
+    <p class="footer-tagline">Curated Vacation Homes · Aldea Mayab</p>
+    <div class="footer-divider"></div>
+    <p class="footer-address" style="color:rgba(255,255,255,.3)">
+      Carretera Chetumal-Cancún Km 10.6<br>
+      Residencial Aldea Mayab, Xul-Ha, Quintana Roo<br>
+      WhatsApp: +52 984 241 1410
+    </p>
+    <p class="footer-copy">© Lagoona Curated Vacation Homes · Todos los derechos reservados</p>
+  </footer>
+</div>
+<!-- /page-gastro -->
 
 <script>
-  // Reveal on scroll
+  // ── PAGE TABS ──
+  function showPage(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + page).classList.add('active');
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + page).classList.add('active');
+    // Show/hide tours nav links
+    document.getElementById('tours-nav-links').style.display = page === 'tours' ? '' : 'none';
+    document.getElementById('nav-divider').style.display = page === 'tours' ? '' : 'none';
+    window.scrollTo(0,0);
+  }
+
+  // ── GASTRO MOMENT TABS ──
+  function showMoment(id) {
+    document.querySelectorAll('.moment-section').forEach(s => s.classList.remove('active'));
+    document.getElementById('moment-' + id).classList.add('active');
+    document.querySelectorAll('.moment-tab').forEach(t => t.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+  }
+
+  // ── AUTO-SELECT TOUR ──
+  function selectTour(name) {
+    const sel = document.getElementById('f-tour');
+    for (let i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].value === name) { sel.selectedIndex = i; break; }
+    }
+  }
+
+  // ── FORM SUBMIT ──
+  function submitForm() {
+    const nombre = document.getElementById('f-nombre').value.trim();
+    const tel = document.getElementById('f-whatsapp').value.trim();
+    const tour = document.getElementById('f-tour').value;
+    const fecha = document.getElementById('f-fecha').value;
+    if (!nombre) { alert('Por favor ingresa tu nombre.'); return; }
+    if (!tel) { alert('Por favor ingresa tu número de WhatsApp.'); return; }
+    if (!tour) { alert('Por favor selecciona un tour.'); return; }
+    if (!fecha) { alert('Por favor elige una fecha.'); return; }
+    document.getElementById('booking-form-wrap').style.display = 'none';
+    const s = document.getElementById('form-success');
+    s.style.display = 'block';
+    s.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  // ── SCROLL REVEAL ──
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
       if (e.isIntersecting) {
@@ -765,24 +1034,6 @@
     });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  // Form submission
-  function submitForm() {
-    const nombre = document.getElementById('f-nombre').value.trim();
-    const email = document.getElementById('f-email').value.trim();
-    const tour = document.getElementById('f-tour').value;
-    const fecha = document.getElementById('f-fecha').value;
-
-    if (!nombre) { alert('Por favor ingresa tu nombre.'); return; }
-    if (!email || !email.includes('@')) { alert('Por favor ingresa un correo válido.'); return; }
-    if (!tour) { alert('Por favor selecciona un tour.'); return; }
-    if (!fecha) { alert('Por favor elige una fecha.'); return; }
-
-    document.getElementById('booking-form-wrap').style.display = 'none';
-    const s = document.getElementById('form-success');
-    s.style.display = 'block';
-    s.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
 </script>
 </body>
 </html>
