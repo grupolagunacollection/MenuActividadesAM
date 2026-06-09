@@ -1497,7 +1497,13 @@ async function submitForm() {
   const fecha    = document.getElementById('f-fecha').value.trim();
   const hora     = document.getElementById('f-hora').value.trim();
   const notas    = document.getElementById('f-notas').value.trim();
-
+if (fecha && esMiercoles(fecha) && tourCierraMiercoles(tour)) {
+  alert(
+    'Los tours de navegación normalmente no operan los miércoles.\n\n' +
+    'Consulta por WhatsApp si existe disponibilidad excepcional para esa fecha.'
+  );
+  return;
+}
   if (!nombre || !whatsapp || !tour || !personas) {
     alert('Por favor completa los campos:\n✓ Nombre\n✓ WhatsApp\n✓ Tour\n✓ Número de personas');
     return;
@@ -2833,28 +2839,88 @@ const horariosMap = {
   "Tour Catamarán Premium — $15,000 privado":  ["10:00 AM", "3:00 PM"],
   "Laguna Grill — $6,000 privado":             ["10:00 AM", "3:00 PM"],
   "Tour Velero Vip — $6,000 privado":          ["10:00 AM", "3:00 PM"],
+  "La Nimfa — $6,800 privado":                 ["10:00 AM", "3:00 PM"],
   "Kayak Individual — $350 / día":             ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM"],
   "Kayak Doble — $500 / día":                  ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM"],
-  "Jet Ski (30 min) — $1,500 (1 pax)":        ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"],
-  "Jet Ski (30 min) — $1,600 (2 pax)":        ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"],
-  "Jet Ski (1 hora) — $2,300 (1 pax)":        ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"],
-  "Jet Ski (1 hora) — $2,500 (2 pax)":        ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"],
+  "Jet Ski (30 min) — $1,500 (1 pax)":         ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"],
+  "Jet Ski (30 min) — $1,600 (2 pax)":         ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"],
+  "Jet Ski (1 hora) — $2,300 (1 pax)":         ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"],
+  "Jet Ski (1 hora) — $2,500 (2 pax)":         ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"],
   "Tour a Los Rápidos — $1,200 colectivo":     ["12:00 PM"],
-  "Tour a Los Rápidos — $8,500 privado":       ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"],
+  "Tour a Los Rápidos — $8,500 privado":       ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"]
 };
 
-(function() {
+/*
+ * Tours que normalmente no operan los miércoles.
+ * Si existe una excepción, el huésped deberá consultarla por WhatsApp.
+ */
+const toursCerradosMiercoles = [
+  "Tour Velero — $800 compartido",
+  "Tour Velero — $4,375 privado",
+  "Tour Lancha — $450 compartido",
+  "Tour Lancha — $3,750 privado",
+  "Tour Pontón — $550 compartido",
+  "Tour Pontón — $4,375 privado",
+  "Catamarán Recreativo — $800 compartido",
+  "Catamarán Recreativo — $4,000 privado",
+  "Tour Catamarán Premium — $990 compartido",
+  "Tour Catamarán Premium — $15,000 privado",
+  "Laguna Grill — $6,000 privado",
+  "Tour Velero Vip — $6,000 privado",
+  "La Nimfa — $6,800 privado",
+  "Jet Ski (30 min) — $1,500 (1 pax)",
+  "Jet Ski (30 min) — $1,600 (2 pax)",
+  "Jet Ski (1 hora) — $2,300 (1 pax)",
+  "Jet Ski (1 hora) — $2,500 (2 pax)"
+];
+
+function esMiercoles(fechaISO) {
+  if (!fechaISO) return false;
+
+  const [anio, mes, dia] = fechaISO.split("-").map(Number);
+  const fecha = new Date(anio, mes - 1, dia);
+
+  return fecha.getDay() === 3;
+}
+
+function tourCierraMiercoles(tour) {
+  return toursCerradosMiercoles.includes(tour);
+}
+
+(function () {
   const elTour = document.getElementById("f-tour");
   const elHora = document.getElementById("f-hora");
+  const elFecha = document.getElementById("f-fecha");
+
+  function fechaLocalISO() {
+    const hoy = new Date();
+    const anio = hoy.getFullYear();
+    const mes = String(hoy.getMonth() + 1).padStart(2, "0");
+    const dia = String(hoy.getDate()).padStart(2, "0");
+
+    return `${anio}-${mes}-${dia}`;
+  }
+
+  // Impide seleccionar fechas anteriores.
+  elFecha.min = fechaLocalISO();
 
   function actualizarHorarios() {
     const tour = elTour.value;
+    const fecha = elFecha.value;
     const horarios = horariosMap[tour] || [];
 
     elHora.innerHTML = "";
 
+    if (fecha && esMiercoles(fecha) && tourCierraMiercoles(tour)) {
+      elHora.innerHTML =
+        '<option value="">— Navegación normalmente no disponible los miércoles —</option>';
+      elHora.disabled = true;
+      return;
+    }
+
     if (!tour || horarios.length === 0) {
-      elHora.innerHTML = '<option value="">— Selecciona primero un tour —</option>';
+      elHora.innerHTML =
+        '<option value="">— Selecciona primero un tour —</option>';
       elHora.disabled = true;
       return;
     }
@@ -2864,19 +2930,19 @@ const horariosMap = {
     placeholder.textContent = "Seleccionar horario";
     elHora.appendChild(placeholder);
 
-    horarios.forEach(h => {
-      const opt = document.createElement("option");
-      opt.value = h;
-      opt.textContent = h;
-      elHora.appendChild(opt);
+    horarios.forEach(horario => {
+      const opcion = document.createElement("option");
+      opcion.value = horario;
+      opcion.textContent = horario;
+      elHora.appendChild(opcion);
     });
 
     elHora.disabled = false;
   }
 
   elTour.addEventListener("change", actualizarHorarios);
+  elFecha.addEventListener("change", actualizarHorarios);
 })();
-
 applyLang(currentLang);
 </script>
 
