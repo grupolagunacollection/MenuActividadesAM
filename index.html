@@ -705,7 +705,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
 
     <div class="tour-prices">
       <div class="price-box priv price-box--vip" role="button" tabindex="0"
-           onclick="selectTour('Tour Velero Vip — $5,500 privado'); return false;">
+           onclick="selectTour('Tour Velero Vip — $6,000 privado'); return false;">
         <p class="price-box-label">Experiencia VIP Privada</p>
         <p class="price-box-amount">$6,000</p>
         <p class="price-box-sub">1–4 personas · +$500 por persona extra máx 2</p>
@@ -945,7 +945,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
             <span data-i18n="nimfa.location">Veleando Ando, Bacalar</span>
           </div>
-          <button class="reserve-btn" onclick="selectTour('Tour La Ninfa — $6,800')" data-i18n="btn.reserve">Reservar</button>
+          <button class="reserve-btn" onclick="selectTour('La Nimfa — $6,800 privado'); return false;" data-i18n="btn.reserve">Reservar</button>
         </div>
       </div>
     </div>
@@ -1360,7 +1360,8 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
               <option value="Tour Catamarán Premium — $990 compartido">Tour Catamarán Premium — $990 compartido</option>
               <option value="Tour Catamarán Premium — $15,000 privado">Tour Catamarán Premium — $15,000 privado</option>
               <option value="Laguna Grill — $6,000 privado">Laguna Grill — $6,000 privado</option>
-              <option value="Tour Velero Vip — $5,500 privado">Tour Velero Vip — $5,500 privado</option>
+              <option value="Tour Velero Vip — $5,500 privado">Tour Velero Vip — $6,000 privado</option>
+              <option value="La Nimfa — $6,800 privado">La Nimfa — $6,800 privado</option>
               <option value="Kayak Individual — $350 / día">Kayak Individual — $350 / día</option>
               <option value="Kayak Doble — $500 / día">Kayak Doble — $500 / día</option>
               <option value="Jet Ski (30 min) — $1,500 (1 pax)">Jet Ski (30 min) — $1,500 (1 pax)</option>
@@ -1435,60 +1436,147 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
 </section>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  emailjs.init('9MZCJhdmnez1c2XZI');
+  const LAGOONA_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyEWu030gJpdwQdKJWDvfNUzpbmP4UIN4Eq8GnP72WshZXVR8rC1frlyQsIpDYRtSlR/exec';
+const LAGOONA_PUBLIC_TOKEN = 'LAGOONA_WEB_2026';
 
-  function submitForm() {
-    const nombre   = document.getElementById('f-nombre').value.trim();
-    const unidad   = document.getElementById('f-unidad').value.trim();
-    const whatsapp = document.getElementById('f-whatsapp').value.trim();
-    const email    = document.getElementById('f-email').value.trim();
-    const personas = document.getElementById('f-personas').value.trim();
-    const tour     = document.getElementById('f-tour').value.trim();
-    const fecha    = document.getElementById('f-fecha').value.trim();
-    const hora     = document.getElementById('f-hora').value.trim();
-    const notas    = document.getElementById('f-notas').value.trim();
+emailjs.init('9MZCJhdmnez1c2XZI');
 
-    if (!nombre || !whatsapp || !tour || !personas) {
-      alert('Por favor completa los campos:\n✓ Nombre\n✓ WhatsApp\n✓ Tour\n✓ Número de personas');
-      return;
+function registrarReservaEnSheets(datos) {
+  return new Promise((resolve, reject) => {
+    const callbackName = 'lagoonaBooking_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
+    const script = document.createElement('script');
+    const timeout = setTimeout(() => {
+      cleanup();
+      reject(new Error('Tiempo de espera agotado al registrar la reserva.'));
+    }, 20000);
+
+    function cleanup() {
+      clearTimeout(timeout);
+      delete window[callbackName];
+      if (script.parentNode) script.parentNode.removeChild(script);
     }
 
-    const submitBtn = document.getElementById('submit-btn');
-    submitBtn.innerText = 'Enviando...';
-    submitBtn.disabled = true;
+    window[callbackName] = response => {
+      cleanup();
+      if (response && response.ok) resolve(response);
+      else reject(new Error((response && response.error) || 'No se pudo registrar la reserva.'));
+    };
 
-    emailjs.send('service_7k9x92f', 'template_87v07x8', {
-      nombre:   nombre,
-      unidad:   unidad   || 'No especificado',
-      whatsapp: whatsapp,
-      email:    email    || 'No especificado',
-      personas: personas,
-      tour:     tour,
-      fecha:    fecha    || 'No especificada',
-      hora:     hora     || 'No especificado',
-      notas:    notas    || 'Sin notas'
-    })
-    .then(() => {
-      alert('✅ ¡Solicitud enviada!\n\nTe contactamos en menos de 24 horas al: ' + whatsapp);
-      document.getElementById('f-nombre').value = '';
-      document.getElementById('f-unidad').value = '';
-      document.getElementById('f-whatsapp').value = '';
-      document.getElementById('f-email').value = '';
-      document.getElementById('f-personas').value = '';
-      document.getElementById('f-tour').value = '';
-      document.getElementById('f-fecha').value = '';
-      document.getElementById('f-hora').value = '';
-      document.getElementById('f-notas').value = '';
-      submitBtn.innerText = 'Enviar solicitud de reserva';
-      submitBtn.disabled = false;
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-      alert('❌ Error al enviar. Intenta por WhatsApp: https://wa.me/529842411410');
-      submitBtn.innerText = 'Enviar solicitud de reserva';
-      submitBtn.disabled = false;
+    const params = new URLSearchParams({
+      action: 'createPublicReservation',
+      publicToken: LAGOONA_PUBLIC_TOKEN,
+      callback: callbackName,
+      nombre: datos.nombre,
+      unidad: datos.unidad,
+      whatsapp: datos.whatsapp,
+      email: datos.email,
+      personas: datos.personas,
+      tour: datos.tour,
+      fecha: datos.fecha,
+      hora: datos.hora,
+      notas: datos.notas,
+      t: String(Date.now())
     });
+
+    script.src = LAGOONA_APPS_SCRIPT_URL + '?' + params.toString();
+    script.onerror = () => {
+      cleanup();
+      reject(new Error('No fue posible conectar con el registro de reservas.'));
+    };
+    document.body.appendChild(script);
+  });
+}
+
+async function submitForm() {
+  const nombre   = document.getElementById('f-nombre').value.trim();
+  const unidad   = document.getElementById('f-unidad').value.trim();
+  const whatsapp = document.getElementById('f-whatsapp').value.trim();
+  const email    = document.getElementById('f-email').value.trim();
+  const personas = document.getElementById('f-personas').value.trim();
+  const tour     = document.getElementById('f-tour').value.trim();
+  const fecha    = document.getElementById('f-fecha').value.trim();
+  const hora     = document.getElementById('f-hora').value.trim();
+  const notas    = document.getElementById('f-notas').value.trim();
+
+  if (!nombre || !whatsapp || !tour || !personas) {
+    alert('Por favor completa los campos:\n✓ Nombre\n✓ WhatsApp\n✓ Tour\n✓ Número de personas');
+    return;
   }
+
+  const submitBtn = document.getElementById('submit-btn');
+  submitBtn.innerText = 'Enviando...';
+  submitBtn.disabled = true;
+
+  const datos = {
+    nombre,
+    unidad: unidad || 'No especificado',
+    whatsapp,
+    email: email || '',
+    personas,
+    tour,
+    fecha: fecha || '',
+    hora: hora || '',
+    notas: notas || ''
+  };
+
+  const registroSheets = registrarReservaEnSheets(datos);
+  const notificacionEmail = emailjs.send('service_7k9x92f', 'template_87v07x8', {
+    nombre: nombre,
+    unidad: unidad || 'No especificado',
+    whatsapp: whatsapp,
+    email: email || 'No especificado',
+    personas: personas,
+    tour: tour,
+    fecha: fecha || 'No especificada',
+    hora: hora || 'No especificado',
+    notas: notas || 'Sin notas'
+  });
+
+  try {
+    const [sheetResult, emailResult] = await Promise.allSettled([
+      registroSheets,
+      notificacionEmail
+    ]);
+
+    if (sheetResult.status === 'rejected' && emailResult.status === 'rejected') {
+      throw new Error('No se pudo registrar ni enviar la solicitud.');
+    }
+
+    if (sheetResult.status === 'fulfilled') {
+      const numero = sheetResult.value.numeroReserva;
+      alert(
+        '✅ ¡Solicitud enviada!\n\n' +
+        'Número de reserva: ' + numero + '\n' +
+        'Te contactamos en menos de 24 horas al: ' + whatsapp
+      );
+    } else {
+      console.error('Registro en Sheets:', sheetResult.reason);
+      alert(
+        '✅ Solicitud enviada por correo.\n\n' +
+        'El registro interno quedó pendiente de revisión.\n' +
+        'Te contactamos al: ' + whatsapp
+      );
+    }
+
+    if (emailResult.status === 'rejected') {
+      console.warn('EmailJS no pudo enviar la notificación:', emailResult.reason);
+    }
+
+    ['f-nombre','f-unidad','f-whatsapp','f-email','f-personas','f-tour','f-fecha','f-hora','f-notas']
+      .forEach(id => { document.getElementById(id).value = ''; });
+
+    const elHora = document.getElementById('f-hora');
+    elHora.innerHTML = '<option value="">— Selecciona primero un tour —</option>';
+    elHora.disabled = true;
+
+  } catch (error) {
+    console.error('Error:', error);
+    alert('❌ Error al enviar. Intenta por WhatsApp: https://wa.me/529842411410');
+  } finally {
+    submitBtn.innerText = 'Enviar solicitud de reserva';
+    submitBtn.disabled = false;
+  }
+}
 // ── SCROLL REVEAL ──
 function triggerReveal() {
   const io = new IntersectionObserver((entries) => {
@@ -2744,7 +2832,7 @@ const horariosMap = {
   "Tour Catamarán Premium — $990 compartido":  ["11:00 AM", "3:00 PM"],
   "Tour Catamarán Premium — $15,000 privado":  ["10:00 AM", "3:00 PM"],
   "Laguna Grill — $6,000 privado":             ["10:00 AM", "3:00 PM"],
-  "Tour Velero Vip — $5,500 privado":          ["10:00 AM", "3:00 PM"],
+  "Tour Velero Vip — $6,000 privado":          ["10:00 AM", "3:00 PM"],
   "Kayak Individual — $350 / día":             ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM"],
   "Kayak Doble — $500 / día":                  ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM"],
   "Jet Ski (30 min) — $1,500 (1 pax)":        ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"],
