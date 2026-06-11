@@ -1434,163 +1434,200 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
 
   </div>
 </section>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  const LAGOONA_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyEWu030gJpdwQdKJWDvfNUzpbmP4UIN4Eq8GnP72WshZXVR8rC1frlyQsIpDYRtSlR/exec';
-const LAGOONA_PUBLIC_TOKEN = 'LAGOONA_WEB_2026';
+/******************************************************
+ * LAGOONA · FORMULARIO PÚBLICO DE RESERVAS
+ * Envía la solicitud al Apps Script público.
+ * Ya no usa EmailJS.
+ ******************************************************/
 
-emailjs.init('9MZCJhdmnez1c2XZI');
+const LAGOONA_PUBLIC_APP_URL = "https://script.google.com/macros/s/AKfycbzUpSyqZHuiHUWmaXHFbfkoFJU7ibToBFMoLAbcuExpcBBlJp_eAXABtaW-NzlGzMrR-A/exec";
 
-function registrarReservaEnSheets(datos) {
+function lagoonaRequestId() {
+  return "REQ_" + Date.now() + "_" + Math.random().toString(36).slice(2, 10);
+}
+
+function ensurePublicReservationForm() {
+  let iframe = document.getElementById("lagoona-public-frame");
+  let form = document.getElementById("lagoona-public-form");
+
+  if (!iframe) {
+    iframe = document.createElement("iframe");
+    iframe.id = "lagoona-public-frame";
+    iframe.name = "lagoona-public-frame";
+    iframe.style.display = "none";
+    document.body.appendChild(iframe);
+  }
+
+  if (!form) {
+    form = document.createElement("form");
+    form.id = "lagoona-public-form";
+    form.method = "POST";
+    form.target = "lagoona-public-frame";
+    form.style.display = "none";
+    document.body.appendChild(form);
+  }
+
+  form.action = LAGOONA_PUBLIC_APP_URL;
+  form.innerHTML = "";
+  return form;
+}
+
+function addHidden(form, name, value) {
+  const input = document.createElement("input");
+  input.type = "hidden";
+  input.name = name;
+  input.value = value || "";
+  form.appendChild(input);
+}
+
+function registrarReservaPublica(datos) {
   return new Promise((resolve, reject) => {
-    const callbackName = 'lagoonaBooking_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
-    const script = document.createElement('script');
+    const form = ensurePublicReservationForm();
+
     const timeout = setTimeout(() => {
       cleanup();
-      reject(new Error('Tiempo de espera agotado al registrar la reserva.'));
-    }, 20000);
+      reject(new Error("Tiempo agotado al registrar la solicitud."));
+    }, 25000);
+
+    function handler(event) {
+      if (
+        event.origin !== "https://script.google.com" &&
+        event.origin !== "https://script.googleusercontent.com"
+      ) {
+        return;
+      }
+
+      const data = event.data || {};
+      if (typeof data !== "object") return;
+
+      cleanup();
+
+      if (data.ok) {
+        resolve(data);
+      } else {
+        reject(new Error(data.error || "No se pudo registrar la solicitud."));
+      }
+    }
 
     function cleanup() {
       clearTimeout(timeout);
-      delete window[callbackName];
-      if (script.parentNode) script.parentNode.removeChild(script);
+      window.removeEventListener("message", handler);
     }
 
-    window[callbackName] = response => {
-      cleanup();
-      if (response && response.ok) resolve(response);
-      else reject(new Error((response && response.error) || 'No se pudo registrar la reserva.'));
-    };
+    window.addEventListener("message", handler);
 
-    const params = new URLSearchParams({
-      action: 'createPublicReservation',
-      publicToken: LAGOONA_PUBLIC_TOKEN,
-      callback: callbackName,
-      nombre: datos.nombre,
-      unidad: datos.unidad,
-      whatsapp: datos.whatsapp,
-      email: datos.email,
-      personas: datos.personas,
-      tour: datos.tour,
-      fecha: datos.fecha,
-      hora: datos.hora,
-      notas: datos.notas,
-      t: String(Date.now())
-    });
+    addHidden(form, "requestId", datos.requestId);
+    addHidden(form, "website", datos.website);
+    addHidden(form, "nombre", datos.nombre);
+    addHidden(form, "unidad", datos.unidad);
+    addHidden(form, "whatsapp", datos.whatsapp);
+    addHidden(form, "email", datos.email);
+    addHidden(form, "personas", datos.personas);
+    addHidden(form, "tour", datos.tour);
+    addHidden(form, "fecha", datos.fecha);
+    addHidden(form, "hora", datos.hora);
+    addHidden(form, "notas", datos.notas);
 
-    script.src = LAGOONA_APPS_SCRIPT_URL + '?' + params.toString();
-    script.onerror = () => {
-      cleanup();
-      reject(new Error('No fue posible conectar con el registro de reservas.'));
-    };
-    document.body.appendChild(script);
+    form.submit();
   });
 }
 
 async function submitForm() {
-  const nombre   = document.getElementById('f-nombre').value.trim();
-  const unidad   = document.getElementById('f-unidad').value.trim();
-  const whatsapp = document.getElementById('f-whatsapp').value.trim();
-  const email    = document.getElementById('f-email').value.trim();
-  const personas = document.getElementById('f-personas').value.trim();
-  const tour     = document.getElementById('f-tour').value.trim();
-  const fecha    = document.getElementById('f-fecha').value.trim();
-  const hora     = document.getElementById('f-hora').value.trim();
-  const notas    = document.getElementById('f-notas').value.trim();
-if (fecha && esMiercoles(fecha) && tourCierraMiercoles(tour)) {
-  alert(
-    'Los tours de navegación normalmente no operan los miércoles.\n\n' +
-    'Consulta por WhatsApp si existe disponibilidad excepcional para esa fecha.'
-  );
-  return;
-}
-  if (!nombre || !whatsapp || !tour || !personas) {
-    alert('Por favor completa los campos:\n✓ Nombre\n✓ WhatsApp\n✓ Tour\n✓ Número de personas');
+  const nombre   = document.getElementById("f-nombre").value.trim();
+  const unidad   = document.getElementById("f-unidad").value.trim();
+  const whatsapp = document.getElementById("f-whatsapp").value.trim();
+  const email    = document.getElementById("f-email").value.trim();
+  const personas = document.getElementById("f-personas").value.trim();
+  const tour     = document.getElementById("f-tour").value.trim();
+  const fecha    = document.getElementById("f-fecha").value.trim();
+  const hora     = document.getElementById("f-hora").value.trim();
+  const notas    = document.getElementById("f-notas").value.trim();
+
+  if (!nombre || !whatsapp || !tour || !personas || !fecha || !hora) {
+    alert(
+      "Por favor completa los campos:\n" +
+      "✓ Nombre\n" +
+      "✓ WhatsApp\n" +
+      "✓ Tour\n" +
+      "✓ Número de personas\n" +
+      "✓ Fecha\n" +
+      "✓ Horario"
+    );
     return;
   }
 
-  const submitBtn = document.getElementById('submit-btn');
-  submitBtn.innerText = 'Enviando...';
+  const submitBtn = document.getElementById("submit-btn");
+  submitBtn.innerText = "Enviando...";
   submitBtn.disabled = true;
 
   const datos = {
-    nombre,
-    unidad: unidad || 'No especificado',
-    whatsapp,
-    email: email || '',
-    personas,
-    tour,
-    fecha: fecha || '',
-    hora: hora || '',
-    notas: notas || ''
-  };
-
-  const registroSheets = registrarReservaEnSheets(datos);
-  const notificacionEmail = emailjs.send('service_7k9x92f', 'template_87v07x8', {
+    requestId: lagoonaRequestId(),
+    website: "",
     nombre: nombre,
-    unidad: unidad || 'No especificado',
+    unidad: unidad,
     whatsapp: whatsapp,
-    email: email || 'No especificado',
+    email: email,
     personas: personas,
     tour: tour,
-    fecha: fecha || 'No especificada',
-    hora: hora || 'No especificado',
-    notas: notas || 'Sin notas'
-  });
+    fecha: fecha,
+    hora: hora,
+    notas: notas
+  };
 
   try {
-    const [sheetResult, emailResult] = await Promise.allSettled([
-      registroSheets,
-      notificacionEmail
-    ]);
+    const result = await registrarReservaPublica(datos);
 
-    if (sheetResult.status === 'rejected' && emailResult.status === 'rejected') {
-      throw new Error('No se pudo registrar ni enviar la solicitud.');
+    alert(
+      "✅ ¡Solicitud enviada!\n\n" +
+      "Número de solicitud: " + result.numeroReserva + "\n" +
+      "Te contactamos en menos de 24 horas al: " + whatsapp
+    );
+
+    [
+      "f-nombre",
+      "f-unidad",
+      "f-whatsapp",
+      "f-email",
+      "f-personas",
+      "f-tour",
+      "f-fecha",
+      "f-hora",
+      "f-notas"
+    ].forEach(id => {
+      document.getElementById(id).value = "";
+    });
+
+    const elHora = document.getElementById("f-hora");
+    if (elHora) {
+      elHora.innerHTML = '<option value="">— Selecciona primero un tour —</option>';
+      elHora.disabled = true;
     }
-
-    if (sheetResult.status === 'fulfilled') {
-      const numero = sheetResult.value.numeroReserva;
-      alert(
-        '✅ ¡Solicitud enviada!\n\n' +
-        'Número de reserva: ' + numero + '\n' +
-        'Te contactamos en menos de 24 horas al: ' + whatsapp
-      );
-    } else {
-      console.error('Registro en Sheets:', sheetResult.reason);
-      alert(
-        '✅ Solicitud enviada por correo.\n\n' +
-        'El registro interno quedó pendiente de revisión.\n' +
-        'Te contactamos al: ' + whatsapp
-      );
-    }
-
-    if (emailResult.status === 'rejected') {
-      console.warn('EmailJS no pudo enviar la notificación:', emailResult.reason);
-    }
-
-    ['f-nombre','f-unidad','f-whatsapp','f-email','f-personas','f-tour','f-fecha','f-hora','f-notas']
-      .forEach(id => { document.getElementById(id).value = ''; });
-
-    const elHora = document.getElementById('f-hora');
-    elHora.innerHTML = '<option value="">— Selecciona primero un tour —</option>';
-    elHora.disabled = true;
 
   } catch (error) {
-    console.error('Error:', error);
-    alert('❌ Error al enviar. Intenta por WhatsApp: https://wa.me/529842411410');
+    console.error(error);
+    alert(
+      "❌ Error al enviar.\n\n" +
+      "Intenta por WhatsApp: https://wa.me/529842411410"
+    );
   } finally {
-    submitBtn.innerText = 'Enviar solicitud de reserva';
+    submitBtn.innerText = "Enviar solicitud de reserva";
     submitBtn.disabled = false;
   }
 }
+
 // ── SCROLL REVEAL ──
 function triggerReveal() {
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
-      if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 65); io.unobserve(e.target); }
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add("visible"), i * 65);
+        io.unobserve(e.target);
+      }
     });
   }, { threshold: 0.07 });
-  document.querySelectorAll('.reveal:not(.visible)').forEach(el => io.observe(el));
+
+  document.querySelectorAll(".reveal:not(.visible)").forEach(el => io.observe(el));
 }
 triggerReveal();
 </script>
