@@ -481,7 +481,81 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
   align-items: center;
   gap: 6px;
 }
+/* Loader de envío Lagoona */
+.lagoona-send-status {
+  display: none;
+  margin-top: 18px;
+  padding: 18px 20px;
+  border: 1px solid rgba(201, 155, 66, 0.45);
+  background: rgba(252, 248, 239, 0.92);
+  color: #073b2a;
+  text-align: center;
+  font-family: inherit;
+}
 
+.lagoona-send-status.active {
+  display: block;
+}
+
+.lagoona-spinner {
+  width: 30px;
+  height: 30px;
+  margin: 0 auto 12px auto;
+  border: 3px solid rgba(7, 59, 42, 0.18);
+  border-top-color: #073b2a;
+  border-radius: 50%;
+  animation: lagoonaSpin 0.9s linear infinite;
+}
+
+@keyframes lagoonaSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.lagoona-send-title {
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+  color: #073b2a;
+}
+
+.lagoona-send-text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(7, 59, 42, 0.82);
+}
+
+.lagoona-progress {
+  position: relative;
+  height: 4px;
+  width: 100%;
+  max-width: 280px;
+  margin: 14px auto 0 auto;
+  background: rgba(7, 59, 42, 0.14);
+  overflow: hidden;
+}
+
+.lagoona-progress::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -45%;
+  height: 100%;
+  width: 45%;
+  background: #c99b42;
+  animation: lagoonaProgress 1.4s ease-in-out infinite;
+}
+
+@keyframes lagoonaProgress {
+  0% {
+    left: -45%;
+  }
+  100% {
+    left: 100%;
+  }
+}
 </style>
 </head>
 <body>
@@ -1532,7 +1606,81 @@ function registrarReservaPublica(datos) {
     form.submit();
   });
 }
+let lagoonaSendingInterval = null;
+let lagoonaSendingStep = 0;
 
+const lagoonaSendingMessages = [
+  "Estamos registrando tu solicitud en el sistema.",
+  "Por favor no cierres esta ventana.",
+  "La conexión con reservas puede tardar unos segundos.",
+  "Estamos confirmando que la solicitud quede guardada correctamente."
+];
+
+function getOrCreateSendingStatus() {
+  let box = document.getElementById("lagoona-send-status");
+  const submitBtn = document.getElementById("submit-btn");
+
+  if (!box) {
+    box = document.createElement("div");
+    box.id = "lagoona-send-status";
+    box.className = "lagoona-send-status";
+
+    if (submitBtn && submitBtn.parentNode) {
+      submitBtn.parentNode.insertBefore(box, submitBtn.nextSibling);
+    } else {
+      document.body.appendChild(box);
+    }
+  }
+
+  return box;
+}
+
+function setLagoonaSendingState(active) {
+  const submitBtn = document.getElementById("submit-btn");
+  const box = getOrCreateSendingStatus();
+
+  if (active) {
+    lagoonaSendingStep = 0;
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerText = "ENVIANDO SOLICITUD...";
+    }
+
+    box.classList.add("active");
+    box.innerHTML = `
+      <div class="lagoona-spinner"></div>
+      <div class="lagoona-send-title">Procesando reserva</div>
+      <div class="lagoona-send-text" id="lagoona-send-text">
+        ${lagoonaSendingMessages[0]}
+      </div>
+      <div class="lagoona-progress"></div>
+    `;
+
+    clearInterval(lagoonaSendingInterval);
+    lagoonaSendingInterval = setInterval(() => {
+      lagoonaSendingStep++;
+      const text = document.getElementById("lagoona-send-text");
+      if (text) {
+        text.innerText = lagoonaSendingMessages[
+          lagoonaSendingStep % lagoonaSendingMessages.length
+        ];
+      }
+    }, 4500);
+
+  } else {
+    clearInterval(lagoonaSendingInterval);
+    lagoonaSendingInterval = null;
+
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerText = "Enviar solicitud de reserva";
+    }
+
+    box.classList.remove("active");
+    box.innerHTML = "";
+  }
+}
 async function submitForm() {
   const nombre   = document.getElementById("f-nombre").value.trim();
   const unidad   = document.getElementById("f-unidad").value.trim();
@@ -1557,9 +1705,7 @@ async function submitForm() {
     return;
   }
 
-  const submitBtn = document.getElementById("submit-btn");
-  submitBtn.innerText = "Enviando...";
-  submitBtn.disabled = true;
+  setLagoonaSendingState(true);
 
   const datos = {
     requestId: lagoonaRequestId(),
@@ -1611,9 +1757,8 @@ async function submitForm() {
       "Intenta por WhatsApp: https://wa.me/529842411410"
     );
   } finally {
-    submitBtn.innerText = "Enviar solicitud de reserva";
-    submitBtn.disabled = false;
-  }
+  setLagoonaSendingState(false);
+}
 }
 
 // ── SCROLL REVEAL ──
