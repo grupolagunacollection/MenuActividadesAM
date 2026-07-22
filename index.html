@@ -1031,6 +1031,18 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
 
     .kayak-text {
       min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .rental-intro {
+      height: 310px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .rental-intro .section-copy {
+      margin-bottom: 0;
     }
 
     /* Imágenes parejas */
@@ -1135,6 +1147,13 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
       margin-top: 8px;
     }
 
+    .rental-table-box {
+      min-height: 210px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
     .jetski-table {
       width: 100%;
       border-collapse: collapse;
@@ -1194,6 +1213,16 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
       width: 50%;
     }
 
+    .rental-includes {
+      font-size: 10px;
+      letter-spacing: .12em;
+      color: var(--muted);
+      margin: 15px 0 0;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.6;
+    }
+
     .section-label {
       margin-bottom: 14px;
     }
@@ -1231,49 +1260,57 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
       color: rgba(13,31,30,0.65);
       line-height: 1.7;
     }
+
+    @media (max-width: 768px) {
+      .rental-intro {
+        height: auto;
+      }
+    }
   </style>
 
   <div class="kayak-inner">
     <!-- COLUMNA 1 -->
     <div class="kayak-text reveal">
-      <p class="section-label" data-i18n="kayak.label">Exploración Libre</p>
-      <h2 class="section-title">Kayak<br><em data-i18n="kayak.em">a tu ritmo</em></h2>
-      <p class="section-copy" data-i18n="kayak.desc">
-        La forma más silenciosa y sustentable de conocer la laguna. Llega a rincones donde los botes no pueden entrar. Disponible todo el día desde Casa China.
-      </p>
+      <div class="rental-intro">
+        <p class="section-label" data-i18n="kayak.label">Exploración Libre</p>
+        <h2 class="section-title">Kayak<br><em data-i18n="kayak.em">a tu ritmo</em></h2>
+        <p class="section-copy" data-i18n="kayak.desc">Kayak individual inflable para recorrer la laguna a tu ritmo. Ligero, fácil de transportar y disponible durante todo el día.</p>
+      </div>
 
-      <img class="kayak-photo" src="Img/kayak-bacalar.jpg" alt="Tour Kayak" loading="lazy">
+      <img class="kayak-photo" src="Img/kayak-bacalar.jpg" alt="Renta de kayak individual inflable" loading="lazy">
 
-      <div class="kayak-prices">
-        <div class="kayak-price-card" role="button" tabindex="0"
-          onclick="selectTour('Kayak Individual — $350 / día')">
-          <p class="kp-type" data-i18n="kayak.individual">Individual</p>
-          <p class="kp-price price-clickable">$350</p>
-          <p class="kp-sub" data-i18n="kayak.sub">Día completo · MXN</p>
-          <p class="reserve-copy" data-i18n="kayak.reserve">Reservar →</p>
-        </div>
-
-        <div class="kayak-price-card featured" role="button" tabindex="0"
-          onclick="selectTour('Kayak Doble — $500 / día')">
-          <p class="kp-type" data-i18n="kayak.doble">Doble</p>
-          <p class="kp-price price-clickable">$500</p>
-          <p class="kp-sub" data-i18n="kayak.sub">Día completo · MXN</p>
-          <p class="reserve-copy" data-i18n="kayak.reserve">Reservar →</p>
-        </div>
+      <div class="jetski-table-box rental-table-box">
+        <table class="jetski-table">
+          <thead>
+            <tr>
+              <th data-i18n="rental.th.equipment">Equipo</th>
+              <th data-i18n="rental.th.period">Periodo</th>
+              <th data-i18n="rental.th.price">Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-i18n="kayak.inflatable">Individual inflable</td>
+              <td data-i18n="rental.full_day">Día completo</td>
+              <td><div class="jetski-price-cell" role="button" tabindex="0" onclick="selectTour('Kayak individual inflable — $500 / día')">$500</div></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="rental-includes" data-i18n="kayak.includes">Incluye kayak inflable · Bomba manual · Remo · MXN</p>
       </div>
     </div>
 
     <!-- COLUMNA 2 -->
     <div class="kayak-text reveal">
-      <p class="section-label" data-i18n="jetski.label">Adrenalina en el Agua</p>
-      <h2 class="section-title">Jet Ski<br><em data-i18n="jetski.em">desde el Muelle de Aldea Mayab</em></h2>
-      <p class="section-copy" data-i18n="jetski.desc">
-        La experiencia más emocionante de la laguna. Renta una moto acuática y recorre las aguas turquesas de Bacalar. Incluye chaleco salvavidas y capacitación previa.
-      </p>
+      <div class="rental-intro">
+        <p class="section-label" data-i18n="jetski.label">Adrenalina en el Agua</p>
+        <h2 class="section-title">Jet Ski<br><em data-i18n="jetski.em">desde el Muelle de Aldea Mayab</em></h2>
+        <p class="section-copy" data-i18n="jetski.desc">La experiencia más emocionante de la laguna. Renta una moto acuática y recorre las aguas turquesas de Bacalar. Incluye chaleco salvavidas y capacitación previa.</p>
+      </div>
 
       <img class="jetski-photo" src="Img/jetski.jpg" alt="Tour Jet Ski" loading="lazy">
 
-      <div class="jetski-table-box">
+      <div class="jetski-table-box rental-table-box">
         <table class="jetski-table">
           <thead>
             <tr>
@@ -1316,7 +1353,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
           </tbody>
         </table>
 
-        <p style="font-size:10px;letter-spacing:.12em;color:var(--muted);margin-top:15px;text-transform:uppercase;text-align:center;" data-i18n="jetski.includes">
+        <p class="rental-includes" data-i18n="jetski.includes">
           Incluye chaleco · Capacitación · MXN
         </p>
       </div>
@@ -1324,24 +1361,33 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
 
     <!-- COLUMNA 3 -->
     <div class="kayak-text reveal">
-      <p class="section-label" data-i18n="paddleboard.label">Exploración sobre el agua</p>
-      <h2 class="section-title"><span data-i18n="paddleboard.title">Renta de</span><br><em data-i18n="paddleboard.em">Paddleboards</em></h2>
-      <p class="section-copy" data-i18n="paddleboard.desc">Tablas inflables para explorar la laguna a tu ritmo. Cada tabla se entrega con bomba manual para transportarla y prepararla fácilmente donde prefieras.</p>
+      <div class="rental-intro">
+        <p class="section-label" data-i18n="paddleboard.label">Exploración sobre el agua</p>
+        <h2 class="section-title"><span data-i18n="paddleboard.title">Renta de</span><br><em data-i18n="paddleboard.em">Paddleboards</em></h2>
+        <p class="section-copy" data-i18n="paddleboard.desc">Tablas inflables para explorar la laguna a tu ritmo. Cada tabla se entrega con bomba manual para transportarla y prepararla fácilmente donde prefieras.</p>
+      </div>
 
       <img class="paddleboard-photo" src="Img/tourpaddle.png" alt="Renta de paddleboards inflables" loading="lazy">
 
-      <div class="kayak-prices">
-        <div class="kayak-price-card featured" role="button" tabindex="0" style="grid-column:1/-1"
-          onclick="selectTour('Paddleboard inflable — $500 / día')">
-          <p class="kp-type" data-i18n="paddleboard.type">Tabla inflable + bomba</p>
-          <p class="kp-price price-clickable">$500</p>
-          <p class="kp-sub" data-i18n="paddleboard.sub">Día completo · MXN</p>
-          <p class="reserve-copy" data-i18n="kayak.reserve">Reservar →</p>
-        </div>
+      <div class="jetski-table-box rental-table-box">
+        <table class="jetski-table">
+          <thead>
+            <tr>
+              <th data-i18n="rental.th.equipment">Equipo</th>
+              <th data-i18n="rental.th.period">Periodo</th>
+              <th data-i18n="rental.th.price">Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-i18n="paddleboard.inflatable">Tabla inflable</td>
+              <td data-i18n="rental.full_day">Día completo</td>
+              <td><div class="jetski-price-cell" role="button" tabindex="0" onclick="selectTour('Paddleboard inflable — $500 / día')">$500</div></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="rental-includes" data-i18n="paddleboard.includes">Incluye tabla inflable · Bomba manual · Remo · Quilla · Correa</p>
       </div>
-
-      <p class="rapidos-stops-label" data-i18n="paddleboard.includes.label">La renta incluye</p>
-      <p class="rapidos-stops-text" data-i18n="paddleboard.includes">Paddleboard inflable · Bomba manual · Remo · Quilla · Correa de seguridad</p>
     </div>
   </div>
 </section>
@@ -1394,8 +1440,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
               <option value="Tour Catamarán Premium — $15,000 privado">Tour Catamarán Premium — $15,000 privado</option>
               <option value="Laguna Grill — $6,000 privado">Laguna Grill — $6,000 privado</option>
               <option value="Tour Velero Vip — $6,000 privado">Tour Velero Vip — $6,000 privado</option>
-              <option value="Kayak Individual — $350 / día">Kayak Individual — $350 / día</option>
-              <option value="Kayak Doble — $500 / día">Kayak Doble — $500 / día</option>
+              <option value="Kayak individual inflable — $500 / día">Kayak individual inflable — $500 / día</option>
               <option value="Paddleboard inflable — $500 / día">Paddleboard inflable — $500 / día</option>
               <option value="Jet Ski (30 min) — $1,500 (1 pax)">Jet Ski (30 min) — $1,500 (1 pax)</option>
               <option value="Jet Ski (30 min) — $1,600 (2 pax)">Jet Ski (30 min) — $1,600 (2 pax)</option>
@@ -2333,9 +2378,12 @@ const translations = {
     "btn.reserve": "Reservar",
     // KAYAK
     "kayak.label": "Exploración Libre",
-    "kayak.individual": "Individual",
-    "kayak.doble": "Doble",
-    "kayak.sub": "Día completo · MXN",
+    "kayak.inflatable": "Individual inflable",
+    "kayak.includes": "Incluye kayak inflable · Bomba manual · Remo · MXN",
+    "rental.th.equipment": "Equipo",
+    "rental.th.period": "Periodo",
+    "rental.th.price": "Precio",
+    "rental.full_day": "Día completo",
     "paddleboard.label": "Exploración sobre el agua",
     "paddleboard.title": "Renta de",
     "paddleboard.em": "Paddleboards",
@@ -2343,7 +2391,8 @@ const translations = {
     "paddleboard.type": "Tabla inflable + bomba",
     "paddleboard.sub": "Día completo · MXN",
     "paddleboard.includes.label": "La renta incluye",
-    "paddleboard.includes": "Paddleboard inflable · Bomba manual · Remo · Quilla · Correa de seguridad",
+    "paddleboard.inflatable": "Tabla inflable",
+    "paddleboard.includes": "Incluye tabla inflable · Bomba manual · Remo · Quilla · Correa",
     // GASTRO
     "gastro.hero.prefix": "Sabores de",
     "gastro.hero.em": "Bacalar",
@@ -2493,7 +2542,7 @@ const translations = {
     "footer.sub": "Curated Vacation Homes · Aldea Mayab",
     "footer.location": "Bacalar, Quintana Roo, México",
     "footer.copy": "© Lagoona Curated Vacation Homes · Todos los derechos reservados",
-    "kayak.desc": "La forma más silenciosa y sustentable de conocer la laguna. Llega a rincones donde los botes no pueden entrar. Disponible todo el día desde el Casa China.",
+    "kayak.desc": "Kayak individual inflable para recorrer la laguna a tu ritmo. Ligero, fácil de transportar y disponible durante todo el día.",
     "kayak.reserve": "Reservar →",
     "tours.em": "aventura",
     "recorrido.em": "recorrido",
@@ -2516,8 +2565,7 @@ const translations = {
     "opt.tour5": "Catamarán Recreativo — $800 compartido / $4,000 privado",
     "opt.tour6": "Tour Catamarán Premium — $990 compartido / $15,000 privado",
     "opt.tour7": "Laguna Grill — $6,000 privado",
-    "opt.kayak1": "Kayak Individual — $350 / día",
-    "opt.kayak2": "Kayak Doble — $500 / día",
+    "opt.kayak1": "Kayak individual inflable — $500 / día",
     "opt.sunrise": "Al amanecer",
     "rname1": "Enamora Bacalar",
     "rname2": "BAMOA Cafe",
@@ -2556,7 +2604,7 @@ const translations = {
     "amen.chair": "Sillas para la laguna",
     "amen.chair.desc": "Sillas reclinables de playa para disfrutar la orilla de la laguna con comodidad. Perfectas para los días de sol.",
     "amen.kayak": "Kayak o SUP",
-    "amen.kayak.desc": "Renta de kayak individual o doble, y tabla de paddleboard (SUP) para explorar la laguna a tu ritmo desde el Casa China.",
+    "amen.kayak.desc": "Renta de kayak individual inflable y paddleboard inflable para explorar la laguna a tu ritmo desde Casa China.",
     "amen.snorkel": "Equipo de snorkel",
     "amen.snorkel.desc": "Máscaras, tubos y aletas para explorar las aguas cristalinas de la laguna. Equipo limpio y revisado.",
     "amen.umbrella": "Sombrillas y tapetes",
@@ -2600,8 +2648,7 @@ const translations = {
     "opt.tour5": "Catamarán Recreativo — $800 compartido / $4,000 privado",
     "opt.tour6": "Tour Catamarán Premium — $990 compartido / $15,000 privado",
     "opt.tour7": "Laguna Grill — $6,000 privado",
-    "opt.kayak1": "Kayak Individual — $350 / día",
-    "opt.kayak2": "Kayak Doble — $500 / día",
+    "opt.kayak1": "Kayak individual inflable — $500 / día",
     "recorrido.desc": "Navegamos por los puntos más icónicos de la Laguna de Siete Colores — stromatolitos milenarios, cenotes y canales ocultos.",
     "tour1.desc": "Kayak o surf de remo al amanecer por las áreas más impresionantes de la laguna. Picnic flotante en el Santuario de las Aves. Apto para todas las edades.",
     "tour2.desc": "3 horas navegando la laguna impulsados solo por el viento. Experimenta la calma y el silencio de la naturaleza. Ideal para quienes buscan una aventura única y ecológica.",
@@ -2658,9 +2705,12 @@ const translations = {
     "btn.reserve": "Book Now",
     // KAYAK
     "kayak.label": "Free Exploration",
-    "kayak.individual": "Single",
-    "kayak.doble": "Double",
-    "kayak.sub": "Full day · MXN",
+    "kayak.inflatable": "Single inflatable",
+    "kayak.includes": "Includes inflatable kayak · Manual pump · Paddle · MXN",
+    "rental.th.equipment": "Equipment",
+    "rental.th.period": "Period",
+    "rental.th.price": "Price",
+    "rental.full_day": "Full day",
     "paddleboard.label": "Explore on the water",
     "paddleboard.title": "Inflatable",
     "paddleboard.em": "Paddleboard Rental",
@@ -2668,7 +2718,8 @@ const translations = {
     "paddleboard.type": "Inflatable board + pump",
     "paddleboard.sub": "Full day · MXN",
     "paddleboard.includes.label": "Rental includes",
-    "paddleboard.includes": "Inflatable paddleboard · Manual pump · Paddle · Fin · Safety leash",
+    "paddleboard.inflatable": "Inflatable board",
+    "paddleboard.includes": "Includes inflatable board · Manual pump · Paddle · Fin · Safety leash",
     // GASTRO
     "gastro.hero.prefix": "Flavors of",
     "gastro.hero.em": "Bacalar",
@@ -2819,7 +2870,7 @@ const translations = {
     "footer.sub": "Curated Vacation Homes · Aldea Mayab",
     "footer.location": "Bacalar, Quintana Roo, Mexico",
     "footer.copy": "© Lagoona Curated Vacation Homes · All rights reserved",
-    "kayak.desc": "The most silent and sustainable way to discover the lagoon. Reach corners where boats can't enter. Available all day from Casa China.",
+    "kayak.desc": "Single inflatable kayak to explore the lagoon at your own pace. Lightweight, easy to transport and available for the full day.",
     "kayak.reserve": "Book now →",
     "tours.em": "adventure",
     "recorrido.em": "route",
@@ -2840,8 +2891,7 @@ const translations = {
     "opt.tour5": "Recreational Catamaran — $800 shared / $4,000 private",
     "opt.tour6": "Premium Catamaran Tour — $990 shared / $15,000 private",
     "opt.tour7": "Laguna Grill — $6,000 private",
-    "opt.kayak1": "Single Kayak — $350 / day",
-    "opt.kayak2": "Double Kayak — $500 / day",
+    "opt.kayak1": "Single inflatable kayak — $500 / day",
     "opt.sunrise": "At sunrise",
     "rname1": "Enamora Bacalar",
     "rname2": "BAMOA Cafe",
@@ -2880,7 +2930,7 @@ const translations = {
     "amen.chair": "Lagoon chairs",
     "amen.chair.desc": "Reclining beach chairs to enjoy the lagoon shore in comfort. Perfect for sunny days.",
     "amen.kayak": "Kayak or SUP",
-    "amen.kayak.desc": "Single or double kayak rental, and paddleboard (SUP) to explore the lagoon at your own pace from Casa China.",
+    "amen.kayak.desc": "Single inflatable kayak and inflatable paddleboard rental to explore the lagoon at your own pace from Casa China.",
     "amen.snorkel": "Snorkel gear",
     "amen.snorkel.desc": "Masks, snorkels and fins to explore the crystal-clear lagoon waters. Clean and inspected equipment.",
     "amen.umbrella": "Beach umbrellas & mats",
@@ -2924,8 +2974,7 @@ const translations = {
     "opt.tour5": "Recreational Catamaran — $800 shared / $4,000 private",
     "opt.tour6": "Premium Catamaran Tour — $990 shared / $15,000 private",
     "opt.tour7": "Laguna Grill — $6,000 private",
-    "opt.kayak1": "Single Kayak — $350 / day",
-    "opt.kayak2": "Double Kayak — $500 / day",
+    "opt.kayak1": "Single inflatable kayak — $500 / day",
     "recorrido.desc": "We navigate the most iconic spots of the Lake of Seven Colors — ancient stromatolites, cenotes and hidden canals.",
     "recorrido.title.prefix": "The",
     "tour1.desc": "Kayak or stand-up paddle at sunrise through the most stunning areas of the lagoon. Floating picnic at the Bird Sanctuary. Suitable for all ages.",
@@ -3011,8 +3060,7 @@ const horariosMap = {
   "Tour Catamarán Premium — $15,000 privado":  ["10:00 AM", "3:00 PM"],
   "Laguna Grill — $6,000 privado":             ["10:00 AM", "3:00 PM"],
   "Tour Velero Vip — $6,000 privado":          ["10:00 AM", "3:00 PM"],
-  "Kayak Individual — $350 / día":             ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM"],
-  "Kayak Doble — $500 / día":                  ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM"],
+  "Kayak individual inflable — $500 / día":    ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM"],
   "Paddleboard inflable — $500 / día":         ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM"],
   "Jet Ski (30 min) — $1,500 (1 pax)":         ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"],
   "Jet Ski (30 min) — $1,600 (2 pax)":         ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"],
