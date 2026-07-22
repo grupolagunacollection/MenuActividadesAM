@@ -185,6 +185,8 @@ body{background:var(--sand);color:var(--ink);font-family:'Jost',sans-serif;font-
 .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--teal-light);background:#fff}
 .form-textarea{resize:vertical;min-height:86px}
 .form-select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a7068' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.wednesday-warning{grid-column:span 2;display:none;padding:11px 14px;border-left:3px solid var(--gold);background:#f7f0e2;color:var(--ink);font-size:12px;line-height:1.55}
+.wednesday-warning.active{display:block}
 .form-submit{width:100%;background:var(--teal);color:#fff;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase;padding:17px;font-weight:400;transition:background .25s;margin-top:6px}
 .form-submit:hover{background:var(--teal-mid)}
 .form-note{text-align:center;font-size:12px;color:var(--muted);margin-top:14px;line-height:1.7}
@@ -320,6 +322,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
   .booking-title{font-size:22px}
   .form-grid{grid-template-columns:1fr}
   .form-group.full{grid-column:span 1}
+  .wednesday-warning{grid-column:span 1}
   .form-select,.form-input,.form-textarea{font-size:16px}/* prevent iOS zoom */
 
   /* PRACTICAL */
@@ -1456,6 +1459,9 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
               <option value="">— Selecciona primero un tour —</option>
             </select>
           </div>
+          <div class="wednesday-warning" id="wednesday-warning" role="status" aria-live="polite" data-i18n="form.wednesday_warning">
+            Los miércoles la navegación está disponible en temporada alta, pero el horario está sujeto a confirmación. Puedes enviar tu solicitud normalmente.
+          </div>
           <div class="form-group full">
             <label class="form-label" for="f-notas" data-i18n="form.notas">Comentarios o peticiones especiales</label>
             <textarea class="form-textarea" id="f-notas" placeholder="Alergias, celebración especial, necesidades particulares..."></textarea>
@@ -1765,6 +1771,11 @@ async function submitForm() {
     if (elHora) {
       elHora.innerHTML = '<option value="">— Selecciona primero un tour —</option>';
       elHora.disabled = true;
+    }
+
+    const elAvisoMiercoles = document.getElementById("wednesday-warning");
+    if (elAvisoMiercoles) {
+      elAvisoMiercoles.classList.remove("active");
     }
 
   } catch (error) {
@@ -2457,6 +2468,7 @@ const translations = {
     "form.notes_placeholder": "Comentarios o peticiones especiales",
     "form.time_label": "Horario preferido",
     "form.time_placeholder": "Seleccionar horario",
+    "form.wednesday_warning": "Los miércoles la navegación está disponible en temporada alta, pero el horario está sujeto a confirmación. Puedes enviar tu solicitud normalmente.",
     "form.whatsapp_btn": "Contactar por WhatsApp",
     "form.success_title": "¡Solicitud enviada!",
     "form.success_msg": "Nuestro equipo se pondrá en contacto contigo en menos de 24 horas para confirmar los detalles de tu reserva.",
@@ -2779,6 +2791,7 @@ const translations = {
     "form.note": "Confirmation within <strong>24 hours</strong> · Full refund with +24 hrs notice",
     "form.time_label": "Preferred time",
     "form.time_placeholder": "Select a time",
+    "form.wednesday_warning": "Wednesday navigation is available during high season, but the selected time is subject to confirmation. You may submit your request normally.",
     "form.whatsapp_btn": "Contact via WhatsApp",
     "form.success_title": "Request sent!",
     "form.success_msg": "Our team will contact you within 24 hours to confirm your booking details.",
@@ -3050,10 +3063,10 @@ const horariosMap = {
 };
 
 /*
- * Tours que normalmente no operan los miércoles.
- * Si existe una excepción, el huésped deberá consultarla por WhatsApp.
+ * Tours de navegación cuya disponibilidad debe confirmarse los miércoles.
+ * En temporada alta pueden reservarse todos los días.
  */
-const toursCerradosMiercoles = [
+const toursConfirmacionMiercoles = [
   "Tour Velero — $800 compartido",
   "Tour Velero — $4,375 privado",
   "Tour Lancha — $450 compartido",
@@ -3082,14 +3095,15 @@ function esMiercoles(fechaISO) {
   return fecha.getDay() === 3;
 }
 
-function tourCierraMiercoles(tour) {
-  return toursCerradosMiercoles.includes(tour);
+function tourRequiereConfirmacionMiercoles(tour) {
+  return toursConfirmacionMiercoles.includes(tour);
 }
 
 (function () {
   const elTour = document.getElementById("f-tour");
   const elHora = document.getElementById("f-hora");
   const elFecha = document.getElementById("f-fecha");
+  const elAvisoMiercoles = document.getElementById("wednesday-warning");
 
   function fechaLocalISO() {
     const hoy = new Date();
@@ -3110,13 +3124,9 @@ function tourCierraMiercoles(tour) {
 
     elHora.innerHTML = "";
 
-    if (fecha && esMiercoles(fecha) && tourCierraMiercoles(tour)) {
-  alert(
-    "⚠️ Disponibilidad en miércoles\n\n" +
-    "Durante temporada alta se permite solicitar la reserva, " +
-    "pero el horario seleccionado está sujeto a confirmación."
-  );
-}
+    const requiereConfirmacion =
+      fecha && esMiercoles(fecha) && tourRequiereConfirmacionMiercoles(tour);
+    elAvisoMiercoles.classList.toggle("active", Boolean(requiereConfirmacion));
 
     if (!tour || horarios.length === 0) {
       elHora.innerHTML =
