@@ -3111,11 +3111,12 @@ function tourCierraMiercoles(tour) {
     elHora.innerHTML = "";
 
     if (fecha && esMiercoles(fecha) && tourCierraMiercoles(tour)) {
-      elHora.innerHTML =
-        '<option value="">— Navegación normalmente no disponible los miércoles —</option>';
-      elHora.disabled = true;
-      return;
-    }
+  alert(
+    "⚠️ Disponibilidad en miércoles\n\n" +
+    "Durante temporada alta se permite solicitar la reserva, " +
+    "pero el horario seleccionado está sujeto a confirmación."
+  );
+}
 
     if (!tour || horarios.length === 0) {
       elHora.innerHTML =
