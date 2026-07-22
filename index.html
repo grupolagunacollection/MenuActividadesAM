@@ -76,8 +76,10 @@ body{background:var(--sand);color:var(--ink);font-family:'Jost',sans-serif;font-
 /* ── TOURS GRID ── */
 .tours-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:2px;background:var(--sand-dark);border:2px solid var(--sand-dark)}
 .tour-card{background:var(--sand);position:relative;overflow:hidden;display:flex;flex-direction:column;transition:all .3s ease}
-.laguna-grill-card{grid-column:1/-1;width:min(100%,calc((100% - 4px)/3));justify-self:center}
-@media(max-width:1050px) and (min-width:769px){.laguna-grill-card{width:min(100%,calc((100% - 2px)/2))}}
+.rapidos-tour-card{grid-column:span 2;display:grid;grid-template-columns:1.05fr .95fr}
+.rapidos-tour-photo-wrap{position:relative;min-height:100%;overflow:hidden}
+.rapidos-tour-image{width:100%;height:100%;min-height:100%;object-fit:cover;display:block}
+.rapidos-tour-card .tour-body{justify-content:center}
 .tour-photo-wrap{overflow:hidden;position:relative}
 .tour-photo{width:100%;height:200px;object-fit:cover;display:block;transition:transform .5s ease}
 .tour-card:hover .tour-photo{transform:scale(1.04)}
@@ -298,7 +300,9 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
 
   /* TOUR CARDS */
   .tours-grid{grid-template-columns:1fr!important}
-  .laguna-grill-card{grid-column:span 1;width:100%}
+  .rapidos-tour-card{grid-column:span 1;grid-template-columns:1fr}
+  .rapidos-tour-photo-wrap{min-height:260px}
+  .rapidos-tour-image{height:260px}
   .tour-card{padding:24px 18px}
   .tour-title{font-size:26px}
   .tour-prices{grid-template-columns:1fr}
@@ -925,7 +929,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
 </div>
 
     <!-- 07 LAGUNA GRILL -->
-    <div class="tour-card reveal laguna-grill-card">
+    <div class="tour-card reveal">
   <div class="tour-photo-wrap">
     <img class="tour-photo" src="Img/lagunagrill.png" alt="Laguna Grill" loading="lazy">
     <span class="tour-photo-tag" data-i18n="badge5">Gastronomía · Exclusivo</span>
@@ -951,6 +955,45 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
     </div>
   </div>
 </div>
+
+    <!-- 08 TOUR A LOS RÁPIDOS — ocupa dos columnas -->
+    <div class="tour-card reveal rapidos-tour-card">
+      <div class="rapidos-tour-photo-wrap">
+        <img class="rapidos-tour-image" src="Img/rapidos.jpg" alt="Tour a Los Rápidos" loading="lazy">
+        <span class="tour-photo-tag" data-i18n="rapidos.label">Experiencia Plus · Malekair</span>
+      </div>
+      <div class="tour-body">
+        <div class="tour-number">08</div>
+        <h3 class="tour-name" data-i18n="rapidos.title">Tour a Los Rápidos</h3>
+        <p class="tour-desc" data-i18n="rapidos.desc">5 horas navegando los puntos más icónicos de la laguna. Nevera con hielo, aguas, fruta, barra libre, ceviche o aguachile, chaleco salvavidas y capitán certificado con seguro de pasajero.</p>
+
+        <p class="tour-includes-title" data-i18n="includes.title">Incluye</p>
+        <div class="includes-list">
+          <span class="includes-pill" data-i18n="rapidos.inc1">5 horas de navegación</span>
+          <span class="includes-pill" data-i18n="rapidos.inc2">Barra libre y fruta</span>
+          <span class="includes-pill" data-i18n="rapidos.inc3">Ceviche o aguachile</span>
+          <span class="includes-pill" data-i18n="rapidos.inc4">Chaleco, capitán y seguro</span>
+        </div>
+
+        <div class="tour-prices">
+          <div class="price-box" role="button" tabindex="0"
+               onclick="selectTour('Tour a Los Rápidos — $1,200 colectivo'); return false;">
+            <p class="price-box-label" data-i18n="rapidos.shared">Colectivo Plus</p>
+            <p class="price-box-amount">$1,200</p>
+            <p class="price-box-sub" data-i18n="price.per_person">MXN por persona</p>
+          </div>
+          <div class="price-box priv" role="button" tabindex="0"
+               onclick="selectTour('Tour a Los Rápidos — $8,500 privado'); return false;">
+            <p class="price-box-label" data-i18n="rapidos.private">Privado</p>
+            <p class="price-box-amount">$8,500</p>
+            <p class="price-box-sub" data-i18n="rapidos.pax">1–6 pax · +$1,000/extra</p>
+          </div>
+        </div>
+
+        <p class="rapidos-stops-label" data-i18n="rapidos.stops.label">Navegaremos por</p>
+        <p class="rapidos-stops-text" data-i18n="rapidos.stops">Canal de los Piratas · Isla de los Pájaros · Cenote Negro · Cenote Esmeralda · Cenote Cocalitos · Hotel Abandonado · Los Rápidos</p>
+      </div>
+    </div>
 
   </div><!-- close tours-grid -->
 </div>
@@ -993,7 +1036,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
     /* Imágenes parejas */
     .kayak-photo,
     .jetski-photo,
-    .rapidos-photo {
+    .paddleboard-photo {
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
@@ -1281,36 +1324,24 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
 
     <!-- COLUMNA 3 -->
     <div class="kayak-text reveal">
-      <p class="section-label" data-i18n="rapidos.label">Experiencia Plus · Malekair</p>
-      <h2 class="section-title">Tour a<br><em data-i18n="rapidos.em">Los Rápidos</em></h2>
-      <p class="section-copy" data-i18n="rapidos.desc">
-        5 horas navegando los puntos más icónicos de la laguna. Nevera con hielo, aguas, fruta, barra libre, ceviche o aguachile, chaleco salvavidas y capitán certificado con seguro de pasajero.
-      </p>
+      <p class="section-label" data-i18n="paddleboard.label">Exploración sobre el agua</p>
+      <h2 class="section-title"><span data-i18n="paddleboard.title">Renta de</span><br><em data-i18n="paddleboard.em">Paddleboards</em></h2>
+      <p class="section-copy" data-i18n="paddleboard.desc">Tablas inflables para explorar la laguna a tu ritmo. Cada tabla se entrega con bomba manual para transportarla y prepararla fácilmente donde prefieras.</p>
 
-      <img class="rapidos-photo" src="Img/rapidos.jpg" alt="Tour Rápidos" loading="lazy">
+      <img class="paddleboard-photo" src="Img/tourpaddle.png" alt="Renta de paddleboards inflables" loading="lazy">
 
       <div class="kayak-prices">
-        <div class="kayak-price-card" role="button" tabindex="0"
-          onclick="selectTour('Tour a Los Rápidos — $1,200 colectivo')">
-          <p class="kp-type" data-i18n="rapidos.shared">Colectivo Plus</p>
-          <p class="kp-price price-clickable">$1,200</p>
-          <p class="kp-sub" data-i18n="price.per_person">MXN por persona</p>
-          <p class="reserve-copy" data-i18n="kayak.reserve">Reservar →</p>
-        </div>
-
-        <div class="kayak-price-card featured" role="button" tabindex="0"
-          onclick="selectTour('Tour a Los Rápidos — $8,500 privado')">
-          <p class="kp-type" data-i18n="rapidos.private">Privado</p>
-          <p class="kp-price price-clickable">$8,500</p>
-          <p class="kp-sub" data-i18n="rapidos.pax">1–6 pax · +$1,000/extra</p>
+        <div class="kayak-price-card featured" role="button" tabindex="0" style="grid-column:1/-1"
+          onclick="selectTour('Paddleboard inflable — $500 / día')">
+          <p class="kp-type" data-i18n="paddleboard.type">Tabla inflable + bomba</p>
+          <p class="kp-price price-clickable">$500</p>
+          <p class="kp-sub" data-i18n="paddleboard.sub">Día completo · MXN</p>
           <p class="reserve-copy" data-i18n="kayak.reserve">Reservar →</p>
         </div>
       </div>
 
-      <p class="rapidos-stops-label" data-i18n="rapidos.stops.label">Navegaremos por</p>
-      <p class="rapidos-stops-text" data-i18n="rapidos.stops">
-        Canal de los Piratas · Isla de los Pájaros · Cenote Negro · Cenote Esmeralda · Cenote Cocalitos · Hotel Abandonado · Los Rápidos
-      </p>
+      <p class="rapidos-stops-label" data-i18n="paddleboard.includes.label">La renta incluye</p>
+      <p class="rapidos-stops-text" data-i18n="paddleboard.includes">Paddleboard inflable · Bomba manual · Remo · Quilla · Correa de seguridad</p>
     </div>
   </div>
 </section>
@@ -1365,6 +1396,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
               <option value="Tour Velero Vip — $6,000 privado">Tour Velero Vip — $6,000 privado</option>
               <option value="Kayak Individual — $350 / día">Kayak Individual — $350 / día</option>
               <option value="Kayak Doble — $500 / día">Kayak Doble — $500 / día</option>
+              <option value="Paddleboard inflable — $500 / día">Paddleboard inflable — $500 / día</option>
               <option value="Jet Ski (30 min) — $1,500 (1 pax)">Jet Ski (30 min) — $1,500 (1 pax)</option>
               <option value="Jet Ski (30 min) — $1,600 (2 pax)">Jet Ski (30 min) — $1,600 (2 pax)</option>
               <option value="Jet Ski (1 hora) — $2,300 (1 pax)">Jet Ski (1 hora) — $2,300 (1 pax)</option>
@@ -2259,7 +2291,7 @@ const translations = {
     "nav.tours": "Tours & Actividades",
     "nav.gastro": "Gastronomía",
     "nav.link.tours": "Tours",
-    "nav.link.kayak": "Kayak",
+    "nav.link.kayak": "Rentas",
     "nav.link.recorrido": "Recorrido",
     "nav.link.reservar": "Reservar",
     "nav.link.breakfast": "Desayunos",
@@ -2283,6 +2315,18 @@ const translations = {
     "tour5.name": "Tour Completo",
     "tour6.name": "Tour Catamarán Premium",
     "tour7.name": "Laguna Grill",
+    "rapidos.label": "Experiencia Plus · Malekair",
+    "rapidos.title": "Tour a Los Rápidos",
+    "rapidos.desc": "5 horas navegando los puntos más icónicos de la laguna. Nevera con hielo, aguas, fruta, barra libre, ceviche o aguachile, chaleco salvavidas y capitán certificado con seguro de pasajero.",
+    "rapidos.shared": "Colectivo Plus",
+    "rapidos.private": "Privado",
+    "rapidos.pax": "1–6 pax · +$1,000/extra",
+    "rapidos.inc1": "5 horas de navegación",
+    "rapidos.inc2": "Barra libre y fruta",
+    "rapidos.inc3": "Ceviche o aguachile",
+    "rapidos.inc4": "Chaleco, capitán y seguro",
+    "rapidos.stops.label": "Navegaremos por",
+    "rapidos.stops": "Canal de los Piratas · Isla de los Pájaros · Cenote Negro · Cenote Esmeralda · Cenote Cocalitos · Hotel Abandonado · Los Rápidos",
     "includes.title": "Incluye",
     "price.shared": "Compartido/persona",
     "price.private": "Privado/grupo",
@@ -2292,6 +2336,14 @@ const translations = {
     "kayak.individual": "Individual",
     "kayak.doble": "Doble",
     "kayak.sub": "Día completo · MXN",
+    "paddleboard.label": "Exploración sobre el agua",
+    "paddleboard.title": "Renta de",
+    "paddleboard.em": "Paddleboards",
+    "paddleboard.desc": "Tablas inflables para explorar la laguna a tu ritmo. Cada tabla se entrega con bomba manual para transportarla y prepararla fácilmente donde prefieras.",
+    "paddleboard.type": "Tabla inflable + bomba",
+    "paddleboard.sub": "Día completo · MXN",
+    "paddleboard.includes.label": "La renta incluye",
+    "paddleboard.includes": "Paddleboard inflable · Bomba manual · Remo · Quilla · Correa de seguridad",
     // GASTRO
     "gastro.hero.prefix": "Sabores de",
     "gastro.hero.em": "Bacalar",
@@ -2564,7 +2616,7 @@ const translations = {
     "nav.tours": "Tours & Activities",
     "nav.gastro": "Gastronomy",
     "nav.link.tours": "Tours",
-    "nav.link.kayak": "Kayak",
+    "nav.link.kayak": "Rentals",
     "nav.link.recorrido": "Route",
     "nav.link.reservar": "Book Now",
     "nav.link.breakfast": "Breakfast",
@@ -2588,6 +2640,18 @@ const translations = {
     "tour5.name": "Full Day Tour",
     "tour6.name": "Premium Catamaran Tour",
     "tour7.name": "Laguna Grill",
+    "rapidos.label": "Plus Experience · Malekair",
+    "rapidos.title": "Los Rápidos Tour",
+    "rapidos.desc": "5 hours navigating the lagoon's most iconic spots. Cooler with ice, water, fruit, open bar, ceviche or aguachile, life vest and certified captain with passenger insurance.",
+    "rapidos.shared": "Plus Shared Tour",
+    "rapidos.private": "Private",
+    "rapidos.pax": "1–6 guests · +$1,000/extra guest",
+    "rapidos.inc1": "5 hours of navigation",
+    "rapidos.inc2": "Open bar and fruit",
+    "rapidos.inc3": "Ceviche or aguachile",
+    "rapidos.inc4": "Life vest, captain and insurance",
+    "rapidos.stops.label": "We will visit",
+    "rapidos.stops": "Pirates' Channel · Bird Island · Black Cenote · Emerald Cenote · Cocalitos Cenote · Abandoned Hotel · Los Rápidos",
     "includes.title": "Includes",
     "price.shared": "Shared / person",
     "price.private": "Private / group",
@@ -2597,6 +2661,14 @@ const translations = {
     "kayak.individual": "Single",
     "kayak.doble": "Double",
     "kayak.sub": "Full day · MXN",
+    "paddleboard.label": "Explore on the water",
+    "paddleboard.title": "Inflatable",
+    "paddleboard.em": "Paddleboard Rental",
+    "paddleboard.desc": "Inflatable boards to explore the lagoon at your own pace. Each board includes a manual pump for easy transport and setup wherever you prefer.",
+    "paddleboard.type": "Inflatable board + pump",
+    "paddleboard.sub": "Full day · MXN",
+    "paddleboard.includes.label": "Rental includes",
+    "paddleboard.includes": "Inflatable paddleboard · Manual pump · Paddle · Fin · Safety leash",
     // GASTRO
     "gastro.hero.prefix": "Flavors of",
     "gastro.hero.em": "Bacalar",
@@ -2941,6 +3013,7 @@ const horariosMap = {
   "Tour Velero Vip — $6,000 privado":          ["10:00 AM", "3:00 PM"],
   "Kayak Individual — $350 / día":             ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM"],
   "Kayak Doble — $500 / día":                  ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM"],
+  "Paddleboard inflable — $500 / día":         ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM"],
   "Jet Ski (30 min) — $1,500 (1 pax)":         ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"],
   "Jet Ski (30 min) — $1,600 (2 pax)":         ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"],
   "Jet Ski (1 hora) — $2,300 (1 pax)":         ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"],
@@ -2966,6 +3039,8 @@ const toursConfirmacionMiercoles = [
   "Tour Catamarán Premium — $15,000 privado",
   "Laguna Grill — $6,000 privado",
   "Tour Velero Vip — $6,000 privado",
+  "Tour a Los Rápidos — $1,200 colectivo",
+  "Tour a Los Rápidos — $8,500 privado",
   "Jet Ski (30 min) — $1,500 (1 pax)",
   "Jet Ski (30 min) — $1,600 (2 pax)",
   "Jet Ski (1 hora) — $2,300 (1 pax)",
