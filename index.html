@@ -965,7 +965,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
       <div class="tour-body">
         <div class="tour-number">08</div>
         <h3 class="tour-name" data-i18n="rapidos.title">Tour a Los Rápidos</h3>
-        <p class="tour-desc" data-i18n="rapidos.desc">5 horas navegando los puntos más icónicos de la laguna en un cómodo Pontón privado. Exclusivo pick up en el muelle de Aldea Mayab. Nevera con hielo, aguas, fruta, barra libre, ceviche o aguachile, chaleco salvavidas y capitán certificado con seguro de pasajero.</p>
+        <p class="tour-desc" data-i18n="rapidos.desc">5 horas navegando los puntos más icónicos de la laguna en un cómodo pontón. En la modalidad privada, incluye pick up exclusivo en el muelle de Aldea Mayab. Nevera con hielo, aguas, fruta, barra libre, ceviche o aguachile, chaleco salvavidas y capitán certificado con seguro de pasajero.</p>
 
         <p class="tour-includes-title" data-i18n="includes.title">Incluye</p>
         <div class="includes-list">
@@ -973,7 +973,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
           <span class="includes-pill" data-i18n="rapidos.inc2">Barra libre y fruta</span>
           <span class="includes-pill" data-i18n="rapidos.inc3">Ceviche o aguachile</span>
           <span class="includes-pill" data-i18n="rapidos.inc4">Chaleco, capitán y seguro</span>
-          <span class="includes-pill" data-i18n="rapidos.inc5">Pick Up en Muelle de Aldea Mayab</span>
+          <span class="includes-pill" data-i18n="rapidos.inc5">Tour privado: pick up en el muelle de Aldea Mayab</span>
         </div>
 
         <div class="tour-prices">
@@ -982,6 +982,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
             <p class="price-box-label" data-i18n="rapidos.shared">Colectivo Plus</p>
             <p class="price-box-amount">$1,200</p>
             <p class="price-box-sub" data-i18n="price.per_person">MXN por persona</p>
+            <p class="price-box-sub" data-i18n="rapidos.pick.up">Saliendo de Marina Papitos</p>
           </div>
           <div class="price-box priv" role="button" tabindex="0"
                onclick="selectTour('Tour a Los Rápidos — $8,500 privado'); return false;">
@@ -1458,7 +1459,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
           <div class="form-group">
             <label class="form-label" for="f-hora" data-i18n="form.time_label">Horario preferido</label>
             <select class="form-select" id="f-hora" disabled>
-              <option value="">— Selecciona primero un tour —</option>
+              <option value="" data-i18n="form.select_first_tour">— Selecciona primero un tour —</option>
             </select>
           </div>
           <div class="wednesday-warning" id="wednesday-warning" role="status" aria-live="polite" data-i18n="form.wednesday_warning">
@@ -1633,13 +1634,11 @@ function registrarReservaPublica(datos) {
 }
 let lagoonaSendingInterval = null;
 let lagoonaSendingStep = 0;
+let lagoonaSendingMessages = [];
 
-const lagoonaSendingMessages = [
-  "Estamos registrando tu solicitud en el sistema.",
-  "Por favor no cierres esta ventana.",
-  "La conexión con reservas puede tardar unos segundos.",
-  "Estamos confirmando que la solicitud quede guardada correctamente."
-];
+function tr(key, fallback = "") {
+  return translations?.[currentLang]?.[key] ?? fallback;
+}
 
 function getOrCreateSendingStatus() {
   let box = document.getElementById("lagoona-send-status");
@@ -1666,16 +1665,22 @@ function setLagoonaSendingState(active) {
 
   if (active) {
     lagoonaSendingStep = 0;
+    lagoonaSendingMessages = [
+      tr("form.sending_msg1", "Estamos registrando tu solicitud en el sistema."),
+      tr("form.sending_msg2", "Por favor no cierres esta ventana."),
+      tr("form.sending_msg3", "La conexión con reservas puede tardar unos segundos."),
+      tr("form.sending_msg4", "Estamos confirmando que la solicitud quede guardada correctamente.")
+    ];
 
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.innerText = "ENVIANDO SOLICITUD...";
+      submitBtn.innerText = tr("form.sending_button", "ENVIANDO SOLICITUD...");
     }
 
     box.classList.add("active");
     box.innerHTML = `
       <div class="lagoona-spinner"></div>
-      <div class="lagoona-send-title">Procesando reserva</div>
+      <div class="lagoona-send-title">${tr("form.processing_title", "Procesando reserva")}</div>
       <div class="lagoona-send-text" id="lagoona-send-text">
         ${lagoonaSendingMessages[0]}
       </div>
@@ -1699,7 +1704,7 @@ function setLagoonaSendingState(active) {
 
     if (submitBtn) {
       submitBtn.disabled = false;
-      submitBtn.innerText = "Enviar solicitud de reserva";
+      submitBtn.innerText = tr("form.submit", "Enviar solicitud de reserva");
     }
 
     box.classList.remove("active");
@@ -1718,15 +1723,10 @@ async function submitForm() {
   const notas    = document.getElementById("f-notas").value.trim();
 
   if (!nombre || !whatsapp || !tour || !personas || !fecha || !hora) {
-    alert(
-      "Por favor completa los campos:\n" +
-      "✓ Nombre\n" +
-      "✓ WhatsApp\n" +
-      "✓ Tour\n" +
-      "✓ Número de personas\n" +
-      "✓ Fecha\n" +
-      "✓ Horario"
-    );
+    alert(tr(
+      "form.required_alert",
+      "Por favor completa los campos:\n✓ Nombre\n✓ WhatsApp\n✓ Tour\n✓ Número de personas\n✓ Fecha\n✓ Horario"
+    ));
     return;
   }
 
@@ -1750,9 +1750,9 @@ async function submitForm() {
     const result = await registrarReservaPublica(datos);
 
     alert(
-      "✅ ¡Solicitud enviada!\n\n" +
-      "Número de solicitud: " + result.numeroReserva + "\n" +
-      "Te contactamos en menos de 24 horas al: " + whatsapp
+      "✅ " + tr("form.success_title", "¡Solicitud enviada!") + "\n\n" +
+      tr("form.request_number", "Número de solicitud:") + " " + result.numeroReserva + "\n" +
+      tr("form.contact_within", "Te contactamos en menos de 24 horas al:") + " " + whatsapp
     );
 
     [
@@ -1771,7 +1771,8 @@ async function submitForm() {
 
     const elHora = document.getElementById("f-hora");
     if (elHora) {
-      elHora.innerHTML = '<option value="">— Selecciona primero un tour —</option>';
+      elHora.innerHTML =
+        `<option value="" data-i18n="form.select_first_tour">— ${tr("form.select_first_tour", "Selecciona primero un tour")} —</option>`;
       elHora.disabled = true;
     }
 
@@ -1783,8 +1784,8 @@ async function submitForm() {
   } catch (error) {
     console.error(error);
     alert(
-      "❌ Error al enviar.\n\n" +
-      "Intenta por WhatsApp: https://wa.me/529842411410"
+      "❌ " + tr("form.send_error", "Error al enviar.") + "\n\n" +
+      tr("form.whatsapp_fallback", "Intenta por WhatsApp:") + " https://wa.me/529842411410"
     );
   } finally {
   setLagoonaSendingState(false);
@@ -2363,7 +2364,7 @@ const translations = {
     "tour7.name": "Laguna Grill",
     "rapidos.label": "Experiencia Plus · Malekair",
     "rapidos.title": "Tour a Los Rápidos",
-    "rapidos.desc": "5 horas navegando los puntos más icónicos de la laguna en un cómodo Pontón privado. Exclusivo pick up en el muelle de Aldea Mayab. Nevera con hielo, aguas, fruta, barra libre, ceviche o aguachile, chaleco salvavidas y capitán certificado con seguro de pasajero.",
+    "rapidos.desc": "5 horas navegando los puntos más icónicos de la laguna en un cómodo pontón. En la modalidad privada, incluye pick up exclusivo en el muelle de Aldea Mayab. Nevera con hielo, aguas, fruta, barra libre, ceviche o aguachile, chaleco salvavidas y capitán certificado con seguro de pasajero.",
     "rapidos.shared": "Colectivo Plus",
     "rapidos.private": "Privado",
     "rapidos.pax": "1–6 pax · +$1,000/extra",
@@ -2371,8 +2372,31 @@ const translations = {
     "rapidos.inc2": "Barra libre y fruta",
     "rapidos.inc3": "Ceviche o aguachile",
     "rapidos.inc4": "Chaleco, capitán y seguro",
+    "rapidos.inc5": "Tour privado: pick up en el muelle de Aldea Mayab",
     "rapidos.stops.label": "Navegaremos por",
     "rapidos.stops": "Canal de los Piratas · Isla de los Pájaros · Cenote Negro · Cenote Esmeralda · Cenote Cocalitos · Hotel Abandonado · Los Rápidos",
+    "rapidos.pick.up": "Saliendo de Marina Papitos",
+    "badge5": "Gastronomía · Exclusivo",
+    "badge8": "Lujo · Exclusivo · 4 horas",
+    "badge.shared": "Compartido",
+    "badge.premium": "Experiencia VIP privada",
+    "tourname8": "Catamarán Premium",
+    "pax8comp": "MXN por persona",
+    "pax8": "Hasta 10 personas · 3 horas",
+    "pill.captain": "Capitán",
+    "pill.crew": "Tripulación profesional",
+    "pill.drinks": "Bebidas",
+    "pill.music": "Música Bluetooth",
+    "pill.fruit": "Fruta de temporada",
+    "pill.chef": "Brochetas mar y tierra",
+    "pill.menu": "Guacamole",
+    "jetski.label": "Adrenalina en el agua",
+    "jetski.em": "desde el muelle de Aldea Mayab",
+    "jetski.desc": "La experiencia más emocionante de la laguna. Renta una moto acuática y recorre las aguas turquesas de Bacalar. Incluye chaleco salvavidas y capacitación previa.",
+    "jetski.th.duration": "Duración",
+    "jetski.single": "1 persona",
+    "jetski.double": "2 personas",
+    "jetski.includes": "Incluye chaleco · Capacitación · MXN",
     "includes.title": "Incluye",
     "price.shared": "Compartido/persona",
     "price.private": "Privado/grupo",
@@ -2414,7 +2438,6 @@ const translations = {
     "practical.title": "Antes de zarpar",
     // FORM
     "form.nombre": "Nombre completo",
-    "form.edificio": "Edificio / Depto",
     "form.wa": "WhatsApp",
     "form.email": "Correo Electrónico",
     "form.tour": "Tour seleccionado",
@@ -2478,10 +2501,22 @@ const translations = {
     "form.notes_placeholder": "Comentarios o peticiones especiales",
     "form.time_label": "Horario preferido",
     "form.time_placeholder": "Seleccionar horario",
+    "form.select_first_tour": "Selecciona primero un tour",
     "form.wednesday_warning": "Los miércoles la navegación está disponible en temporada alta, pero el horario está sujeto a confirmación. Puedes enviar tu solicitud normalmente.",
     "form.whatsapp_btn": "Contactar por WhatsApp",
     "form.success_title": "¡Solicitud enviada!",
     "form.success_msg": "Nuestro equipo se pondrá en contacto contigo en menos de 24 horas para confirmar los detalles de tu reserva.",
+    "form.required_alert": "Por favor completa los campos:\n✓ Nombre\n✓ WhatsApp\n✓ Tour\n✓ Número de personas\n✓ Fecha\n✓ Horario",
+    "form.request_number": "Número de solicitud:",
+    "form.contact_within": "Te contactamos en menos de 24 horas al:",
+    "form.sending_button": "ENVIANDO SOLICITUD...",
+    "form.processing_title": "Procesando reserva",
+    "form.sending_msg1": "Estamos registrando tu solicitud en el sistema.",
+    "form.sending_msg2": "Por favor no cierres esta ventana.",
+    "form.sending_msg3": "La conexión con reservas puede tardar unos segundos.",
+    "form.sending_msg4": "Estamos confirmando que la solicitud quede guardada correctamente.",
+    "form.send_error": "Error al enviar.",
+    "form.whatsapp_fallback": "Intenta por WhatsApp:",
     "form.wa_btn": "Escribir al WhatsApp",
     "prac.what": "¿Qué llevar?",
     "prac.swimsuit": "Traje de baño",
@@ -2642,14 +2677,6 @@ const translations = {
     "coming.soon.amenidades": "Próximamente más opciones de equipamiento. ¿Necesitas algo que no ves aquí?",
     "coming.soon.servicios": "Próximamente más servicios. ¿Tienes alguna solicitud especial?",
     "coming.soon.delivery": "Estamos sumando más opciones de delivery locales.",
-    "opt.tour1": "Tour Paddle — $550 compartido / $3,000 privado",
-    "opt.tour2": "Tour Velero — $800 compartido / $4,375 privado",
-    "opt.tour3": "Tour Lancha — $450 compartido / $3,750 privado",
-    "opt.tour4": "Tour Pontón — $550 compartido / $4,375 privado",
-    "opt.tour5": "Catamarán Recreativo — $800 compartido / $4,000 privado",
-    "opt.tour6": "Tour Catamarán Premium — $990 compartido / $15,000 privado",
-    "opt.tour7": "Laguna Grill — $6,000 privado",
-    "opt.kayak1": "Kayak individual inflable — $500 / día",
     "recorrido.desc": "Navegamos por los puntos más icónicos de la Laguna de Siete Colores — stromatolitos milenarios, cenotes y canales ocultos.",
     "tour1.desc": "Kayak o surf de remo al amanecer por las áreas más impresionantes de la laguna. Picnic flotante en el Santuario de las Aves. Apto para todas las edades.",
     "tour2.desc": "3 horas navegando la laguna impulsados solo por el viento. Experimenta la calma y el silencio de la naturaleza. Ideal para quienes buscan una aventura única y ecológica.",
@@ -2690,7 +2717,7 @@ const translations = {
     "tour7.name": "Laguna Grill",
     "rapidos.label": "Plus Experience · Malekair",
     "rapidos.title": "Los Rápidos Tour",
-    "rapidos.desc": "5-hour cruise along the lagoon's most iconic spots aboard a comfortable private pontoon. Exclusive pick-up at the Aldea Mayab dock. Includes a cooler with ice, bottled water, fresh fruit, open bar, ceviche or aguachile, life jackets, and a certified captain with passenger insurance.",
+    "rapidos.desc": "5 hours navigating the lagoon's most iconic spots aboard a comfortable pontoon. The private option includes exclusive pickup at the Aldea Mayab pier. Includes a cooler with ice, bottled water, fresh fruit, open bar, ceviche or aguachile, life jackets, and a certified captain with passenger insurance.",
     "rapidos.shared": "Plus Shared Tour",
     "rapidos.private": "Private",
     "rapidos.pax": "1–6 guests · +$1,000/extra guest",
@@ -2698,8 +2725,31 @@ const translations = {
     "rapidos.inc2": "Open bar and fruit",
     "rapidos.inc3": "Ceviche or aguachile",
     "rapidos.inc4": "Life vest, captain and insurance",
+    "rapidos.inc5": "Private tour: pickup at the Aldea Mayab pier",
     "rapidos.stops.label": "We will visit",
     "rapidos.stops": "Pirates' Channel · Bird Island · Black Cenote · Emerald Cenote · Cocalitos Cenote · Abandoned Hotel · Los Rápidos",
+    "rapidos.pick.up": "Departing from Marina Papitos",
+    "badge5": "Gastronomy · Exclusive",
+    "badge8": "Luxury · Exclusive · 4 hours",
+    "badge.shared": "Shared",
+    "badge.premium": "Private VIP experience",
+    "tourname8": "Premium Catamaran",
+    "pax8comp": "MXN per person",
+    "pax8": "Up to 10 guests · 3 hours",
+    "pill.captain": "Captain",
+    "pill.crew": "Professional crew",
+    "pill.drinks": "Drinks",
+    "pill.music": "Bluetooth music",
+    "pill.fruit": "Seasonal fruit",
+    "pill.chef": "Surf and turf skewers",
+    "pill.menu": "Guacamole",
+    "jetski.label": "Adrenaline on the water",
+    "jetski.em": "from the Aldea Mayab pier",
+    "jetski.desc": "The lagoon's most exciting experience. Rent a jet ski and explore Bacalar's turquoise waters. Life jacket and safety briefing included.",
+    "jetski.th.duration": "Duration",
+    "jetski.single": "1 person",
+    "jetski.double": "2 people",
+    "jetski.includes": "Includes life jacket · Safety briefing · MXN",
     "includes.title": "Includes",
     "price.shared": "Shared / person",
     "price.private": "Private / group",
@@ -2741,7 +2791,6 @@ const translations = {
     "practical.title": "Before setting sail",
     // FORM
     "form.nombre": "Full name",
-    "form.edificio": "Building and unit",
     "form.wa": "WhatsApp",
     "form.email": "Email address",
     "form.tour": "Selected tour",
@@ -2805,10 +2854,22 @@ const translations = {
     "form.note": "Confirmation within <strong>24 hours</strong> · Full refund with +24 hrs notice",
     "form.time_label": "Preferred time",
     "form.time_placeholder": "Select a time",
+    "form.select_first_tour": "Select a tour first",
     "form.wednesday_warning": "Wednesday navigation is available during high season, but the selected time is subject to confirmation. You may submit your request normally.",
     "form.whatsapp_btn": "Contact via WhatsApp",
     "form.success_title": "Request sent!",
     "form.success_msg": "Our team will contact you within 24 hours to confirm your booking details.",
+    "form.required_alert": "Please complete the following fields:\n✓ Name\n✓ WhatsApp\n✓ Tour\n✓ Number of guests\n✓ Date\n✓ Time",
+    "form.request_number": "Request number:",
+    "form.contact_within": "We will contact you within 24 hours at:",
+    "form.sending_button": "SENDING REQUEST...",
+    "form.processing_title": "Processing booking",
+    "form.sending_msg1": "We are registering your request in the system.",
+    "form.sending_msg2": "Please do not close this window.",
+    "form.sending_msg3": "The connection to reservations may take a few seconds.",
+    "form.sending_msg4": "We are confirming that your request was saved correctly.",
+    "form.send_error": "Unable to send your request.",
+    "form.whatsapp_fallback": "Try via WhatsApp:",
     "form.wa_btn": "Message on WhatsApp",
     "prac.what": "What to bring",
     "prac.swimsuit": "Swimsuit",
@@ -2968,14 +3029,6 @@ const translations = {
     "coming.soon.amenidades": "More equipment options coming soon. Need something you don't see here?",
     "coming.soon.servicios": "More services coming soon. Have a special request?",
     "coming.soon.delivery": "We're adding more local delivery options.",
-    "opt.tour1": "Paddle Tour — $550 shared / $3,000 private",
-    "opt.tour2": "Sailing Tour — $800 shared / $4,375 private",
-    "opt.tour3": "Speedboat Tour — $450 shared / $3,750 private",
-    "opt.tour4": "Pontoon Tour — $550 shared / $4,375 private",
-    "opt.tour5": "Recreational Catamaran — $800 shared / $4,000 private",
-    "opt.tour6": "Premium Catamaran Tour — $990 shared / $15,000 private",
-    "opt.tour7": "Laguna Grill — $6,000 private",
-    "opt.kayak1": "Single inflatable kayak — $500 / day",
     "recorrido.desc": "We navigate the most iconic spots of the Lake of Seven Colors — ancient stromatolites, cenotes and hidden canals.",
     "recorrido.title.prefix": "The",
     "tour1.desc": "Kayak or stand-up paddle at sunrise through the most stunning areas of the lagoon. Floating picnic at the Bird Sanctuary. Suitable for all ages.",
@@ -3140,14 +3193,15 @@ function tourRequiereConfirmacionMiercoles(tour) {
 
     if (!tour || horarios.length === 0) {
       elHora.innerHTML =
-        '<option value="">— Selecciona primero un tour —</option>';
+        `<option value="" data-i18n="form.select_first_tour">— ${tr("form.select_first_tour", "Selecciona primero un tour")} —</option>`;
       elHora.disabled = true;
       return;
     }
 
     const placeholder = document.createElement("option");
     placeholder.value = "";
-    placeholder.textContent = "Seleccionar horario";
+    placeholder.dataset.i18n = "form.time_placeholder";
+    placeholder.textContent = tr("form.time_placeholder", "Seleccionar horario");
     elHora.appendChild(placeholder);
 
     horarios.forEach(horario => {
