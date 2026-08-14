@@ -97,7 +97,7 @@ body{background:var(--sand);color:var(--ink);font-family:'Jost',sans-serif;font-
 .includes-pill{background:rgba(26,74,74,.07);color:var(--teal);font-size:11px;padding:3px 9px;border-radius:20px;font-weight:300}
 
 /* equal-weight price boxes */
-.tour-prices{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}
+.tour-prices{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto;margin-bottom:18px}
 .price-box{border:1px solid var(--sand-dark);padding:13px 10px;text-align:center}
 .price-box.priv{background:var(--teal);border-color:var(--teal)}
 .price-box-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
@@ -458,8 +458,8 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
 
 /* VIP price box */
 .price-box--vip {
-  background: var(--gold) !important;
-  border-color: var(--gold) !important;
+  background: var(--teal) !important;
+  border-color: var(--teal) !important;
 }
 
 .price-box--extra {
@@ -468,7 +468,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
   color: var(--ink);
 }
 .price-box--vip .price-box-amount {
-  color: #ffffff!important;
+  color: var(--gold-light) !important;
 }
 
 /* Gold time badges */
@@ -729,6 +729,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
       <span class="includes-pill" data-i18n="pill.chac_estuary">Estero de Chac</span>
       <span class="includes-pill" data-i18n="pill.lunch">Almuerzo</span>
     </div>
+    <p class="tour-pickup" data-i18n="departure.beyond">📍 Salida desde el muelle de Aldea Mayab</p>
 
     <div class="tour-prices">
       <div class="price-box priv" role="button" tabindex="0" style="grid-column:1 / -1"
@@ -882,6 +883,12 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
         <p class="price-box-sub" data-i18n="pax7">Hasta 6 personas</p>
       </div>
     </div>
+    <div class="tour-footer">
+      <div>
+        <p class="schedule-label" data-i18n="time.labels">Horarios</p>
+        <div class="schedule-times"><span class="time-badge">11:00</span><span class="time-badge">15:00</span></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -894,6 +901,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
   <div class="tour-body">
     <div class="tour-number">06</div>
     <h3 class="tour-name" data-i18n="tourname8">Catamarán Premium</h3>
+    <p class="tour-desc" data-i18n="tour8.desc">En su modalidad privada, es una experiencia personalizable para familias, grupos o celebraciones especiales. Navega por las aguas cristalinas de Bacalar con tiempo para nadar, relajarte y disfrutar bebidas refrescantes y deliciosos snacks a bordo. Vive la laguna a tu manera desde una perspectiva inigualable.</p>
     <p class="tour-includes-title" data-i18n="includes.title">Incluye</p>
     <div class="includes-list">
       <span class="includes-pill" data-i18n="pill.crew">Tripulación Pro</span>
@@ -918,8 +926,18 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
            onclick="selectTour('Tour Catamarán Premium — $15,000 privado'); return false;"
            style="background-color:var(--teal);border:1px solid var(--teal);padding:16px;text-align:center;cursor:pointer;transition:all 0.3s;">
         <p class="price-box-label" style="font-size:11px;letter-spacing:0.1em;color:#fff;text-transform:uppercase;font-weight:400;margin-bottom:8px;" data-i18n="badge.premium">Experiencia VIP Privada</p>
-        <p class="price-box-amount" style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#fff;font-weight:500;margin-bottom:6px;">$15,000</p>
+        <p class="price-box-amount" style="font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold-light);font-weight:500;margin-bottom:6px;">$15,000</p>
         <p class="price-box-sub" style="font-size:10px;color:#fff;line-height:1.4;" data-i18n="pax8">Hasta 10 personas · 3 horas</p>
+      </div>
+    </div>
+    <div class="tour-footer">
+      <div>
+        <p class="schedule-label" data-i18n="time.labels">Horarios</p>
+        <div class="schedule-times">
+          <span class="time-badge" data-i18n="time.comp">Comp. 11:00</span>
+          <span class="time-badge" data-i18n="time.priv">Priv. 10:00</span>
+          <span class="time-badge">15:00</span>
+        </div>
       </div>
     </div>
   </div>
@@ -1007,7 +1025,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 26px;
-      align-items: start;
+      align-items: stretch;
     }
 
     @media (max-width: 1024px) {
@@ -1145,7 +1163,8 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
     }
 
     .rental-table-box {
-      min-height: 210px;
+      height: 250px;
+      min-height: 250px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -1262,6 +1281,11 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
       .rental-intro {
         height: auto;
       }
+
+      .rental-table-box {
+        height: auto;
+        min-height: 0;
+      }
     }
   </style>
 
@@ -1271,10 +1295,10 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
       <div class="rental-intro">
         <p class="section-label" data-i18n="kayak.label">Exploración Libre</p>
         <h2 class="section-title">Kayak<br><em data-i18n="kayak.em">a tu ritmo</em></h2>
-        <p class="section-copy" data-i18n="kayak.desc">Kayak individual inflable para recorrer la laguna a tu ritmo. Ligero, fácil de transportar y disponible durante todo el día.</p>
+        <p class="section-copy" data-i18n="kayak.desc">Kayaks inflables individuales y dobles para recorrer la laguna a tu ritmo. Ligeros, fáciles de transportar y disponibles durante todo el día.</p>
       </div>
 
-      <img class="kayak-photo" src="Img/kayak-bacalar.jpg" alt="Renta de kayak individual inflable" loading="lazy">
+      <img class="kayak-photo" src="Img/kayak-bacalar.jpg" alt="Renta de kayaks inflables individuales y dobles" loading="lazy">
 
       <div class="jetski-table-box rental-table-box">
         <table class="jetski-table">
@@ -1290,6 +1314,11 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
               <td data-i18n="kayak.inflatable">Individual inflable</td>
               <td data-i18n="rental.full_day">Día completo</td>
               <td><div class="jetski-price-cell" role="button" tabindex="0" onclick="selectTour('Kayak individual inflable — $500 / día')">$500</div></td>
+            </tr>
+            <tr style="border-top:1px solid var(--sand-dark);">
+              <td data-i18n="kayak.double">Kayak doble</td>
+              <td data-i18n="rental.full_day">Día completo</td>
+              <td><div class="jetski-price-cell" role="button" tabindex="0" onclick="selectTour('Kayak doble inflable — $600 / día')">$600</div></td>
             </tr>
           </tbody>
         </table>
@@ -1437,6 +1466,7 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
               <option value="Laguna Grill — $6,000 privado">Laguna Grill — $6,000 privado</option>
               <option value="Tour Velero Vip — $6,000 privado">Tour Velero Vip — $6,000 privado</option>
               <option value="Kayak individual inflable — $500 / día">Kayak individual inflable — $500 / día</option>
+              <option value="Kayak doble inflable — $600 / día">Kayak doble inflable — $600 / día</option>
               <option value="Paddleboard inflable — $500 / día">Paddleboard inflable — $500 / día</option>
               <option value="Jet Ski (30 min) — $1,500 (1 pax)">Jet Ski (30 min) — $1,500 (1 pax)</option>
               <option value="Jet Ski (30 min) — $1,600 (2 pax)">Jet Ski (30 min) — $1,600 (2 pax)</option>
@@ -2375,6 +2405,7 @@ const translations = {
     // KAYAK
     "kayak.label": "Exploración Libre",
     "kayak.inflatable": "Individual inflable",
+    "kayak.double": "Kayak doble",
     "kayak.includes": "Incluye kayak inflable · Bomba manual · Remo · MXN",
     "rental.th.equipment": "Equipo",
     "rental.th.period": "Periodo",
@@ -2465,10 +2496,12 @@ const translations = {
     "pill.lunch": "Almuerzo",
     "departure.paddle": "📍 Salida desde marina en Bacalar · ambas modalidades",
     "departure.sailboat": "📍 Ambas modalidades salen desde marina en Bacalar · En privado, salida desde Aldea Mayab por $1,500 MXN adicionales",
+    "departure.beyond": "📍 Salida desde el muelle de Aldea Mayab",
     "departure.vip": "Abordaje incluido desde el muelle de Aldea Mayab",
     "departure.pontoon": "📍 Compartido: salida desde marina en Bacalar · Privado: salida desde Aldea Mayab por $1,000 MXN adicionales",
     "departure.catamaran_recreational": "📍 Salida desde marina en Bacalar",
     "departure.catamaran_premium": "📍 Modalidad compartida: salida desde marina en Bacalar",
+    "tour8.desc": "En su modalidad privada, es una experiencia personalizable para familias, grupos o celebraciones especiales. Navega por las aguas cristalinas de Bacalar con tiempo para nadar, relajarte y disfrutar bebidas refrescantes y deliciosos snacks a bordo. Vive la laguna a tu manera desde una perspectiva inigualable.",
     "vip.desc": "Navega la Laguna de los Siete Colores a bordo de un velero con motor y disfruta una experiencia exclusiva para tu grupo. Incluye 24 cervezas de cuartito, agua o refresco, una botella de vino tinto, fruta con Tajín y guacamole con chips. Solo tu grupo, el velero y Bacalar.",
     "vip.beer": "24 cervezas de cuartito",
     "vip.pax": "Hasta 4 personas · +$500 extra por persona · máximo 2 personas adicionales",
@@ -2574,7 +2607,7 @@ const translations = {
     "footer.sub": "Curated Vacation Homes · Aldea Mayab",
     "footer.location": "Bacalar, Quintana Roo, México",
     "footer.copy": "© Lagoona Curated Vacation Homes · Todos los derechos reservados",
-    "kayak.desc": "Kayak individual inflable para recorrer la laguna a tu ritmo. Ligero, fácil de transportar y disponible durante todo el día.",
+    "kayak.desc": "Kayaks inflables individuales y dobles para recorrer la laguna a tu ritmo. Ligeros, fáciles de transportar y disponibles durante todo el día.",
     "kayak.reserve": "Reservar →",
     "tours.em": "aventura",
     "recorrido.em": "recorrido",
@@ -2598,6 +2631,7 @@ const translations = {
     "opt.tour6": "Tour Catamarán Premium — $990 compartido / $15,000 privado",
     "opt.tour7": "Laguna Grill — $6,000 privado",
     "opt.kayak1": "Kayak individual inflable — $500 / día",
+    "opt.kayak2": "Kayak doble inflable — $600 / día",
     "opt.sunrise": "Al amanecer",
     "rname1": "Enamora Bacalar",
     "rname2": "BAMOA Cafe",
@@ -2738,6 +2772,7 @@ const translations = {
     // KAYAK
     "kayak.label": "Free Exploration",
     "kayak.inflatable": "Single inflatable",
+    "kayak.double": "Double kayak",
     "kayak.includes": "Includes inflatable kayak · Manual pump · Paddle · MXN",
     "rental.th.equipment": "Equipment",
     "rental.th.period": "Period",
@@ -2827,10 +2862,12 @@ const translations = {
     "pill.lunch": "Lunch",
     "departure.paddle": "📍 Departure from a marina in Bacalar · both options",
     "departure.sailboat": "📍 Both options depart from a marina in Bacalar · Private departure from Aldea Mayab for an additional $1,500 MXN",
+    "departure.beyond": "📍 Departure from the Aldea Mayab pier",
     "departure.vip": "Boarding included from the Aldea Mayab pier",
     "departure.pontoon": "📍 Shared: departure from a marina in Bacalar · Private: departure from Aldea Mayab for an additional $1,000 MXN",
     "departure.catamaran_recreational": "📍 Departure from a marina in Bacalar",
     "departure.catamaran_premium": "📍 Shared option: departure from a marina in Bacalar",
+    "tour8.desc": "The private option is a customizable experience for families, groups, or special celebrations. Cruise Bacalar's crystal-clear waters with time to swim, unwind, and enjoy refreshing drinks and delicious snacks on board. Experience the lagoon your way from an unforgettable perspective.",
     "vip.desc": "Sail the Lake of Seven Colors aboard a motorized sailboat and enjoy an exclusive experience for your group. Includes 24 small beers, water or soft drinks, one bottle of red wine, fruit with Tajín, and guacamole with chips. Just your group, the sailboat, and Bacalar.",
     "vip.beer": "24 small beers",
     "vip.pax": "Up to 4 guests · +$500 per additional guest · maximum 2 additional guests",
@@ -2938,7 +2975,7 @@ const translations = {
     "footer.sub": "Curated Vacation Homes · Aldea Mayab",
     "footer.location": "Bacalar, Quintana Roo, Mexico",
     "footer.copy": "© Lagoona Curated Vacation Homes · All rights reserved",
-    "kayak.desc": "Single inflatable kayak to explore the lagoon at your own pace. Lightweight, easy to transport and available for the full day.",
+    "kayak.desc": "Single and double inflatable kayaks to explore the lagoon at your own pace. Lightweight, easy to transport and available for the full day.",
     "kayak.reserve": "Book now →",
     "tours.em": "adventure",
     "recorrido.em": "route",
@@ -2960,6 +2997,7 @@ const translations = {
     "opt.tour6": "Premium Catamaran Tour — $990 shared / $15,000 private",
     "opt.tour7": "Laguna Grill — $6,000 private",
     "opt.kayak1": "Single inflatable kayak — $500 / day",
+    "opt.kayak2": "Double inflatable kayak — $600 / day",
     "opt.sunrise": "At sunrise",
     "rname1": "Enamora Bacalar",
     "rname2": "BAMOA Cafe",
@@ -3043,6 +3081,7 @@ const translations = {
     "opt.tour6": "Premium Catamaran Tour — $990 shared / $15,000 private",
     "opt.tour7": "Laguna Grill — $6,000 private",
     "opt.kayak1": "Single inflatable kayak — $500 / day",
+    "opt.kayak2": "Double inflatable kayak — $600 / day",
     "recorrido.desc": "We navigate the most iconic spots of the Lake of Seven Colors — ancient stromatolites, cenotes and hidden canals.",
     "recorrido.title.prefix": "The",
     "tour1.desc": "Kayak or stand-up paddle at sunrise through the most stunning areas of the lagoon. Floating picnic at the Bird Sanctuary. Suitable for all ages.",
@@ -3128,6 +3167,7 @@ const horariosMap = {
   "Laguna Grill — $6,000 privado":             ["10:00 AM", "3:00 PM"],
   "Tour Velero Vip — $6,000 privado":          ["10:00 AM", "3:00 PM"],
   "Kayak individual inflable — $500 / día":    ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM"],
+  "Kayak doble inflable — $600 / día":         ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM"],
   "Paddleboard inflable — $500 / día":         ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM"],
   "Jet Ski (30 min) — $1,500 (1 pax)":         ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"],
   "Jet Ski (30 min) — $1,600 (2 pax)":         ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"],
