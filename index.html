@@ -738,6 +738,97 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
   .tour-card--full .tour-photo-wrap{height:220px!important;min-height:220px!important}
   .tour-card--full .tour-photo{height:220px!important}
 }
+/* ═══════════════════════════════════════════════════════════════
+   MODAL DE EXPERIENCIAS · LAGOONA
+   Se integra sin eliminar gastronomía, rentas, servicios o delivery.
+   ═══════════════════════════════════════════════════════════════ */
+.tour-photo-wrap,.rapidos-tour-photo-wrap{cursor:pointer}
+.tour-photo-wrap::after,.rapidos-tour-photo-wrap::after{
+  content:"Ver recorrido";
+  position:absolute;right:14px;bottom:14px;z-index:4;
+  padding:9px 13px;border-radius:999px;
+  background:rgba(255,253,249,.94);color:var(--teal);
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  box-shadow:0 8px 24px rgba(0,0,0,.14);
+  transition:transform .25s ease,background .25s ease
+}
+.tour-photo-wrap:hover::after,.rapidos-tour-photo-wrap:hover::after{transform:translateY(-2px);background:#fff}
+.tour-info-modal{
+  position:fixed;inset:0;z-index:9999;display:none;
+  align-items:center;justify-content:center;padding:22px;
+  background:rgba(4,32,30,.72);backdrop-filter:blur(8px)
+}
+.tour-info-modal.open{display:flex}
+.tour-modal-panel{
+  width:min(940px,100%);max-height:min(92vh,960px);
+  position:relative;overflow:hidden;border-radius:26px;
+  background:#fffdf9;color:var(--teal);
+  box-shadow:0 30px 100px rgba(0,0,0,.3)
+}
+.tour-modal-scroll{max-height:min(92vh,960px);overflow:auto;overscroll-behavior:contain}
+.tour-modal-hero{height:320px;position:relative;overflow:hidden;background:var(--teal)}
+.tour-modal-hero img{width:100%;height:100%;object-fit:cover;display:block}
+.tour-modal-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,35,33,.05),rgba(4,35,33,.78))}
+.tour-modal-heading{position:absolute;z-index:2;left:42px;right:76px;bottom:30px;color:#fff}
+.tour-modal-kicker{margin:0 0 9px;color:#e6ca92;font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+.tour-modal-heading h2{margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:48px;font-weight:400;line-height:1}
+.tour-modal-close{
+  position:absolute;z-index:8;right:14px;top:14px;width:44px;height:44px;
+  display:grid;place-items:center;border:0;border-radius:50%;
+  background:rgba(255,255,255,.94);color:var(--teal);font-size:26px;line-height:1;
+  box-shadow:0 8px 24px rgba(0,0,0,.16)
+}
+.tour-modal-body{padding:32px 42px 116px}
+.tour-modal-description{margin:0 0 24px;color:var(--muted);font-size:15px;line-height:1.75}
+.tour-modal-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tour-modal-fact{padding:15px;border-radius:15px;background:var(--sand);min-width:0}
+.tour-modal-fact small{display:block;margin-bottom:5px;color:var(--gold);font-size:9px;letter-spacing:.13em;text-transform:uppercase}
+.tour-modal-fact strong{display:block;color:var(--teal);font-size:13px;font-weight:500;line-height:1.5}
+.tour-modal-section{margin-top:28px;padding-top:28px;border-top:1px solid var(--sand-dark)}
+.tour-modal-section h3{margin:0 0 17px;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:400}
+.tour-modal-route{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:0;padding:0;list-style:none}
+.tour-modal-route li{display:grid;grid-template-columns:32px minmax(0,1fr);gap:10px;align-items:center;padding:12px;border-radius:14px;background:var(--sand);font-size:12px;line-height:1.45}
+.tour-modal-route b{width:32px;height:32px;display:grid;place-items:center;border-radius:50%;background:var(--teal);color:#fff;font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;font-weight:400}
+.tour-modal-note{margin:12px 0 0;color:var(--muted);font-size:11px;line-height:1.55}
+.tour-modal-includes{display:flex;flex-wrap:wrap;gap:8px}
+.tour-modal-includes span{padding:8px 11px;border-radius:999px;background:var(--sand);color:var(--teal);font-size:11px}
+.tour-modal-prices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tour-modal-price{padding:17px;border:1px solid var(--sand-dark);border-radius:16px;background:#fff;cursor:pointer;text-align:left;color:var(--teal)}
+.tour-modal-price:hover,.tour-modal-price.selected{border-color:var(--gold);background:#fff8e8;box-shadow:0 8px 22px rgba(177,144,79,.12)}
+.tour-modal-price small,.tour-modal-price strong,.tour-modal-price span{display:block}
+.tour-modal-price small{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.tour-modal-price strong{margin:5px 0;font-family:'Cormorant Garamond',Georgia,serif;font-size:29px;font-weight:500}
+.tour-modal-price span{font-size:10px;line-height:1.45;color:var(--muted)}
+.tour-modal-reserve{
+  position:absolute;z-index:6;left:0;right:0;bottom:0;min-height:88px;
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding:14px 22px 14px 34px;border-top:1px solid var(--sand-dark);
+  background:rgba(255,253,249,.96);backdrop-filter:blur(16px)
+}
+.tour-modal-reserve-text small,.tour-modal-reserve-text strong{display:block}
+.tour-modal-reserve-text small{margin-bottom:3px;color:var(--muted);font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+.tour-modal-reserve-text strong{font-size:13px;font-weight:500}
+.tour-modal-reserve button{
+  min-height:52px;padding:0 24px;border:0;border-radius:14px;
+  background:var(--teal);color:#fff;font-size:13px
+}
+.tour-modal-reserve button:disabled{opacity:.45;cursor:not-allowed}
+body.tour-modal-lock{overflow:hidden}
+@media(max-width:680px){
+  .tour-photo-wrap::after,.rapidos-tour-photo-wrap::after{right:10px;bottom:10px;padding:8px 11px;font-size:9px}
+  .tour-info-modal{padding:0;align-items:stretch}
+  .tour-modal-panel{width:100%;height:100dvh;max-height:none;border-radius:0}
+  .tour-modal-scroll{height:100%;max-height:none}
+  .tour-modal-hero{height:280px}
+  .tour-modal-heading{left:20px;right:62px;bottom:22px}
+  .tour-modal-heading h2{font-size:38px}
+  .tour-modal-body{padding:24px 17px 112px}
+  .tour-modal-facts,.tour-modal-route,.tour-modal-prices{grid-template-columns:1fr}
+  .tour-modal-reserve{min-height:84px;padding:12px 14px}
+  .tour-modal-reserve-text{min-width:0}
+  .tour-modal-reserve-text strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .tour-modal-reserve button{flex:0 0 auto;min-height:52px;padding:0 18px}
+}
 </style>
 </head>
 <body>
@@ -2482,6 +2573,46 @@ triggerReveal();
 
 
 
+<!-- MODAL DE DETALLE DE TOUR -->
+<div class="tour-info-modal" id="tour-info-modal" aria-hidden="true">
+  <div class="tour-modal-panel" role="dialog" aria-modal="true" aria-labelledby="tour-modal-title">
+    <button class="tour-modal-close" id="tour-modal-close" type="button" aria-label="Cerrar">×</button>
+    <div class="tour-modal-scroll">
+      <div class="tour-modal-hero">
+        <img id="tour-modal-image" src="" alt="">
+        <div class="tour-modal-heading">
+          <p class="tour-modal-kicker" id="tour-modal-kicker"></p>
+          <h2 id="tour-modal-title"></h2>
+        </div>
+      </div>
+      <div class="tour-modal-body">
+        <p class="tour-modal-description" id="tour-modal-description"></p>
+        <div class="tour-modal-facts">
+          <div class="tour-modal-fact"><small id="tour-modal-hours-label">Horarios</small><strong id="tour-modal-hours"></strong></div>
+          <div class="tour-modal-fact"><small id="tour-modal-departure-label">Punto de salida</small><strong id="tour-modal-departure"></strong></div>
+        </div>
+        <section class="tour-modal-section">
+          <h3 id="tour-modal-route-title">Recorrido</h3>
+          <ol class="tour-modal-route" id="tour-modal-route"></ol>
+          <p class="tour-modal-note" id="tour-modal-note"></p>
+        </section>
+        <section class="tour-modal-section">
+          <h3 id="tour-modal-includes-title">Qué incluye</h3>
+          <div class="tour-modal-includes" id="tour-modal-includes"></div>
+        </section>
+        <section class="tour-modal-section">
+          <h3 id="tour-modal-prices-title">Modalidades y precios</h3>
+          <div class="tour-modal-prices" id="tour-modal-prices"></div>
+        </section>
+      </div>
+    </div>
+    <div class="tour-modal-reserve">
+      <div class="tour-modal-reserve-text"><small id="tour-modal-reserve-small">Reserva asistida</small><strong id="tour-modal-selection">Selecciona una modalidad</strong></div>
+      <button id="tour-modal-reserve-button" type="button" disabled>Reservar</button>
+    </div>
+  </div>
+</div>
+
 <!-- FOOTER PHOTO -->
 <div class="footer-photo-strip"></div>
 <footer>
@@ -3470,6 +3601,200 @@ function tourRequiereConfirmacionMiercoles(tour) {
   elFecha.addEventListener("change", actualizarHorarios);
 })();
 applyLang(currentLang);
+</script>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// MODALES DE TOURS · El resto del menú permanece intacto.
+// ═══════════════════════════════════════════════════════════════
+const TOUR_MODAL_ORDER = [
+  "paddle","velero","mas-alla","velero-vip","ponton",
+  "catamaran-recreativo","catamaran-premium","laguna-grill","rapidos"
+];
+
+const TOUR_MODAL_ROUTES = {
+  "paddle": {
+    es:["Salida desde la marina","Navegación guiada por zonas tranquilas","Santuario de las Aves y picnic flotante","Regreso a la marina"],
+    en:["Departure from the marina","Guided paddle through calm areas","Bird Sanctuary and floating picnic","Return to the marina"],
+    noteEs:"El orden puede ajustarse según viento, nivel del agua y condiciones del día.",
+    noteEn:"The order may change depending on wind, water level and daily conditions."
+  },
+  "velero": {
+    es:["Salida desde la marina o Aldea Mayab","Navegación principalmente a vela","Parada para nadar y disfrutar el paisaje","Regreso al punto de abordaje"],
+    en:["Departure from the marina or Aldea Mayab","Navigation mainly under sail","Swimming and scenery stop","Return to the boarding point"],
+    noteEs:"El velero cuenta con motor de apoyo. La ruta exacta se define con el capitán según el viento.",
+    noteEn:"The sailboat has a support engine. The captain defines the exact route according to wind conditions."
+  },
+  "mas-alla": {
+    es:["Muelle de Aldea Mayab","Ruta y Canal de los Piratas","Laguna Mariscal","Estero de Chac","Regreso a Aldea Mayab"],
+    en:["Aldea Mayab pier","Pirates Route and Canal","Mariscal Lagoon","Chac Estuary","Return to Aldea Mayab"],
+    noteEs:"El itinerario puede adaptarse por clima y condiciones de navegación.",
+    noteEn:"The itinerary may be adapted due to weather and navigation conditions."
+  },
+  "velero-vip": {
+    es:["Abordaje en el muelle de Aldea Mayab","Navegación privada por la laguna","Parada para nadar, comer y relajarse","Regreso al muelle"],
+    en:["Boarding at Aldea Mayab pier","Private navigation through the lagoon","Stop to swim, eat and relax","Return to the pier"],
+    noteEs:"El capitán elige la mejor ruta según viento y condiciones del día.",
+    noteEn:"The captain selects the best route according to wind and daily conditions."
+  },
+  "ponton": {
+    es:["Marina o Aldea Mayab, según modalidad","Navegación por la laguna","Cenotes y Canal de los Piratas","Paradas para nadar","Regreso al punto de salida"],
+    en:["Marina or Aldea Mayab, depending on option","Lagoon navigation","Cenotes and Pirates Canal","Swimming stops","Return to departure point"],
+    noteEs:"Las paradas se ajustan según horario, clima y condiciones de la laguna.",
+    noteEn:"Stops may change according to schedule, weather and lagoon conditions."
+  },
+  "catamaran-recreativo": {
+    es:["Salida desde la marina","Navegación a vela por la laguna","Parada para nadar y disfrutar fruta","Regreso a la marina"],
+    en:["Departure from the marina","Sailing through the lagoon","Stop to swim and enjoy fruit","Return to the marina"],
+    noteEs:"La ruta depende del viento; el capitán confirma los puntos antes de zarpar.",
+    noteEn:"The route depends on the wind; the captain confirms the stops before departure."
+  },
+  "catamaran-premium": {
+    es:["Abordaje en el punto confirmado","Navegación por zonas destacadas","Paradas para nadar y disfrutar el servicio","Regreso al punto de salida"],
+    en:["Boarding at the confirmed point","Navigation through featured lagoon areas","Stops to swim and enjoy the service","Return to departure point"],
+    noteEs:"En privado, la ruta y el punto de salida se confirman según clima y preferencias del grupo.",
+    noteEn:"For private tours, the route and departure point are confirmed according to weather and group preferences."
+  },
+  "laguna-grill": {
+    es:["Abordaje en el punto confirmado","Navegación panorámica","Parrillada privada a bordo","Regreso al punto de salida"],
+    en:["Boarding at the confirmed point","Scenic navigation","Private barbecue on board","Return to departure point"],
+    noteEs:"La duración, el horario y el punto de salida deben confirmarse con recepción antes del anticipo.",
+    noteEn:"Duration, schedule and departure point must be confirmed with reception before the deposit."
+  },
+  "rapidos": {
+    es:["Canal de los Piratas","Isla de los Pájaros","Cenote Negro","Cenote Esmeralda","Cenote Cocalitos","Hotel Abandonado","Los Rápidos"],
+    en:["Pirates Canal","Bird Island","Black Cenote","Emerald Cenote","Cocalitos Cenote","Abandoned Hotel","Los Rápidos"],
+    noteEs:"El orden puede modificarse por operación y condiciones climáticas. El punto de salida se confirma antes del anticipo.",
+    noteEn:"The order may change due to operations and weather. The departure point is confirmed before the deposit."
+  }
+};
+
+let tourModalChoice = "";
+let tourModalLastFocus = null;
+
+function tourModalText(es,en){ return currentLang === "en" ? en : es; }
+
+function closeTourModal(){
+  const modal = document.getElementById("tour-info-modal");
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden","true");
+  document.body.classList.remove("tour-modal-lock");
+  if(tourModalLastFocus) tourModalLastFocus.focus();
+}
+
+function chooseTourModalPrice(button,choice,label){
+  document.querySelectorAll(".tour-modal-price").forEach(el=>el.classList.remove("selected"));
+  button.classList.add("selected");
+  tourModalChoice = choice;
+  document.getElementById("tour-modal-selection").textContent = label;
+  document.getElementById("tour-modal-reserve-button").disabled = !choice;
+}
+
+function openTourModal(card,key){
+  const modal = document.getElementById("tour-info-modal");
+  const routeData = TOUR_MODAL_ROUTES[key];
+  if(!modal || !routeData) return;
+
+  tourModalLastFocus = document.activeElement;
+  tourModalChoice = "";
+
+  const image = card.querySelector(".tour-photo,.rapidos-tour-image");
+  const title = card.querySelector(".tour-name");
+  const kicker = card.querySelector(".tour-photo-tag");
+  const description = card.querySelector(".tour-desc");
+  const pickup = card.querySelector(".tour-pickup");
+  const times = Array.from(card.querySelectorAll(".time-badge")).map(el=>el.textContent.trim()).filter(Boolean);
+  const includes = Array.from(card.querySelectorAll(".includes-pill")).map(el=>el.textContent.trim()).filter(Boolean);
+  const priceBoxes = Array.from(card.querySelectorAll(".price-box"));
+
+  document.getElementById("tour-modal-image").src = image ? image.src : "";
+  document.getElementById("tour-modal-image").alt = title ? title.textContent.trim() : "";
+  document.getElementById("tour-modal-title").textContent = title ? title.textContent.trim() : "";
+  document.getElementById("tour-modal-kicker").textContent = kicker ? kicker.textContent.trim() : "";
+  document.getElementById("tour-modal-description").textContent = description ? description.textContent.trim() : "";
+  document.getElementById("tour-modal-hours-label").textContent = tourModalText("Horarios","Schedule");
+  document.getElementById("tour-modal-hours").textContent = times.length ? times.join(" · ") : tourModalText("Sujeto a disponibilidad","Subject to availability");
+  document.getElementById("tour-modal-departure-label").textContent = tourModalText("Punto de salida","Departure point");
+  document.getElementById("tour-modal-departure").textContent = pickup ? pickup.textContent.trim() : tourModalText("Por confirmar con recepción","To be confirmed with reception");
+  document.getElementById("tour-modal-route-title").textContent = tourModalText("Recorrido","Route");
+  document.getElementById("tour-modal-includes-title").textContent = tourModalText("Qué incluye","What's included");
+  document.getElementById("tour-modal-prices-title").textContent = tourModalText("Modalidades y precios","Options and prices");
+  document.getElementById("tour-modal-reserve-small").textContent = tourModalText("Reserva asistida","Assisted booking");
+  document.getElementById("tour-modal-selection").textContent = tourModalText("Selecciona una modalidad","Select an option");
+  document.getElementById("tour-modal-reserve-button").textContent = tourModalText("Reservar","Book");
+  document.getElementById("tour-modal-reserve-button").disabled = true;
+
+  const route = currentLang === "en" ? routeData.en : routeData.es;
+  document.getElementById("tour-modal-route").innerHTML = route.map((stop,index)=>`<li><b>${index+1}</b><span>${stop}</span></li>`).join("");
+  document.getElementById("tour-modal-note").textContent = currentLang === "en" ? routeData.noteEn : routeData.noteEs;
+  document.getElementById("tour-modal-includes").innerHTML = includes.map(item=>`<span>✓ ${item}</span>`).join("");
+
+  const priceContainer = document.getElementById("tour-modal-prices");
+  priceContainer.innerHTML = "";
+  const reservable = [];
+  priceBoxes.forEach(box=>{
+    const label = box.querySelector(".price-box-label")?.textContent.trim() || tourModalText("Modalidad","Option");
+    const amount = box.querySelector(".price-box-amount")?.textContent.trim() || "";
+    const sub = box.querySelector(".price-box-sub")?.textContent.trim() || "";
+    const code = box.getAttribute("onclick") || "";
+    const match = code.match(/selectTour\('([^']+)'\)/);
+    const choice = match ? match[1] : "";
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "tour-modal-price";
+    btn.innerHTML = `<small>${label}</small><strong>${amount}</strong><span>${sub}</span>`;
+    if(choice){
+      reservable.push({button:btn,choice,label:`${label} · ${amount}`});
+      btn.addEventListener("click",()=>chooseTourModalPrice(btn,choice,`${label} · ${amount}`));
+    }else{
+      btn.disabled = true;
+      btn.style.cursor = "default";
+    }
+    priceContainer.appendChild(btn);
+  });
+
+  if(reservable.length === 1){
+    chooseTourModalPrice(reservable[0].button,reservable[0].choice,reservable[0].label);
+  }
+
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden","false");
+  document.body.classList.add("tour-modal-lock");
+  document.getElementById("tour-modal-close").focus();
+}
+
+(function setupTourModals(){
+  const cards = Array.from(document.querySelectorAll("#tours-section .tour-card"));
+  cards.forEach((card,index)=>{
+    const key = TOUR_MODAL_ORDER[index];
+    const photo = card.querySelector(".tour-photo-wrap,.rapidos-tour-photo-wrap");
+    if(!key || !photo) return;
+    photo.setAttribute("role","button");
+    photo.setAttribute("tabindex","0");
+    photo.setAttribute("aria-label",tourModalText("Ver recorrido y detalles","View route and details"));
+    photo.addEventListener("click",()=>openTourModal(card,key));
+    photo.addEventListener("keydown",event=>{
+      if(event.key === "Enter" || event.key === " "){
+        event.preventDefault();
+        openTourModal(card,key);
+      }
+    });
+  });
+
+  document.getElementById("tour-modal-close").addEventListener("click",closeTourModal);
+  document.getElementById("tour-info-modal").addEventListener("click",event=>{
+    if(event.target.id === "tour-info-modal") closeTourModal();
+  });
+  document.getElementById("tour-modal-reserve-button").addEventListener("click",()=>{
+    if(!tourModalChoice) return;
+    const choice = tourModalChoice;
+    closeTourModal();
+    selectTour(choice);
+  });
+  document.addEventListener("keydown",event=>{
+    if(event.key === "Escape" && document.getElementById("tour-info-modal").classList.contains("open")) closeTourModal();
+  });
+})();
 </script>
 
 </body>
