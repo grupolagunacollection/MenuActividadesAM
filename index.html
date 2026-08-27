@@ -353,21 +353,31 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
   .nav-links{display:none}
 }
 
-/* ── HUB NAVIGATION ── */
-.hub-section{background:var(--sand);padding:32px 40px 40px}
-.hub-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;max-width:1200px;margin:0 auto}
-.hub-card{background:#fff;border-radius:4px;overflow:hidden;cursor:pointer;transition:transform .25s,box-shadow .25s;box-shadow:0 2px 12px rgba(26,74,74,0.08)}
-.hub-card:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(26,74,74,0.15)}
-.hub-photo{height:140px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.hub-photo img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
-.hub-card:hover .hub-photo img{transform:scale(1.05)}
-.hub-photo-placeholder{display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.7}
-.hub-photo-placeholder span{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.7)}
-.hub-info{display:flex;align-items:center;gap:10px;padding:14px 16px;background:#fff}
-.hub-icon{font-size:20px;flex-shrink:0}
-.hub-name{font-family:'Jost',sans-serif;font-size:13px;font-weight:500;color:var(--teal);letter-spacing:.02em;margin:0 0 2px}
-.hub-sub{font-size:11px;color:var(--muted);margin:0;line-height:1.3}
-.hub-arrow{margin-left:auto;flex-shrink:0;color:var(--gold);opacity:.6}
+/* ── APP HUB · ACCESOS PRINCIPALES ── */
+.hub-section{background:linear-gradient(180deg,#f5f2ed 0%,#ede6dc 100%);padding:52px 40px 58px}
+.hub-heading{max-width:1200px;margin:0 auto 24px}
+.hub-heading .section-label{margin-bottom:8px}
+.hub-heading h2{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,48px);font-weight:400;line-height:1.06;color:var(--teal);margin:0 0 9px}
+.hub-heading p:last-child{max-width:650px;font-size:14px;line-height:1.65;color:var(--muted);margin:0}
+.hub-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:1200px;margin:0 auto}
+.hub-card{appearance:none;width:100%;padding:0;border:0;background:#fff;border-radius:20px;overflow:hidden;cursor:pointer;text-align:left;min-height:200px;display:flex;flex-direction:column;box-shadow:0 8px 28px rgba(26,74,74,.09);transition:transform .22s ease,box-shadow .22s ease}
+.hub-card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(26,74,74,.15)}
+.hub-card:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.hub-visual{height:104px;display:flex;align-items:center;justify-content:space-between;padding:18px 22px;color:#fff;position:relative;overflow:hidden}
+.hub-visual::after{content:'';position:absolute;width:110px;height:110px;border:1px solid rgba(255,255,255,.28);border-radius:50%;right:-28px;top:-34px}
+.hub-visual--tours{background:linear-gradient(135deg,#145d60,#1f8383)}
+.hub-visual--rentals{background:linear-gradient(135deg,#297f98,#53a8ba)}
+.hub-visual--food{background:linear-gradient(135deg,#a8623f,#cf8b60)}
+.hub-visual--grocery{background:linear-gradient(135deg,#477450,#78a56e)}
+.hub-visual--services{background:linear-gradient(135deg,#7a5b78,#a6809e)}
+.hub-visual--delivery{background:linear-gradient(135deg,#a77a2f,#cfaa62)}
+.hub-emoji{font-size:44px;line-height:1;filter:drop-shadow(0 5px 10px rgba(0,0,0,.13));position:relative;z-index:1}
+.hub-mini{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:.9;position:relative;z-index:1}
+.hub-info{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;align-items:center;padding:17px 18px 19px;background:#fff;flex:1}
+.hub-copy{min-width:0}
+.hub-name{font-family:'Jost',sans-serif;font-size:16px;font-weight:500;color:var(--teal);letter-spacing:.01em;margin:0 0 5px;line-height:1.25}
+.hub-sub{font-size:12px;color:var(--muted);margin:0;line-height:1.45}
+.hub-arrow{grid-column:2;grid-row:1 / span 2;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--sand);color:var(--gold);font-size:20px}
 
 /* ── NEW PAGES: amenidades / servicios / delivery ── */
 .service-page{padding:48px 40px;max-width:1200px;margin:0 auto}
@@ -409,10 +419,19 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
 
 /* ── MOBILE hub ── */
 @media(max-width:768px){
-  .hub-section{padding:20px 16px 28px}
+  .hub-section{padding:40px 16px 46px}
+  .hub-heading{margin-bottom:20px}
+  .hub-heading h2{font-size:36px}
+  .hub-heading p:last-child{font-size:14px}
   .hub-grid{grid-template-columns:repeat(2,1fr);gap:12px}
-  .hub-grid .hub-card:last-child{grid-column:span 2}
-  .hub-photo{height:110px}
+  .hub-card{min-height:188px;border-radius:17px}
+  .hub-visual{height:86px;padding:14px 16px}
+  .hub-emoji{font-size:36px}
+  .hub-mini{font-size:8px;letter-spacing:.12em}
+  .hub-info{padding:14px 13px 16px;gap:7px}
+  .hub-name{font-size:14px;line-height:1.28}
+  .hub-sub{font-size:11px;line-height:1.4}
+  .hub-arrow{width:30px;height:30px;font-size:17px}
   .service-page{padding:28px 16px}
   .service-grid{grid-template-columns:1fr}
   .delivery-grid{grid-template-columns:1fr}
@@ -421,9 +440,9 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
   .delivery-card{padding:20px;gap:14px;min-height:0}
   .delivery-brand-logo{width:140px;height:auto;flex-basis:140px}
 }
-@media(max-width:400px){
+@media(max-width:360px){
   .hub-grid{grid-template-columns:1fr}
-  .hub-grid .hub-card:last-child{grid-column:span 1}
+  .hub-card{min-height:178px}
 }
 
 /* ── IPHONE / MOBILE LAYOUT HARDENING ── */
@@ -556,9 +575,9 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
   .moment-pill{min-height:42px;display:inline-flex;align-items:center;justify-content:center}
   .gastro-section{padding-top:48px;padding-bottom:48px}
 
-  .hub-info{padding:12px;gap:8px}
-  .hub-name{font-size:12px}
-  .hub-sub{font-size:10px}
+  .hub-info{padding:14px 13px 16px;gap:7px}
+  .hub-name{font-size:14px}
+  .hub-sub{font-size:11px}
   .service-wa-btn{width:100%;justify-content:center;text-align:center;line-height:1.4}
   .service-coming-soon{gap:12px;padding:18px 16px}
 
@@ -884,6 +903,41 @@ body.tour-modal-lock{overflow:hidden}
   <p data-i18n-html="welcome.text"></p>
 </div>
 
+<!-- APP HUB -->
+<section class="hub-section" aria-labelledby="hub-title">
+  <div class="hub-heading reveal">
+    <p class="section-label" data-i18n="stayhub.label">Todo para tu estancia</p>
+    <h2 id="hub-title" data-i18n="stayhub.title">¿Qué quieres hacer hoy?</h2>
+    <p data-i18n="stayhub.desc">Explora, reserva o solicita servicios sin buscar entre todo el menú.</p>
+  </div>
+  <div class="hub-grid">
+    <button class="hub-card reveal" type="button" onclick="openMenuSection('tours','tours-section')">
+      <span class="hub-visual hub-visual--tours"><span class="hub-emoji">⛵</span><span class="hub-mini" data-i18n="stayhub.explore">Explorar</span></span>
+      <span class="hub-info"><span class="hub-copy"><span class="hub-name" data-i18n="hub.tours">Tours & Actividades</span><span class="hub-sub" data-i18n="stayhub.tours.sub">Recorridos, precios y reserva</span></span><span class="hub-arrow">›</span></span>
+    </button>
+    <button class="hub-card reveal" type="button" onclick="openMenuSection('tours','kayak-section')">
+      <span class="hub-visual hub-visual--rentals"><span class="hub-emoji">🏄</span><span class="hub-mini" data-i18n="stayhub.request">Solicitar</span></span>
+      <span class="hub-info"><span class="hub-copy"><span class="hub-name" data-i18n="stayhub.rentals">Rentas de laguna</span><span class="hub-sub" data-i18n="stayhub.rentals.sub">Kayak individual y paddleboard · $500 al día</span></span><span class="hub-arrow">›</span></span>
+    </button>
+    <button class="hub-card reveal" type="button" onclick="openMenuSection('gastro','page-gastro')">
+      <span class="hub-visual hub-visual--food"><span class="hub-emoji">🍽️</span><span class="hub-mini" data-i18n="stayhub.discover">Descubrir</span></span>
+      <span class="hub-info"><span class="hub-copy"><span class="hub-name" data-i18n="stayhub.food">Dónde comer</span><span class="hub-sub" data-i18n="stayhub.food.sub">Recomendaciones por momento del día</span></span><span class="hub-arrow">›</span></span>
+    </button>
+    <button class="hub-card reveal" type="button" onclick="openMenuSection('servicios','service-grocery')">
+      <span class="hub-visual hub-visual--grocery"><span class="hub-emoji">🛒</span><span class="hub-mini" data-i18n="stayhub.request">Solicitar</span></span>
+      <span class="hub-info"><span class="hub-copy"><span class="hub-name" data-i18n="stayhub.grocery">Despensa lista al llegar</span><span class="hub-sub" data-i18n="stayhub.grocery.sub">Envíanos tu lista y coordinamos la compra</span></span><span class="hub-arrow">›</span></span>
+    </button>
+    <button class="hub-card reveal" type="button" onclick="openMenuSection('servicios','page-servicios')">
+      <span class="hub-visual hub-visual--services"><span class="hub-emoji">✨</span><span class="hub-mini" data-i18n="stayhub.explore">Explorar</span></span>
+      <span class="hub-info"><span class="hub-copy"><span class="hub-name" data-i18n="hub.servicios">Servicios</span><span class="hub-sub" data-i18n="stayhub.services.sub">Masaje, cocina privada, decoración y transporte</span></span><span class="hub-arrow">›</span></span>
+    </button>
+    <button class="hub-card reveal" type="button" onclick="openMenuSection('delivery','page-delivery')">
+      <span class="hub-visual hub-visual--delivery"><span class="hub-emoji">🛵</span><span class="hub-mini" data-i18n="stayhub.order">Pedir</span></span>
+      <span class="hub-info"><span class="hub-copy"><span class="hub-name" data-i18n="hub.delivery">Delivery</span><span class="hub-sub" data-i18n="stayhub.delivery.sub">Restaurantes y compras a domicilio</span></span><span class="hub-arrow">›</span></span>
+    </button>
+  </div>
+</section>
+
 <!-- TOURS GRID -->
 <section id="tours-section">
 <div class="section">
@@ -906,7 +960,7 @@ body.tour-modal-lock{overflow:hidden}
     <p class="tour-desc" data-i18n="tour1.desc">Kayak o surf de remo al amanecer por las áreas más impresionantes de la laguna. Picnic flotante en el Santuario de las Aves. Apto para todas las edades.</p>
     <p class="tour-includes-title" data-i18n="includes.title">Incluye</p>
     <div class="includes-list"><span class="includes-pill" data-i18n="pill.guide">Guía bilingüe</span><span class="includes-pill" data-i18n="pill.snacks">Snacks y frutas</span><span class="includes-pill" data-i18n="pill.vests">Chalecos</span><span class="includes-pill" data-i18n="pill.cooler">Hielera</span><span class="includes-pill" data-i18n="pill.insurance">Seguro</span></div>
-    <p class="tour-pickup" data-i18n="departure.paddle">📍 Salida desde marina en Bacalar · ambas modalidades</p>
+    <p class="tour-pickup" data-i18n="departure.paddle">📍 Operado por Adventure Lab · salida desde El Yak, Bacalar</p>
     
     <!-- PRECIOS CLICKEABLES -->
     <div class="tour-prices">
@@ -1257,6 +1311,8 @@ body.tour-modal-lock{overflow:hidden}
           <span class="includes-pill" data-i18n="rapidos.inc3">Ceviche o aguachile</span>
           <span class="includes-pill" data-i18n="rapidos.inc4">Chaleco, capitán y seguro</span>
         </div>
+
+        <p class="tour-pickup" data-i18n="rapidos.pickup">📍 Colectivo: salida desde Marina Papitos · Privado: pick up exclusivo en el muelle de Aldea Mayab</p>
 
         <div class="tour-prices">
           <div class="price-box" role="button" tabindex="0"
@@ -2421,8 +2477,8 @@ triggerReveal();
       </div>
       <div class="service-card-body">
         <div class="service-card-icon">🍳</div>
-        <p class="service-card-name" data-i18n="serv.chef">Chef privado</p>
-        <p class="service-card-desc" data-i18n="serv.chef.desc">Chef profesional en tu departamento para desayuno, comida o cena. Menú personalizado con ingredientes frescos de la región.</p>
+        <p class="service-card-name" data-i18n="serv.chef">Cocina privada</p>
+        <p class="service-card-desc" data-i18n="serv.chef.desc">Servicio en tu departamento por $800 MXN al día. Los insumos se cobran aparte; coordinamos el menú según alergias, preferencias y disponibilidad.</p>
         <span class="service-avail" data-i18n="amen.avail">Disponible · Consultar disponibilidad</span><br><br>
         <a href="https://wa.me/529842411410?text=Hola%2C+me+interesa+el+servicio+de+chef+privado" target="_blank" class="service-wa-btn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.556 4.116 1.529 5.849L.057 23.5l5.797-1.524A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.67-.524-5.183-1.433l-.371-.22-3.844 1.009 1.026-3.742-.242-.384A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
@@ -2482,7 +2538,7 @@ triggerReveal();
       <div class="service-card-body">
         <div class="service-card-icon">🚗</div>
         <p class="service-card-name" data-i18n="serv.transfer">Transfer & Transporte</p>
-        <p class="service-card-desc" data-i18n="serv.transfer.desc">Traslados desde el aeropuerto de Chetumal o Cancún, y transporte local en Bacalar. Puntual y confiable.</p>
+        <p class="service-card-desc" data-i18n="serv.transfer.desc">Traslado sencillo $950 MXN o viaje redondo $1,900 MXN. Se requiere 50% para reservar y el resto se paga al momento del pick up.</p>
         <span class="service-avail" data-i18n="amen.avail">Disponible · Consultar disponibilidad</span><br><br>
         <a href="https://wa.me/529842411410?text=Hola%2C+me+interesa+el+servicio+de+transfer" target="_blank" class="service-wa-btn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.556 4.116 1.529 5.849L.057 23.5l5.797-1.524A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.67-.524-5.183-1.433l-.371-.22-3.844 1.009 1.026-3.742-.242-.384A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
@@ -2501,8 +2557,8 @@ triggerReveal();
       </div>
       <div class="service-card-body">
         <div class="service-card-icon">🛒</div>
-        <p class="service-card-name" data-i18n="serv.grocery">Despensa pre-llegada</p>
-        <p class="service-card-desc" data-i18n="serv.grocery.desc">Llegamos con tu nevera lista. Envíanos tu lista de compras y la tenemos preparada antes de que llegues al departamento.</p>
+        <p class="service-card-name" id="service-grocery" data-i18n="serv.grocery">Despensa pre-llegada</p>
+        <p class="service-card-desc" data-i18n="serv.grocery.desc">Envíanos tu lista y dejamos la despensa lista. Servicio: $500 MXN para compras menores de $1,000; $700 MXN para compras de $1,000 o más. El ticket se cobra aparte.</p>
         <span class="service-avail" data-i18n="amen.avail">Disponible · Consultar disponibilidad</span><br><br>
         <a href="https://wa.me/529842411410?text=Hola%2C+me+interesa+el+servicio+de+despensa+pre-llegada" target="_blank" class="service-wa-btn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.556 4.116 1.529 5.849L.057 23.5l5.797-1.524A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.67-.524-5.183-1.433l-.371-.22-3.844 1.009 1.026-3.742-.242-.384A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
@@ -2592,7 +2648,7 @@ triggerReveal();
           <div class="tour-modal-fact"><small id="tour-modal-departure-label">Punto de salida</small><strong id="tour-modal-departure"></strong></div>
         </div>
         <section class="tour-modal-section">
-          <h3 id="tour-modal-route-title">Recorrido</h3>
+          <h3 id="tour-modal-route-title">Lugares que visitarás</h3>
           <ol class="tour-modal-route" id="tour-modal-route"></ol>
           <p class="tour-modal-note" id="tour-modal-note"></p>
         </section>
@@ -2642,6 +2698,14 @@ function showPage(page, skipScroll) {
   document.getElementById('nav-gastro-links').style.display = page === 'gastro' ? 'flex' : 'none';
   if (!skipScroll) window.scrollTo(0,0);
   setTimeout(triggerReveal,100);
+}
+
+function openMenuSection(page, anchorId) {
+  showPage(page, true);
+  window.setTimeout(() => {
+    const target = document.getElementById(anchorId);
+    if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+  }, 80);
 }
 
 // ── GASTRO MOMENT TABS ──
@@ -2818,7 +2882,8 @@ const translations = {
     "pill.mariscal": "Laguna Mariscal",
     "pill.chac_estuary": "Estero de Chac",
     "pill.lunch": "Almuerzo",
-    "departure.paddle": "📍 Salida desde marina en Bacalar · ambas modalidades",
+    "departure.paddle": "📍 Operado por Adventure Lab · salida desde El Yak, Bacalar",
+    "rapidos.pickup": "📍 Colectivo: salida desde Marina Papitos · Privado: pick up exclusivo en el muelle de Aldea Mayab",
     "departure.sailboat": "📍 Ambas modalidades salen desde marina en Bacalar · En privado, salida desde Aldea Mayab por $1,500 MXN adicionales",
     "departure.beyond": "📍 Salida desde el muelle de Aldea Mayab",
     "departure.vip": "Abordaje incluido desde el muelle de Aldea Mayab",
@@ -2985,6 +3050,22 @@ const translations = {
     "hub.servicios.sub": "Masajes, chef privado, decoraciones",
     "hub.delivery": "Delivery",
     "hub.delivery.sub": "A domicilio en Bacalar",
+    "stayhub.label": "Todo para tu estancia",
+    "stayhub.title": "¿Qué quieres hacer hoy?",
+    "stayhub.desc": "Explora, reserva o solicita servicios sin buscar entre todo el menú.",
+    "stayhub.explore": "Explorar",
+    "stayhub.request": "Solicitar",
+    "stayhub.discover": "Descubrir",
+    "stayhub.order": "Pedir",
+    "stayhub.tours.sub": "Recorridos, precios y reserva",
+    "stayhub.rentals": "Rentas de laguna",
+    "stayhub.rentals.sub": "Kayak individual y paddleboard · $500 al día",
+    "stayhub.food": "Dónde comer",
+    "stayhub.food.sub": "Recomendaciones por momento del día",
+    "stayhub.grocery": "Despensa lista al llegar",
+    "stayhub.grocery.sub": "Envíanos tu lista y coordinamos la compra",
+    "stayhub.services.sub": "Masaje, cocina privada, decoración y transporte",
+    "stayhub.delivery.sub": "Restaurantes y compras a domicilio",
     "amenidades.label": "Equipamiento & Renta",
     "amenidades.title.em": "Todo",
     "amenidades.title.rest": "lo que necesitas",
@@ -3009,16 +3090,16 @@ const translations = {
     "servicios.desc": "Servicios coordinados por Lagoona con proveedores seleccionados para hacer tu estancia verdaderamente especial. Solicita con anticipación para garantizar disponibilidad.",
     "serv.massage": "Masaje en habitación",
     "serv.massage.desc": "Masaje relajante o terapéutico en la comodidad de tu departamento. Terapeuta certificada con camilla profesional.",
-    "serv.chef": "Chef privado",
-    "serv.chef.desc": "Chef profesional en tu departamento para desayuno, comida o cena. Menú personalizado con ingredientes frescos de la región.",
+    "serv.chef": "Cocina privada",
+    "serv.chef.desc": "Servicio en tu departamento por $800 MXN al día. Los insumos se cobran aparte; coordinamos el menú según alergias, preferencias y disponibilidad.",
     "serv.deco": "Decoración especial",
     "serv.deco.desc": "Decoración de habitación para cumpleaños, aniversarios, luna de miel o cualquier celebración especial. Flores, globos y más.",
     "serv.photo": "Sesión fotográfica",
     "serv.photo.desc": "Fotógrafo profesional para sesiones en la laguna, en el departamento o en Bacalar. Recuerdos que duran para siempre.",
     "serv.transfer": "Transfer & Transporte",
-    "serv.transfer.desc": "Traslados desde el aeropuerto de Chetumal o Cancún, y transporte local en Bacalar. Puntual y confiable.",
+    "serv.transfer.desc": "Traslado sencillo $950 MXN o viaje redondo $1,900 MXN. Se requiere 50% para reservar y el resto se paga al momento del pick up.",
     "serv.grocery": "Despensa pre-llegada",
-    "serv.grocery.desc": "Llegamos con tu nevera lista. Envíanos tu lista de compras y la tenemos preparada antes de que llegues al departamento.",
+    "serv.grocery.desc": "Envíanos tu lista y dejamos la despensa lista. Servicio: $500 MXN para compras menores de $1,000; $700 MXN para compras de $1,000 o más. El ticket se cobra aparte.",
     "delivery.label": "A domicilio en Bacalar",
     "delivery.title.em": "Delivery",
     "delivery.title.rest": "sin salir del depto",
@@ -3188,7 +3269,8 @@ const translations = {
     "pill.mariscal": "Mariscal Lagoon",
     "pill.chac_estuary": "Chac Estuary",
     "pill.lunch": "Lunch",
-    "departure.paddle": "📍 Departure from a marina in Bacalar · both options",
+    "departure.paddle": "📍 Operated by Adventure Lab · departure from El Yak, Bacalar",
+    "rapidos.pickup": "📍 Shared: departure from Marina Papitos · Private: exclusive pickup at the Aldea Mayab pier",
     "departure.sailboat": "📍 Both options depart from a marina in Bacalar · Private departure from Aldea Mayab for an additional $1,500 MXN",
     "departure.beyond": "📍 Departure from the Aldea Mayab pier",
     "departure.vip": "Boarding included from the Aldea Mayab pier",
@@ -3355,6 +3437,22 @@ const translations = {
     "hub.servicios.sub": "Massages, private chef, décor",
     "hub.delivery": "Delivery",
     "hub.delivery.sub": "To your door in Bacalar",
+    "stayhub.label": "Everything for your stay",
+    "stayhub.title": "What would you like to do today?",
+    "stayhub.desc": "Explore, book or request services without searching through the full menu.",
+    "stayhub.explore": "Explore",
+    "stayhub.request": "Request",
+    "stayhub.discover": "Discover",
+    "stayhub.order": "Order",
+    "stayhub.tours.sub": "Routes, prices and booking",
+    "stayhub.rentals": "Lagoon rentals",
+    "stayhub.rentals.sub": "Single kayak and paddleboard · $500 per day",
+    "stayhub.food": "Where to eat",
+    "stayhub.food.sub": "Recommendations for every time of day",
+    "stayhub.grocery": "Groceries ready on arrival",
+    "stayhub.grocery.sub": "Send your list and we will coordinate the shopping",
+    "stayhub.services.sub": "Massage, private cooking, décor and transportation",
+    "stayhub.delivery.sub": "Restaurant and store delivery",
     "amenidades.label": "Equipment & Rentals",
     "amenidades.title.em": "Everything",
     "amenidades.title.rest": "you need",
@@ -3379,16 +3477,16 @@ const translations = {
     "servicios.desc": "Services coordinated by Lagoona with selected providers to make your stay truly special. Request in advance to ensure availability.",
     "serv.massage": "In-room massage",
     "serv.massage.desc": "Relaxing or therapeutic massage in the comfort of your apartment. Certified therapist with professional table.",
-    "serv.chef": "Private chef",
-    "serv.chef.desc": "Professional chef in your apartment for breakfast, lunch or dinner. Custom menu with fresh local ingredients.",
+    "serv.chef": "Private cooking service",
+    "serv.chef.desc": "In-apartment service for $800 MXN per day. Groceries are charged separately; we coordinate the menu according to allergies, preferences and availability.",
     "serv.deco": "Special decoration",
     "serv.deco.desc": "Room decoration for birthdays, anniversaries, honeymoons or any special celebration. Flowers, balloons and more.",
     "serv.photo": "Photo session",
     "serv.photo.desc": "Professional photographer for sessions on the lagoon, in the apartment or around Bacalar. Memories that last forever.",
     "serv.transfer": "Transfer & Transportation",
-    "serv.transfer.desc": "Transfers from Chetumal or Cancún airports, and local transportation in Bacalar. Punctual and reliable.",
+    "serv.transfer.desc": "One-way transfer $950 MXN or round trip $1,900 MXN. A 50% deposit is required to book; the balance is paid at pickup.",
     "serv.grocery": "Pre-arrival groceries",
-    "serv.grocery.desc": "We'll have your fridge stocked when you arrive. Send us your shopping list and we'll have it ready before you check in.",
+    "serv.grocery.desc": "Send us your list and we will have the groceries ready. Service fee: $500 MXN for purchases under $1,000; $700 MXN for purchases of $1,000 or more. Groceries are charged separately.",
     "delivery.label": "To your door in Bacalar",
     "delivery.title.em": "Delivery",
     "delivery.title.rest": "without leaving home",
@@ -3614,58 +3712,58 @@ const TOUR_MODAL_ORDER = [
 
 const TOUR_MODAL_ROUTES = {
   "paddle": {
-    es:["Salida desde la marina","Navegación guiada por zonas tranquilas","Santuario de las Aves y picnic flotante","Regreso a la marina"],
-    en:["Departure from the marina","Guided paddle through calm areas","Bird Sanctuary and floating picnic","Return to the marina"],
-    noteEs:"El orden puede ajustarse según viento, nivel del agua y condiciones del día.",
-    noteEn:"The order may change depending on wind, water level and daily conditions."
+    es:["Adventure Lab en El Yak","Zonas tranquilas de la Laguna de los Siete Colores","Santuario de las Aves","Picnic flotante","Regreso a El Yak"],
+    en:["Adventure Lab at El Yak","Calm areas of the Lagoon of Seven Colors","Bird Sanctuary","Floating picnic","Return to El Yak"],
+    noteEs:"Tour operado por Adventure Lab. Recorrido al amanecer; el horario y el orden se ajustan según la temporada, el viento y el nivel del agua.",
+    noteEn:"Tour operated by Adventure Lab. Sunrise route; schedule and order may change according to season, wind and water level."
   },
   "velero": {
-    es:["Salida desde la marina o Aldea Mayab","Navegación principalmente a vela","Parada para nadar y disfrutar el paisaje","Regreso al punto de abordaje"],
-    en:["Departure from the marina or Aldea Mayab","Navigation mainly under sail","Swimming and scenery stop","Return to the boarding point"],
-    noteEs:"El velero cuenta con motor de apoyo. La ruta exacta se define con el capitán según el viento.",
-    noteEn:"The sailboat has a support engine. The captain defines the exact route according to wind conditions."
+    es:["Cenote Negro o Cenote de la Bruja","Cenote Esmeralda","Isla de los Pájaros","Canal de los Piratas","Parada para nadar"],
+    en:["Black Cenote, also known as Witch's Cenote","Emerald Cenote","Bird Island","Pirates Canal","Swimming stop"],
+    noteEs:"La navegación es principalmente a vela. El capitán puede cambiar el orden o alguna parada según el viento; cuenta con motor de apoyo.",
+    noteEn:"Navigation is mainly under sail. The captain may change the order or a stop according to wind conditions; the sailboat has a support engine."
   },
   "mas-alla": {
-    es:["Muelle de Aldea Mayab","Ruta y Canal de los Piratas","Laguna Mariscal","Estero de Chac","Regreso a Aldea Mayab"],
-    en:["Aldea Mayab pier","Pirates Route and Canal","Mariscal Lagoon","Chac Estuary","Return to Aldea Mayab"],
+    es:["Ruta de los Piratas","Canal de los Piratas","Laguna Mariscal","Estero de Chac","Regreso al punto de salida"],
+    en:["Pirates Route","Pirates Canal","Mariscal Lagoon","Chac Estuary","Return to the departure point"],
     noteEs:"El itinerario puede adaptarse por clima y condiciones de navegación.",
     noteEn:"The itinerary may be adapted due to weather and navigation conditions."
   },
   "velero-vip": {
-    es:["Abordaje en el muelle de Aldea Mayab","Navegación privada por la laguna","Parada para nadar, comer y relajarse","Regreso al muelle"],
-    en:["Boarding at Aldea Mayab pier","Private navigation through the lagoon","Stop to swim, eat and relax","Return to the pier"],
-    noteEs:"El capitán elige la mejor ruta según viento y condiciones del día.",
-    noteEn:"The captain selects the best route according to wind and daily conditions."
+    es:["Muelle de Aldea Mayab","Cenote Esmeralda","Isla de los Pájaros","Canal de los Piratas","Parada privada para nadar y relajarse"],
+    en:["Aldea Mayab pier","Emerald Cenote","Bird Island","Pirates Canal","Private swimming and relaxation stop"],
+    noteEs:"Abordaje incluido en Aldea Mayab. El capitán confirma el orden y las paradas navegables según el viento.",
+    noteEn:"Boarding at Aldea Mayab is included. The captain confirms the order and navigable stops according to wind conditions."
   },
   "ponton": {
-    es:["Marina o Aldea Mayab, según modalidad","Navegación por la laguna","Cenotes y Canal de los Piratas","Paradas para nadar","Regreso al punto de salida"],
-    en:["Marina or Aldea Mayab, depending on option","Lagoon navigation","Cenotes and Pirates Canal","Swimming stops","Return to departure point"],
-    noteEs:"Las paradas se ajustan según horario, clima y condiciones de la laguna.",
-    noteEn:"Stops may change according to schedule, weather and lagoon conditions."
+    es:["Cenote Negro o Cenote de la Bruja","Cenote Esmeralda","Cenote Cocalitos y sus estromatolitos","Isla de los Pájaros","Canal de los Piratas"],
+    en:["Black Cenote, also known as Witch's Cenote","Emerald Cenote","Cocalitos Cenote and its stromatolites","Bird Island","Pirates Canal"],
+    noteEs:"Incluye paradas para nadar. El orden puede ajustarse según el horario, el clima y las condiciones de la laguna.",
+    noteEn:"Includes swimming stops. The order may change according to schedule, weather and lagoon conditions."
   },
   "catamaran-recreativo": {
-    es:["Salida desde la marina","Navegación a vela por la laguna","Parada para nadar y disfrutar fruta","Regreso a la marina"],
-    en:["Departure from the marina","Sailing through the lagoon","Stop to swim and enjoy fruit","Return to the marina"],
-    noteEs:"La ruta depende del viento; el capitán confirma los puntos antes de zarpar.",
-    noteEn:"The route depends on the wind; the captain confirms the stops before departure."
+    es:["Cenote Esmeralda","Cenote Negro o Cenote de la Bruja","Isla de los Pájaros","Canal de los Piratas","Parada para nadar"],
+    en:["Emerald Cenote","Black Cenote, also known as Witch's Cenote","Bird Island","Pirates Canal","Swimming stop"],
+    noteEs:"La ruta depende del viento; el capitán confirma el orden y las paradas navegables antes de zarpar.",
+    noteEn:"The route depends on the wind; the captain confirms the order and navigable stops before departure."
   },
   "catamaran-premium": {
-    es:["Abordaje en el punto confirmado","Navegación por zonas destacadas","Paradas para nadar y disfrutar el servicio","Regreso al punto de salida"],
-    en:["Boarding at the confirmed point","Navigation through featured lagoon areas","Stops to swim and enjoy the service","Return to departure point"],
-    noteEs:"En privado, la ruta y el punto de salida se confirman según clima y preferencias del grupo.",
-    noteEn:"For private tours, the route and departure point are confirmed according to weather and group preferences."
+    es:["Cenote Negro o Cenote de la Bruja","Cenote Esmeralda","Isla de los Pájaros","Canal de los Piratas","Paradas para nadar y disfrutar el servicio"],
+    en:["Black Cenote, also known as Witch's Cenote","Emerald Cenote","Bird Island","Pirates Canal","Stops to swim and enjoy the onboard service"],
+    noteEs:"En privado, el orden, las paradas y el punto de salida se confirman según el clima y las preferencias del grupo.",
+    noteEn:"For private tours, the order, stops and departure point are confirmed according to weather and group preferences."
   },
   "laguna-grill": {
-    es:["Abordaje en el punto confirmado","Navegación panorámica","Parrillada privada a bordo","Regreso al punto de salida"],
-    en:["Boarding at the confirmed point","Scenic navigation","Private barbecue on board","Return to departure point"],
-    noteEs:"La duración, el horario y el punto de salida deben confirmarse con recepción antes del anticipo.",
-    noteEn:"Duration, schedule and departure point must be confirmed with reception before the deposit."
+    es:["Cenote Esmeralda","Canal de los Piratas","Cenote Negro o Cenote de la Bruja","Isla de los Pájaros","Parada de nado con parrillada a bordo"],
+    en:["Emerald Cenote","Pirates Canal","Black Cenote, also known as Witch's Cenote","Bird Island","Swimming stop with onboard barbecue"],
+    noteEs:"El itinerario puede incluir dos zonas exclusivas adicionales. El orden está sujeto a operación y condiciones de la laguna.",
+    noteEn:"The itinerary may include two additional exclusive areas. The order is subject to operations and lagoon conditions."
   },
   "rapidos": {
     es:["Canal de los Piratas","Isla de los Pájaros","Cenote Negro","Cenote Esmeralda","Cenote Cocalitos","Hotel Abandonado","Los Rápidos"],
     en:["Pirates Canal","Bird Island","Black Cenote","Emerald Cenote","Cocalitos Cenote","Abandoned Hotel","Los Rápidos"],
-    noteEs:"El orden puede modificarse por operación y condiciones climáticas. El punto de salida se confirma antes del anticipo.",
-    noteEn:"The order may change due to operations and weather. The departure point is confirmed before the deposit."
+    noteEs:"Colectivo: salida desde Marina Papitos. Privado: pick up exclusivo en el muelle de Aldea Mayab. El orden puede cambiar por operación y clima.",
+    noteEn:"Shared: departure from Marina Papitos. Private: exclusive pickup at the Aldea Mayab pier. The order may change due to operations and weather."
   }
 };
 
@@ -3716,7 +3814,7 @@ function openTourModal(card,key){
   document.getElementById("tour-modal-hours").textContent = times.length ? times.join(" · ") : tourModalText("Sujeto a disponibilidad","Subject to availability");
   document.getElementById("tour-modal-departure-label").textContent = tourModalText("Punto de salida","Departure point");
   document.getElementById("tour-modal-departure").textContent = pickup ? pickup.textContent.trim() : tourModalText("Por confirmar con recepción","To be confirmed with reception");
-  document.getElementById("tour-modal-route-title").textContent = tourModalText("Recorrido","Route");
+  document.getElementById("tour-modal-route-title").textContent = tourModalText("Lugares que visitarás","Places you will visit");
   document.getElementById("tour-modal-includes-title").textContent = tourModalText("Qué incluye","What's included");
   document.getElementById("tour-modal-prices-title").textContent = tourModalText("Modalidades y precios","Options and prices");
   document.getElementById("tour-modal-reserve-small").textContent = tourModalText("Reserva asistida","Assisted booking");
