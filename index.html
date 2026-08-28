@@ -818,6 +818,19 @@ footer{background:var(--teal);padding:52px 20px 34px;text-align:center}
 .tour-modal-price small{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .tour-modal-price strong{margin:5px 0;font-family:'Cormorant Garamond',Georgia,serif;font-size:29px;font-weight:500}
 .tour-modal-price span{font-size:10px;line-height:1.45;color:var(--muted)}
+.tour-modal-party{display:grid;grid-template-columns:minmax(180px,1fr) minmax(190px,1fr);gap:12px;align-items:stretch}
+.tour-modal-counter,.tour-modal-total{border:1px solid var(--sand-dark);border-radius:16px;background:#fff;padding:14px 16px}
+.tour-modal-counter small,.tour-modal-total small{display:block;margin-bottom:8px;color:var(--muted);font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+.tour-modal-counter-row{display:grid;grid-template-columns:46px 1fr 46px;gap:8px;align-items:center}
+.tour-modal-counter button{width:46px;height:46px;border:1px solid var(--sand-dark);border-radius:50%;background:var(--cream);color:var(--teal);font-size:24px;line-height:1}
+.tour-modal-counter output{text-align:center;font-family:'Cormorant Garamond',Georgia,serif;font-size:31px;color:var(--teal)}
+.tour-modal-total strong{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-size:31px;font-weight:500;color:var(--teal)}
+.tour-modal-price-note{margin:10px 2px 0;color:var(--muted);font-size:11px;line-height:1.55}
+.booking-price-summary{display:none;min-height:52px;padding:12px 15px;border:1px solid var(--sand-dark);background:#fff8e8;color:var(--teal)}
+.booking-price-summary.active{display:block}
+.booking-price-summary small,.booking-price-summary strong{display:block}
+.booking-price-summary small{margin-bottom:3px;color:var(--muted);font-size:9px;letter-spacing:.11em;text-transform:uppercase}
+.booking-price-summary strong{font-size:16px;font-weight:500}
 .tour-modal-reserve{
   position:absolute;z-index:6;left:0;right:0;bottom:0;min-height:88px;
   display:flex;align-items:center;justify-content:space-between;gap:18px;
@@ -842,7 +855,7 @@ body.tour-modal-lock{overflow:hidden}
   .tour-modal-heading{left:20px;right:62px;bottom:22px}
   .tour-modal-heading h2{font-size:38px}
   .tour-modal-body{padding:24px 17px 112px}
-  .tour-modal-facts,.tour-modal-route,.tour-modal-prices{grid-template-columns:1fr}
+  .tour-modal-facts,.tour-modal-route,.tour-modal-prices,.tour-modal-party{grid-template-columns:1fr}
   .tour-modal-reserve{min-height:84px;padding:12px 14px}
   .tour-modal-reserve-text{min-width:0}
   .tour-modal-reserve-text strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -974,7 +987,7 @@ body.tour-modal-lock{overflow:hidden}
     <p class="tour-desc" data-i18n="tour1.desc">Kayak o surf de remo al amanecer por las áreas más impresionantes de la laguna. Picnic flotante en el Santuario de las Aves. Apto para todas las edades.</p>
     <p class="tour-includes-title" data-i18n="includes.title">Incluye</p>
     <div class="includes-list"><span class="includes-pill" data-i18n="pill.guide">Guía bilingüe</span><span class="includes-pill" data-i18n="pill.snacks">Snacks y frutas</span><span class="includes-pill" data-i18n="pill.vests">Chalecos</span><span class="includes-pill" data-i18n="pill.cooler">Hielera</span><span class="includes-pill" data-i18n="pill.insurance">Seguro</span></div>
-    <p class="tour-pickup" data-i18n="departure.paddle">📍 Operado por Adventure Lab · salida desde El Yak, Bacalar</p>
+    <p class="tour-pickup" data-i18n="departure.paddle">Salida desde marina en Bacalar · Traslado no incluido; podemos cotizarlo si no cuentas con auto</p>
     
     <!-- PRECIOS CLICKEABLES -->
     <div class="tour-prices">
@@ -1016,7 +1029,7 @@ body.tour-modal-lock{overflow:hidden}
       <span class="includes-pill" data-i18n="pill.cooler">Hielera</span>
       <span class="includes-pill" data-i18n="pill.insurance">Seguro</span>
     </div>
-    <p class="tour-pickup" data-i18n="departure.sailboat">📍 Ambas modalidades salen desde marina en Bacalar · En privado, salida desde Aldea Mayab por $1,500 MXN adicionales</p>
+    <p class="tour-pickup" data-i18n="departure.sailboat">Salida desde marina en Bacalar · Traslado no incluido; podemos cotizarlo · En privado, salida desde Aldea Mayab por $1,500 MXN adicionales</p>
 
     <div class="tour-prices">
       <div class="price-box" role="button" tabindex="0" style="cursor:pointer;transition:all .25s" 
@@ -1065,14 +1078,14 @@ body.tour-modal-lock{overflow:hidden}
       <span class="includes-pill" data-i18n="pill.chac_estuary">Estero de Chac</span>
       <span class="includes-pill" data-i18n="pill.lunch">Almuerzo</span>
     </div>
-    <p class="tour-pickup" data-i18n="departure.beyond">📍 Salida desde el muelle de Aldea Mayab</p>
+    <p class="tour-pickup" data-i18n="departure.beyond">Salida desde Casa China, Bacalar · Traslado no incluido; podemos cotizarlo si no cuentas con auto</p>
 
     <div class="tour-prices">
       <div class="price-box priv" role="button" tabindex="0" style="grid-column:1 / -1"
            onclick="selectTour('Más allá de Bacalar — $9,300 privado'); return false;">
         <p class="price-box-label" data-i18n="badge.private">Tour Privado</p>
         <p class="price-box-amount">$9,300</p>
-        <p class="price-box-sub" data-i18n="pax3">Hasta 6 personas · precio por reserva</p>
+        <p class="price-box-sub" data-i18n="pax3">Hasta 10 personas · precio por reserva</p>
       </div>
     </div>
 
@@ -1099,7 +1112,7 @@ body.tour-modal-lock{overflow:hidden}
     <p class="tour-desc" data-i18n="vip.desc">Navega la Laguna de los Siete Colores a bordo de un velero con motor y disfruta una experiencia exclusiva para tu grupo. Incluye 24 cervezas de cuartito, agua o refresco, una botella de vino tinto, fruta con Tajín y guacamole con chips. Solo tu grupo, el velero y Bacalar.</p>
 
 <p class="tour-pickup">
-  <span>📍</span> <span data-i18n="departure.vip">Abordaje incluido desde el muelle de Aldea Mayab</span>
+  <span data-i18n="departure.vip">Abordaje incluido desde el muelle de Aldea Mayab</span>
 </p>
     <p class="tour-includes-title">Incluye</p>
     <div class="includes-list">
@@ -1157,7 +1170,7 @@ body.tour-modal-lock{overflow:hidden}
       <span class="includes-pill" data-i18n="pill.vests">Chalecos</span>
       <span class="includes-pill" data-i18n="pill.insurance">Seguro</span>
     </div>
-    <p class="tour-pickup" data-i18n="departure.pontoon">📍 Compartido: salida desde marina en Bacalar · Privado: salida desde Aldea Mayab por $1,000 MXN adicionales</p>
+    <p class="tour-pickup" data-i18n="departure.pontoon">Compartido: salida desde marina en Bacalar, traslado no incluido y cotizable · Privado: salida desde Aldea Mayab por $1,000 MXN adicionales</p>
 
     <div class="tour-prices">
       <div class="price-box" role="button" tabindex="0" 
@@ -1170,7 +1183,7 @@ body.tour-modal-lock{overflow:hidden}
            onclick="selectTour('Tour Pontón — $4,375 privado'); return false;">
         <p class="price-box-label" data-i18n="badge.private">Tour Privado</p>
         <p class="price-box-amount">$4,375</p>
-        <p class="price-box-sub" data-i18n="pax4">Hasta 6 personas</p>
+        <p class="price-box-sub" data-i18n="pax4">1–6 personas · +$375 por persona extra</p>
       </div>
     </div>
 
@@ -1203,7 +1216,7 @@ body.tour-modal-lock{overflow:hidden}
       <span class="includes-pill" data-i18n="pill.fruit">Fruta de temporada</span>
       <span class="includes-pill" data-i18n="pill.vests">Chalecos</span>
     </div>
-    <p class="tour-pickup" data-i18n="departure.catamaran_recreational">📍 Salida desde marina en Bacalar</p>
+    <p class="tour-pickup" data-i18n="departure.catamaran_recreational">Salida desde marina en Bacalar · Traslado no incluido; podemos cotizarlo si no cuentas con auto</p>
 
     <div class="tour-prices">
       <div class="price-box" role="button" tabindex="0" 
@@ -1216,7 +1229,7 @@ body.tour-modal-lock{overflow:hidden}
            onclick="selectTour('Catamarán Recreativo — $4,000 privado'); return false;">
         <p class="price-box-label" data-i18n="badge.private">Tour Privado</p>
         <p class="price-box-amount">$4,000</p>
-        <p class="price-box-sub" data-i18n="pax7">Hasta 6 personas</p>
+        <p class="price-box-sub" data-i18n="pax7">Hasta 5 personas</p>
       </div>
     </div>
     <div class="tour-footer">
@@ -1245,7 +1258,7 @@ body.tour-modal-lock{overflow:hidden}
       <span class="includes-pill" data-i18n="pill.snacks">Snacks y frutas</span>
       <span class="includes-pill" data-i18n="pill.music">Sonido Premium</span>
     </div>
-    <p class="tour-pickup" data-i18n="departure.catamaran_premium">📍 Modalidad compartida: salida desde marina en Bacalar</p>
+    <p class="tour-pickup" data-i18n="departure.catamaran_premium">Salida desde marina en Bacalar · Traslado no incluido; podemos cotizarlo si no cuentas con auto</p>
  
     <div class="tour-prices" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
       <!-- COMPARTIDO -->
@@ -1295,13 +1308,14 @@ body.tour-modal-lock{overflow:hidden}
       <span class="includes-pill" data-i18n="pill.menu">Guacamole</span>
       <span class="includes-pill" data-i18n="pill.drinks_grill">Cerveza y bebidas frescas</span>
     </div>
+    <p class="tour-pickup" data-i18n="departure.laguna_grill">Salida desde Noru Marina, Bacalar · Traslado no incluido; podemos cotizarlo si no cuentas con auto</p>
 
     <div class="tour-prices">
       <div class="price-box priv full-width" role="button" tabindex="0" 
            onclick="selectTour('Laguna Grill — $6,000 privado'); return false;">
         <p class="price-box-label" data-i18n="badge.private">Experiencia Privada</p>
         <p class="price-box-amount">$6,000</p>
-        <p class="price-box-sub" data-i18n="pax5">Hasta 4 personas</p>
+        <p class="price-box-sub" data-i18n="pax5">1–4 personas · +$1,200 por persona extra</p>
       </div>
     </div>
   </div>
@@ -1326,7 +1340,7 @@ body.tour-modal-lock{overflow:hidden}
           <span class="includes-pill" data-i18n="rapidos.inc4">Chaleco, capitán y seguro</span>
         </div>
 
-        <p class="tour-pickup" data-i18n="rapidos.pickup">📍 Colectivo: salida desde Marina Papitos · Privado: pick up exclusivo en el muelle de Aldea Mayab</p>
+        <p class="tour-pickup" data-i18n="rapidos.pickup">Colectivo: salida desde Marina Papitos, traslado no incluido y cotizable · Privado: abordaje exclusivo en el muelle de Aldea Mayab</p>
 
         <div class="tour-prices">
           <div class="price-box" role="button" tabindex="0"
@@ -1788,6 +1802,12 @@ body.tour-modal-lock{overflow:hidden}
             <input class="form-input" type="number" id="f-personas" min="1" max="20" placeholder="¿Cuántos son?">
           </div>
           <div class="form-group">
+            <div class="booking-price-summary" id="booking-price-summary" aria-live="polite">
+              <small id="booking-price-label">Total estimado</small>
+              <strong id="booking-price-total">—</strong>
+            </div>
+          </div>
+          <div class="form-group">
             <label class="form-label" for="f-tour" data-i18n="form.tour">Tour de interés</label>
             <select class="form-select" id="f-tour">
               <option value="" data-i18n="form.select_tour">Selecciona un tour</option>
@@ -1888,6 +1908,7 @@ body.tour-modal-lock{overflow:hidden}
  ******************************************************/
 
 const LAGOONA_PUBLIC_APP_URL = "https://script.google.com/macros/s/AKfycbzUpSyqZHuiHUWmaXHFbfkoFJU7ibToBFMoLAbcuExpcBBlJp_eAXABtaW-NzlGzMrR-A/exec";
+const LAGOONA_PUBLIC_TOKEN = "LAGOONA_WEB_2026";
 
 function lagoonaRequestId() {
   return "REQ_" + Date.now() + "_" + Math.random().toString(36).slice(2, 10);
@@ -1980,6 +2001,8 @@ function registrarReservaPublica(datos) {
 
     window.addEventListener("message", handler);
 
+    addHidden(form, "action", "createPublicReservation");
+    addHidden(form, "publicToken", LAGOONA_PUBLIC_TOKEN);
     addHidden(form, "requestId", datos.requestId);
     addHidden(form, "website", datos.website);
     addHidden(form, "nombre", datos.nombre);
@@ -1988,6 +2011,7 @@ function registrarReservaPublica(datos) {
     addHidden(form, "email", datos.email);
     addHidden(form, "personas", datos.personas);
     addHidden(form, "tour", datos.tour);
+    addHidden(form, "precioTotal", datos.precioTotal);
     addHidden(form, "fecha", datos.fecha);
     addHidden(form, "hora", datos.hora);
     addHidden(form, "notas", datos.notas);
@@ -2080,6 +2104,7 @@ async function submitForm() {
   const fecha    = document.getElementById("f-fecha").value.trim();
   const hora     = document.getElementById("f-hora").value.trim();
   const notas    = document.getElementById("f-notas").value.trim();
+  const precio   = calculateTourPrice(tour, personas);
 
   if (!nombre || !whatsapp || !tour || !personas || !fecha || !hora) {
     alert(
@@ -2094,6 +2119,11 @@ async function submitForm() {
     return;
   }
 
+  if (precio && precio.error) {
+    alert(tourPriceNote(precio));
+    return;
+  }
+
   setLagoonaSendingState(true);
 
   const datos = {
@@ -2105,6 +2135,7 @@ async function submitForm() {
     email: email,
     personas: personas,
     tour: tour,
+    precioTotal: precio ? precio.total : "",
     fecha: fecha,
     hora: hora,
     notas: notas
@@ -2138,6 +2169,7 @@ async function submitForm() {
       elHora.innerHTML = '<option value="">— Selecciona primero un tour —</option>';
       elHora.disabled = true;
     }
+    updateBookingPrice();
 
     const elAvisoMiercoles = document.getElementById("wednesday-warning");
     if (elAvisoMiercoles) {
@@ -2674,6 +2706,24 @@ triggerReveal();
           <h3 id="tour-modal-prices-title">Modalidades y precios</h3>
           <div class="tour-modal-prices" id="tour-modal-prices"></div>
         </section>
+        <section class="tour-modal-section" id="tour-modal-party-section" hidden>
+          <h3 id="tour-modal-party-title">Personas y total</h3>
+          <div class="tour-modal-party">
+            <div class="tour-modal-counter">
+              <small id="tour-modal-party-label">Personas</small>
+              <div class="tour-modal-counter-row">
+                <button id="tour-modal-minus" type="button" aria-label="Quitar una persona">−</button>
+                <output id="tour-modal-persons">1</output>
+                <button id="tour-modal-plus" type="button" aria-label="Agregar una persona">+</button>
+              </div>
+            </div>
+            <div class="tour-modal-total">
+              <small id="tour-modal-total-label">Total estimado</small>
+              <strong id="tour-modal-total">—</strong>
+            </div>
+          </div>
+          <p class="tour-modal-price-note" id="tour-modal-price-note"></p>
+        </section>
       </div>
     </div>
     <div class="tour-modal-reserve">
@@ -2737,7 +2787,63 @@ function showMod(show) {
   if (row) row.style.display = show ? '' : 'none';
 }
 
-function selectTour(tourName) {
+const TOUR_PRICING = {
+  "Tour Paddle — $550 compartido": {base:550,type:"person",included:1,max:20},
+  "Tour Paddle — $3,000 privado": {base:3000,type:"extra",included:4,extra:400,max:20},
+  "Tour Velero — $800 compartido": {base:800,type:"person",included:1,max:20},
+  "Tour Velero — $4,375 privado": {base:4375,type:"extra",included:5,extra:625,max:20},
+  "Más allá de Bacalar — $9,300 privado": {base:9300,type:"fixed",included:10,max:10},
+  "Tour Velero Vip — $6,000 privado": {base:6000,type:"extra",included:4,extra:500,max:6},
+  "Tour Pontón — $550 compartido": {base:550,type:"person",included:1,max:20},
+  "Tour Pontón — $4,375 privado": {base:4375,type:"extra",included:6,extra:375,max:20},
+  "Catamarán Recreativo — $800 compartido": {base:800,type:"person",included:1,max:20},
+  "Catamarán Recreativo — $4,000 privado": {base:4000,type:"fixed",included:5,max:5},
+  "Tour Catamarán Premium — $990 compartido": {base:990,type:"person",included:1,max:20},
+  "Tour Catamarán Premium — $15,000 privado": {base:15000,type:"fixed",included:10,max:10},
+  "Laguna Grill — $6,000 privado": {base:6000,type:"extra",included:4,extra:1200,max:20},
+  "Tour a Los Rápidos — $1,200 colectivo": {base:1200,type:"person",included:1,max:20},
+  "Tour a Los Rápidos — $8,500 privado": {base:8500,type:"extra",included:6,extra:1000,max:20}
+};
+
+function formatTourMoney(value){
+  return "$" + Number(value || 0).toLocaleString(currentLang === "en" ? "en-US" : "es-MX") + " MXN";
+}
+
+function calculateTourPrice(choice,persons){
+  const rule = TOUR_PRICING[choice];
+  const pax = Math.max(1,Number(persons || 1));
+  if(!rule) return null;
+  if(rule.max && pax > rule.max) return {error:true,max:rule.max,pax:pax,rule:rule};
+  let total = rule.base;
+  if(rule.type === "person") total = rule.base * pax;
+  if(rule.type === "extra") total = rule.base + Math.max(0,pax - rule.included) * rule.extra;
+  return {total:total,pax:pax,rule:rule};
+}
+
+function tourPriceNote(result){
+  if(!result) return "";
+  if(result.error) return tourModalText("Máximo " + result.max + " personas para esta modalidad.","Maximum " + result.max + " people for this option.");
+  const r = result.rule;
+  if(r.type === "person") return tourModalText("Precio por persona.","Price per person.");
+  if(r.type === "extra") return tourModalText("Incluye hasta " + r.included + " personas · persona extra: " + formatTourMoney(r.extra) + ".","Includes up to " + r.included + " people · additional person: " + formatTourMoney(r.extra) + ".");
+  return tourModalText("Precio por grupo, hasta " + r.max + " personas.","Group price, up to " + r.max + " people.");
+}
+
+function updateBookingPrice(){
+  const choice = document.getElementById("f-tour")?.value || "";
+  const persons = document.getElementById("f-personas")?.value || 1;
+  const box = document.getElementById("booking-price-summary");
+  const total = document.getElementById("booking-price-total");
+  const label = document.getElementById("booking-price-label");
+  if(!box || !total) return null;
+  if(label) label.textContent = tourModalText("Total estimado","Estimated total");
+  const result = calculateTourPrice(choice,persons);
+  box.classList.toggle("active",Boolean(result));
+  total.textContent = result ? (result.error ? tourPriceNote(result) : formatTourMoney(result.total) + " · " + result.pax + (result.pax === 1 ? " persona" : " personas")) : "—";
+  return result;
+}
+
+function selectTour(tourName, persons) {
   showPage('tours');
   showMod(false); // Esconder modalidad completamente
 
@@ -2749,9 +2855,18 @@ function selectTour(tourName) {
       sel.dispatchEvent(new Event('change', { bubbles: true }));
     }
 
+    const people = document.getElementById('f-personas');
+    if (people && persons) people.value = persons;
+    updateBookingPrice();
+
     document.getElementById('reservar').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, 150);
 }
+
+(function bindBookingPrice(){
+  document.getElementById("f-tour")?.addEventListener("change",updateBookingPrice);
+  document.getElementById("f-personas")?.addEventListener("input",updateBookingPrice);
+})();
 // ═══════════════════════════════════════════════
 //  LAGOONA · i18n ENGINE
 // ═══════════════════════════════════════════════
@@ -2893,14 +3008,14 @@ const translations = {
     "pill.mariscal": "Laguna Mariscal",
     "pill.chac_estuary": "Estero de Chac",
     "pill.lunch": "Almuerzo",
-    "departure.paddle": "📍 Operado por Adventure Lab · salida desde El Yak, Bacalar",
-    "rapidos.pickup": "📍 Colectivo: salida desde Marina Papitos · Privado: pick up exclusivo en el muelle de Aldea Mayab",
-    "departure.sailboat": "📍 Ambas modalidades salen desde marina en Bacalar · En privado, salida desde Aldea Mayab por $1,500 MXN adicionales",
-    "departure.beyond": "📍 Salida desde el muelle de Aldea Mayab",
+    "departure.paddle": "Salida desde marina en Bacalar · Traslado no incluido; podemos cotizarlo si no cuentas con auto",
+    "rapidos.pickup": "Colectivo: salida desde Marina Papitos, traslado no incluido y cotizable · Privado: abordaje exclusivo en el muelle de Aldea Mayab",
+    "departure.sailboat": "Salida desde marina en Bacalar · Traslado no incluido; podemos cotizarlo · En privado, salida desde Aldea Mayab por $1,500 MXN adicionales",
+    "departure.beyond": "Salida desde Casa China, Bacalar · Traslado no incluido; podemos cotizarlo si no cuentas con auto",
     "departure.vip": "Abordaje incluido desde el muelle de Aldea Mayab",
-    "departure.pontoon": "📍 Compartido: salida desde marina en Bacalar · Privado: salida desde Aldea Mayab por $1,000 MXN adicionales",
-    "departure.catamaran_recreational": "📍 Salida desde marina en Bacalar",
-    "departure.catamaran_premium": "📍 Modalidad compartida: salida desde marina en Bacalar",
+    "departure.pontoon": "Compartido: salida desde marina en Bacalar, traslado no incluido y cotizable · Privado: salida desde Aldea Mayab por $1,000 MXN adicionales",
+    "departure.catamaran_recreational": "Salida desde marina en Bacalar · Traslado no incluido; podemos cotizarlo si no cuentas con auto",
+    "departure.catamaran_premium": "Salida desde marina en Bacalar · Traslado no incluido; podemos cotizarlo si no cuentas con auto",
     "tour8.desc": "En su modalidad privada, es una experiencia personalizable para familias, grupos o celebraciones especiales. Navega por las aguas cristalinas de Bacalar con tiempo para nadar, relajarte y disfrutar bebidas refrescantes y deliciosos snacks a bordo. Vive la laguna a tu manera desde una perspectiva inigualable.",
     "vip.desc": "Navega la Laguna de los Siete Colores a bordo de un velero con motor y disfruta una experiencia exclusiva para tu grupo. Incluye 24 cervezas de cuartito, agua o refresco, una botella de vino tinto, fruta con Tajín y guacamole con chips. Solo tu grupo, el velero y Bacalar.",
     "vip.beer": "24 cervezas de cuartito",
@@ -2919,11 +3034,12 @@ const translations = {
     "time.sunrise": "Al amanecer",
     "pax1": "1–4 pax · +$400/extra",
     "pax2": "1–5 pax · +$625/extra",
-    "pax3": "Hasta 6 personas · precio por reserva",
-    "pax4": "Hasta 6 personas",
-    "pax5": "Hasta 4 personas",
+    "pax3": "Hasta 10 personas · precio por reserva",
+    "pax4": "1–6 personas · +$375 por persona extra",
+    "pax5": "1–4 personas · +$1,200 por persona extra",
     "pax6": "1–10 pax · +$650/extra",
-    "pax7": "Hasta 6 personas",
+    "pax7": "Hasta 5 personas",
+    "departure.laguna_grill": "Salida desde Noru Marina, Bacalar · Traslado no incluido; podemos cotizarlo si no cuentas con auto",
     "stop1.name": "Isla de los Pájaros",
     "stop1.desc": "Santuario de aves",
     "stop2.name": "Cenote Cocalitos",
@@ -3280,14 +3396,14 @@ const translations = {
     "pill.mariscal": "Mariscal Lagoon",
     "pill.chac_estuary": "Chac Estuary",
     "pill.lunch": "Lunch",
-    "departure.paddle": "📍 Operated by Adventure Lab · departure from El Yak, Bacalar",
-    "rapidos.pickup": "📍 Shared: departure from Marina Papitos · Private: exclusive pickup at the Aldea Mayab pier",
-    "departure.sailboat": "📍 Both options depart from a marina in Bacalar · Private departure from Aldea Mayab for an additional $1,500 MXN",
-    "departure.beyond": "📍 Departure from the Aldea Mayab pier",
+    "departure.paddle": "Departure from a marina in Bacalar · Transportation is not included; we can quote it if you do not have a car",
+    "rapidos.pickup": "Shared: departure from Marina Papitos, transportation not included and available by quote · Private: exclusive boarding at the Aldea Mayab pier",
+    "departure.sailboat": "Departure from a marina in Bacalar · Transportation is not included and can be quoted · Private departure from Aldea Mayab for an additional $1,500 MXN",
+    "departure.beyond": "Departure from Casa China, Bacalar · Transportation is not included; we can quote it if you do not have a car",
     "departure.vip": "Boarding included from the Aldea Mayab pier",
-    "departure.pontoon": "📍 Shared: departure from a marina in Bacalar · Private: departure from Aldea Mayab for an additional $1,000 MXN",
-    "departure.catamaran_recreational": "📍 Departure from a marina in Bacalar",
-    "departure.catamaran_premium": "📍 Shared option: departure from a marina in Bacalar",
+    "departure.pontoon": "Shared: departure from a marina in Bacalar, transportation not included and available by quote · Private: departure from Aldea Mayab for an additional $1,000 MXN",
+    "departure.catamaran_recreational": "Departure from a marina in Bacalar · Transportation is not included; we can quote it if you do not have a car",
+    "departure.catamaran_premium": "Departure from a marina in Bacalar · Transportation is not included; we can quote it if you do not have a car",
     "tour8.desc": "The private option is a customizable experience for families, groups, or special celebrations. Cruise Bacalar's crystal-clear waters with time to swim, unwind, and enjoy refreshing drinks and delicious snacks on board. Experience the lagoon your way from an unforgettable perspective.",
     "vip.desc": "Sail the Lake of Seven Colors aboard a motorized sailboat and enjoy an exclusive experience for your group. Includes 24 small beers, water or soft drinks, one bottle of red wine, fruit with Tajín, and guacamole with chips. Just your group, the sailboat, and Bacalar.",
     "vip.beer": "24 small beers",
@@ -3306,11 +3422,12 @@ const translations = {
     "time.sunrise": "At sunrise",
     "pax1": "1–4 pax · +$400/extra",
     "pax2": "1–5 pax · +$625/extra",
-    "pax3": "Up to 6 guests · price per booking",
-    "pax4": "Up to 6 guests",
-    "pax5": "Up to 4 guests",
+    "pax3": "Up to 10 guests · price per booking",
+    "pax4": "1–6 guests · +$375 per additional guest",
+    "pax5": "1–4 guests · +$1,200 per additional guest",
     "pax6": "1–10 pax · +$650/extra",
-    "pax7": "Up to 6 guests",
+    "pax7": "Up to 5 guests",
+    "departure.laguna_grill": "Departure from Noru Marina, Bacalar · Transportation is not included; we can quote it if you do not have a car",
     "stop1.name": "Bird Island",
     "stop1.desc": "Bird sanctuary",
     "stop2.name": "Cenote Cocalitos",
@@ -3727,10 +3844,10 @@ const TOUR_MODAL_ORDER = [
 
 const TOUR_MODAL_ROUTES = {
   "paddle": {
-    es:["Adventure Lab en El Yak","Zonas tranquilas de la Laguna de los Siete Colores","Santuario de las Aves","Picnic flotante","Regreso a El Yak"],
-    en:["Adventure Lab at El Yak","Calm areas of the Lagoon of Seven Colors","Bird Sanctuary","Floating picnic","Return to El Yak"],
-    noteEs:"Tour operado por Adventure Lab. Recorrido al amanecer; el horario y el orden se ajustan según la temporada, el viento y el nivel del agua.",
-    noteEn:"Tour operated by Adventure Lab. Sunrise route; schedule and order may change according to season, wind and water level."
+    es:["Marina en Bacalar","Zonas tranquilas de la Laguna de los Siete Colores","Santuario de las Aves","Picnic flotante","Regreso a la marina"],
+    en:["Marina in Bacalar","Calm areas of the Lagoon of Seven Colors","Bird Sanctuary","Floating picnic","Return to the marina"],
+    noteEs:"Recorrido al amanecer. El traslado a la marina no está incluido; podemos cotizarlo si no cuentas con auto. El horario y el orden se ajustan según la temporada, el viento y el nivel del agua.",
+    noteEn:"Sunrise route. Transportation to the marina is not included; we can quote it if you do not have a car. Schedule and order may change according to season, wind and water level."
   },
   "velero": {
     es:["Cenote Negro o Cenote de la Bruja","Cenote Esmeralda","Isla de los Pájaros","Canal de los Piratas","Parada para nadar"],
@@ -3783,6 +3900,7 @@ const TOUR_MODAL_ROUTES = {
 };
 
 let tourModalChoice = "";
+let tourModalPersons = 1;
 let tourModalLastFocus = null;
 
 function tourModalText(es,en){ return currentLang === "en" ? en : es; }
@@ -3799,8 +3917,42 @@ function chooseTourModalPrice(button,choice,label){
   document.querySelectorAll(".tour-modal-price").forEach(el=>el.classList.remove("selected"));
   button.classList.add("selected");
   tourModalChoice = choice;
+  const currentPeople = Number(document.getElementById("f-personas")?.value || 1);
+  tourModalPersons = Math.max(1,currentPeople);
+  const rule = TOUR_PRICING[choice];
+  if(rule?.max) tourModalPersons = Math.min(tourModalPersons,rule.max);
   document.getElementById("tour-modal-selection").textContent = label;
   document.getElementById("tour-modal-reserve-button").disabled = !choice;
+  renderTourModalPrice();
+}
+
+function renderTourModalPrice(){
+  const section = document.getElementById("tour-modal-party-section");
+  const result = calculateTourPrice(tourModalChoice,tourModalPersons);
+  section.hidden = !result;
+  if(!result) return;
+  document.getElementById("tour-modal-persons").textContent = tourModalPersons;
+  document.getElementById("tour-modal-total").textContent = result.error ? "—" : formatTourMoney(result.total);
+  document.getElementById("tour-modal-price-note").textContent = tourPriceNote(result);
+  document.getElementById("tour-modal-party-title").textContent = tourModalText("Personas y total","Guests and total");
+  document.getElementById("tour-modal-party-label").textContent = tourModalText("Personas","Guests");
+  document.getElementById("tour-modal-total-label").textContent = tourModalText("Total estimado","Estimated total");
+  const rule = result.rule;
+  document.getElementById("tour-modal-minus").disabled = tourModalPersons <= 1;
+  document.getElementById("tour-modal-plus").disabled = Boolean(rule.max && tourModalPersons >= rule.max);
+  document.getElementById("tour-modal-reserve-button").disabled = Boolean(result.error);
+  if(!result.error){
+    document.getElementById("tour-modal-selection").textContent = formatTourMoney(result.total) + " · " + tourModalPersons + (tourModalPersons === 1 ? tourModalText(" persona"," guest") : tourModalText(" personas"," guests"));
+  }
+}
+
+function changeTourModalPersons(delta){
+  if(!tourModalChoice) return;
+  const rule = TOUR_PRICING[tourModalChoice];
+  const next = Math.max(1,tourModalPersons + delta);
+  if(rule?.max && next > rule.max) return;
+  tourModalPersons = next;
+  renderTourModalPrice();
 }
 
 function openTourModal(card,key){
@@ -3810,6 +3962,8 @@ function openTourModal(card,key){
 
   tourModalLastFocus = document.activeElement;
   tourModalChoice = "";
+  tourModalPersons = 1;
+  document.getElementById("tour-modal-party-section").hidden = true;
 
   const image = card.querySelector(".tour-photo,.rapidos-tour-image");
   const title = card.querySelector(".tour-name");
@@ -3901,9 +4055,12 @@ function openTourModal(card,key){
   document.getElementById("tour-modal-reserve-button").addEventListener("click",()=>{
     if(!tourModalChoice) return;
     const choice = tourModalChoice;
+    const persons = tourModalPersons;
     closeTourModal();
-    selectTour(choice);
+    selectTour(choice,persons);
   });
+  document.getElementById("tour-modal-minus").addEventListener("click",()=>changeTourModalPersons(-1));
+  document.getElementById("tour-modal-plus").addEventListener("click",()=>changeTourModalPersons(1));
   document.addEventListener("keydown",event=>{
     if(event.key === "Escape" && document.getElementById("tour-info-modal").classList.contains("open")) closeTourModal();
   });
