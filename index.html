@@ -910,6 +910,101 @@ body.tour-modal-lock{overflow:hidden}
   }
   .nav-tab-btn.active{border-color:var(--gold-light);background:var(--gold-light);color:var(--teal)}
 }
+
+/* ──────────────────────────────────────────────
+   BOOKING · WARM HUMAN LUXURY REDESIGN · 2026
+   Keeps existing form IDs and booking logic intact.
+   ────────────────────────────────────────────── */
+.booking-section-warm{padding:0 20px 82px;background:linear-gradient(180deg,#f4eee5 0%,#f7f3ed 48%,#f4eee5 100%);position:relative;overflow:hidden}
+.booking-section-warm::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 15% 8%,rgba(184,149,90,.08),transparent 30%),radial-gradient(circle at 88% 78%,rgba(26,74,74,.045),transparent 28%)}
+.booking-scene{max-width:1180px;height:470px;margin:0 auto;position:relative;overflow:hidden;border-radius:0 0 28px 28px;box-shadow:0 18px 45px rgba(54,42,31,.08)}
+.booking-scene-photo{background-position:center 58%;transform:scale(1.015);filter:saturate(.78) contrast(.9) brightness(1.04)}
+.booking-scene-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(247,242,234,.93) 0%,rgba(247,242,234,.78) 40%,rgba(247,242,234,.23) 70%,rgba(19,54,52,.08) 100%)}
+.booking-scene-copy{position:relative;z-index:2;width:min(620px,66%);height:100%;display:flex;flex-direction:column;justify-content:center;padding:56px 66px;color:var(--teal)}
+.booking-kicker,.booking-card-kicker{font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:#a97c42;font-weight:400}
+.booking-kicker{margin-bottom:16px;display:flex;align-items:center;gap:14px}
+.booking-kicker::after{content:'';width:48px;height:1px;background:rgba(169,124,66,.55)}
+.booking-headline{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(50px,5.2vw,78px);line-height:.92;letter-spacing:-.025em;max-width:600px;color:#163f40}
+.booking-headline span,.booking-headline em{display:block}
+.booking-headline em{font-weight:300;font-style:italic;color:#2d6665;margin-top:7px}
+.booking-lead{max-width:535px;margin-top:24px;font-size:15px;line-height:1.8;color:#544d47;font-weight:300}
+.booking-trust-row{display:flex;gap:28px;flex-wrap:wrap;margin-top:30px}
+.booking-trust-row span{display:flex;align-items:center;gap:9px;color:#4a4540}
+.booking-trust-row b{font-family:'Cormorant Garamond',serif;font-size:17px;color:#a97c42;font-weight:400}
+.booking-trust-row i{font-style:normal;font-size:9px;letter-spacing:.16em;text-transform:uppercase;font-weight:400}
+.booking-section-warm .booking-inner{position:relative;z-index:3;max-width:1040px;margin:-54px auto 0}
+.booking-section-warm .booking-card{background:rgba(255,253,249,.975);padding:42px 48px 38px;border:1px solid rgba(184,149,90,.32);border-radius:22px;box-shadow:0 22px 60px rgba(74,57,40,.11);backdrop-filter:blur(12px)}
+.booking-section-warm .booking-card::before{display:none}
+.booking-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:34px;padding-bottom:22px;border-bottom:1px solid rgba(184,149,90,.2)}
+.booking-card-caption{font-size:12px;color:#86786c;margin-top:7px;line-height:1.55}
+.booking-card-signature{font-family:'Cormorant Garamond',serif;font-size:25px;font-style:italic;color:#796e64;transform:rotate(-2deg);white-space:nowrap;opacity:.82}
+.booking-section-warm .form-grid{gap:22px 28px;margin-bottom:22px}
+.booking-section-warm .form-group{gap:8px}
+.booking-section-warm .form-label{font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:0;text-transform:none;color:#263d3d;font-weight:400}
+.booking-section-warm .form-input,.booking-section-warm .form-select,.booking-section-warm .form-textarea{background:#fbf8f3;border:1px solid #ddd3c7;border-radius:8px;padding:14px 15px;font-size:13px;color:#2c3332;box-shadow:inset 0 1px 0 rgba(255,255,255,.7)}
+.booking-section-warm .form-input::placeholder,.booking-section-warm .form-textarea::placeholder{color:#aaa096;font-weight:300}
+.booking-section-warm .form-input:focus,.booking-section-warm .form-select:focus,.booking-section-warm .form-textarea:focus{background:#fff;border-color:#b8955a;box-shadow:0 0 0 3px rgba(184,149,90,.09)}
+.booking-section-warm .form-textarea{min-height:100px}
+.booking-price-cell{grid-column:span 2}
+.booking-section-warm .booking-price-summary{background:#f8f1e5;border:1px solid rgba(184,149,90,.32);border-radius:8px;color:#244f4f}
+.booking-section-warm .wednesday-warning{border-left:2px solid var(--gold);background:#f8f1e5;border-radius:0 8px 8px 0;padding:12px 14px}
+.booking-actions{display:grid;grid-template-columns:minmax(220px,360px) 1fr;gap:24px;align-items:center;margin-top:3px}
+.booking-section-warm .form-submit{width:auto;min-height:52px;background:linear-gradient(90deg,#ad8650,#c7a76f);border-radius:999px;padding:15px 32px;margin:0;color:#fff;box-shadow:0 8px 22px rgba(171,132,80,.18);letter-spacing:.24em}
+.booking-section-warm .form-submit:hover{background:linear-gradient(90deg,#9c7747,#b9955c);transform:translateY(-1px)}
+.booking-privacy{font-size:11px;line-height:1.6;color:#8d847c;max-width:300px}
+.booking-human-note{display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:center;margin-top:24px;padding:16px 18px;background:#f7f2ea;border-radius:10px;color:#625c55}
+.booking-human-mark{width:36px;height:36px;border:1px solid rgba(184,149,90,.55);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;color:#a47d48;font-size:18px}
+.booking-human-note p{font-size:12px;line-height:1.65}
+.booking-section-warm .form-or{margin:20px 0 12px;color:#9a8e83;font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+.booking-section-warm .form-or::before,.booking-section-warm .form-or::after{background:#e5dbcf;width:34%}
+.booking-section-warm .form-wa{width:max-content;max-width:100%;margin:0 auto;background:transparent;color:#2d5b57;border:1px solid rgba(45,91,87,.3);border-radius:999px;padding:12px 20px;letter-spacing:.14em;transition:all .25s}
+.booking-section-warm .form-wa:hover{background:#edf2ef;color:#214946;border-color:#214946}
+.booking-reassurance{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:24px;background:rgba(238,231,221,.86);border:1px solid rgba(184,149,90,.15);border-radius:16px;overflow:hidden;box-shadow:0 12px 32px rgba(72,56,41,.05)}
+.booking-reassurance>div{padding:22px 24px;min-height:142px;position:relative}
+.booking-reassurance>div+div{border-left:1px solid rgba(184,149,90,.22)}
+.booking-reassurance span{display:block;font-family:'Cormorant Garamond',serif;font-size:24px;color:#a97c42;margin-bottom:11px}
+.booking-reassurance strong{display:block;font-family:'Cormorant Garamond',serif;font-size:16px;color:#2b4544;font-weight:500;line-height:1.15;margin-bottom:7px}
+.booking-reassurance p{font-size:11px;line-height:1.55;color:#7b7168}
+@media(max-width:820px){
+  .booking-section-warm{padding-left:12px;padding-right:12px;padding-bottom:58px}
+  .booking-scene{height:430px;border-radius:0 0 20px 20px}
+  .booking-scene-overlay{background:linear-gradient(90deg,rgba(247,242,234,.94) 0%,rgba(247,242,234,.82) 58%,rgba(247,242,234,.35) 100%)}
+  .booking-scene-copy{width:82%;padding:42px 32px}
+  .booking-headline{font-size:clamp(44px,10vw,62px)}
+  .booking-lead{font-size:14px;line-height:1.65}
+  .booking-trust-row{gap:15px 20px;margin-top:24px}
+  .booking-section-warm .booking-inner{margin-top:-34px}
+  .booking-section-warm .booking-card{padding:30px 24px 28px;border-radius:18px}
+  .booking-card-head{margin-bottom:26px}
+  .booking-card-signature{font-size:21px}
+  .booking-reassurance{grid-template-columns:1fr 1fr}
+  .booking-reassurance>div:nth-child(3){border-left:none;border-top:1px solid rgba(184,149,90,.22)}
+  .booking-reassurance>div:nth-child(4){border-top:1px solid rgba(184,149,90,.22)}
+}
+@media(max-width:560px){
+  .booking-scene{height:450px}
+  .booking-scene-photo{background-position:63% center;filter:saturate(.65) contrast(.88) brightness(1.07)}
+  .booking-scene-overlay{background:linear-gradient(90deg,rgba(247,242,234,.96) 0%,rgba(247,242,234,.9) 70%,rgba(247,242,234,.6) 100%)}
+  .booking-scene-copy{width:100%;padding:34px 22px 58px;justify-content:flex-start;padding-top:70px}
+  .booking-kicker{font-size:9px;letter-spacing:.28em}
+  .booking-headline{font-size:48px;line-height:.94}
+  .booking-lead{margin-top:19px;font-size:13px;max-width:92%}
+  .booking-trust-row{display:grid;grid-template-columns:1fr 1fr;gap:11px 18px}
+  .booking-trust-row span:last-child{grid-column:1/-1}
+  .booking-section-warm .booking-inner{margin-top:-28px}
+  .booking-section-warm .booking-card{padding:26px 16px 24px}
+  .booking-card-head{display:block}
+  .booking-card-signature{margin-top:14px;font-size:20px}
+  .booking-section-warm .form-grid{grid-template-columns:1fr;gap:18px}
+  .booking-section-warm .form-group.full,.booking-price-cell,.booking-section-warm .wednesday-warning{grid-column:span 1}
+  .booking-actions{grid-template-columns:1fr;gap:12px}
+  .booking-section-warm .form-submit{width:100%}
+  .booking-privacy{max-width:none;text-align:center}
+  .booking-reassurance{grid-template-columns:1fr}
+  .booking-reassurance>div{min-height:auto;padding:18px 20px}
+  .booking-reassurance>div+div,.booking-reassurance>div:nth-child(3),.booking-reassurance>div:nth-child(4){border-left:none;border-top:1px solid rgba(184,149,90,.22)}
+}
+
 </style>
 </head>
 <body>
@@ -1771,46 +1866,61 @@ body.tour-modal-lock{overflow:hidden}
   </div>
 </section>
 <!-- BOOKING -->
-<section id="reservar" class="booking-section">
-  <div class="booking-inner">
-    <div class="section-intro reveal">
-      <p class="section-label" data-i18n="booking.label">Proceso de Reserva</p>
-      <h2 class="section-title" style="color:var(--teal)"><span data-i18n="booking.title.prefix">Reserva tu</span> <em data-i18n="booking.em">experiencia</em></h2>
-      <p class="section-desc" data-i18n="booking.intro">Completa el formulario y nuestro equipo confirmará tu reserva en menos de 24 horas. El punto de salida depende de la experiencia y modalidad seleccionadas.</p>
+<section id="reservar" class="booking-section booking-section-warm">
+  <div class="booking-scene reveal">
+    <div class="hero-bg booking-scene-photo" aria-hidden="true"></div>
+    <div class="booking-scene-overlay" aria-hidden="true"></div>
+    <div class="booking-scene-copy">
+      <p class="booking-kicker" data-i18n="booking.kicker">EXPERIENCIAS EN BACALAR</p>
+      <h2 class="booking-headline">
+        <span data-i18n="booking.hero.prefix">Reserva una experiencia</span>
+        <em data-i18n="booking.hero.em">elegida para ti</em>
+      </h2>
+      <p class="booking-lead" data-i18n="booking.intro">Cuéntanos un poco sobre tu plan y nuestro equipo te ayudará a coordinar la mejor opción para tu estancia. Revisaremos disponibilidad, horario y punto de salida contigo personalmente.</p>
+      <div class="booking-trust-row" aria-label="Lagoona service qualities">
+        <span><b>01</b><i data-i18n="booking.trust1">Experiencias seleccionadas</i></span>
+        <span><b>02</b><i data-i18n="booking.trust2">Asistencia personal</i></span>
+        <span><b>03</b><i data-i18n="booking.trust3">Equipo local</i></span>
+      </div>
     </div>
+  </div>
+
+  <div class="booking-inner">
     <div class="booking-card reveal">
+      <div class="booking-card-head">
+        <div>
+          <p class="booking-card-kicker" data-i18n="booking.card.kicker">SOLICITUD DE RESERVA</p>
+          <p class="booking-card-caption" data-i18n="booking.card.caption">Sin pagos automáticos. Primero confirmamos contigo.</p>
+        </div>
+        <div class="booking-card-signature" aria-hidden="true">More than a stay</div>
+      </div>
+
       <div id="booking-form-wrap">
-        <div class="form-grid">
+        <div class="form-grid form-grid-warm">
           <div class="form-group">
-            <label class="form-label" for="f-nombre" data-i18n="form.nombre">Nombre completo</label>
-            <input class="form-input" type="text" id="f-nombre" placeholder="Tu nombre">
+            <label class="form-label" for="f-nombre" data-i18n="form.nombre">Tu nombre completo</label>
+            <input class="form-input" type="text" id="f-nombre" placeholder="Ej. Laura Méndez" data-i18n-placeholder="form.nombre_ph" autocomplete="name">
           </div>
           <div class="form-group">
             <label class="form-label" for="f-unidad" data-i18n="form.edificio">Edificio y departamento</label>
-            <input class="form-input" type="text" id="f-unidad" placeholder="Ej. Torre A · Depto 204">
+            <input class="form-input" type="text" id="f-unidad" placeholder="Ej. Balché 403" data-i18n-placeholder="form.edificio_ph" autocomplete="off">
           </div>
           <div class="form-group">
             <label class="form-label" for="f-whatsapp" data-i18n="form.wa">WhatsApp</label>
-            <input class="form-input" type="tel" id="f-whatsapp" placeholder="+52 000 000 0000">
+            <input class="form-input" type="tel" id="f-whatsapp" placeholder="+52 55 1234 5678" autocomplete="tel">
           </div>
           <div class="form-group">
             <label class="form-label" for="f-email" data-i18n="form.email">Correo electrónico</label>
-            <input class="form-input" type="email" id="f-email" placeholder="tu@correo.com">
+            <input class="form-input" type="email" id="f-email" placeholder="tu@correo.com" data-i18n-placeholder="form.email_ph" autocomplete="email">
           </div>
           <div class="form-group">
-            <label class="form-label" for="f-personas" data-i18n="form.personas">Número de personas</label>
-            <input class="form-input" type="number" id="f-personas" min="1" max="20" placeholder="¿Cuántos son?">
+            <label class="form-label" for="f-personas" data-i18n="form.personas">¿Cuántas personas participarán?</label>
+            <input class="form-input" type="number" id="f-personas" min="1" max="20" placeholder="Ej. 2 adultos, 1 menor" data-i18n-placeholder="form.personas_ph">
           </div>
           <div class="form-group">
-            <div class="booking-price-summary" id="booking-price-summary" aria-live="polite">
-              <small id="booking-price-label">Total estimado</small>
-              <strong id="booking-price-total">—</strong>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f-tour" data-i18n="form.tour">Tour de interés</label>
+            <label class="form-label" for="f-tour" data-i18n="form.tour">¿Qué experiencia te interesa?</label>
             <select class="form-select" id="f-tour">
-              <option value="" data-i18n="form.select_tour">Selecciona un tour</option>
+              <option value="" data-i18n="form.select_tour">Selecciona una experiencia</option>
               <option value="Tour Paddle — $550 compartido">Tour Paddle — $550 compartido</option>
               <option value="Tour Paddle — $3,000 privado">Tour Paddle — $3,000 privado</option>
               <option value="Tour Velero — $800 compartido">Tour Velero — $800 compartido</option>
@@ -1842,25 +1952,47 @@ body.tour-modal-lock{overflow:hidden}
           <div class="form-group">
             <label class="form-label" for="f-hora" data-i18n="form.time_label">Horario preferido</label>
             <select class="form-select" id="f-hora" disabled>
-              <option value="">— Selecciona primero un tour —</option>
+              <option value="">— Selecciona primero una experiencia —</option>
             </select>
           </div>
           <div class="wednesday-warning" id="wednesday-warning" role="status" aria-live="polite" data-i18n="form.wednesday_warning">
             Los miércoles la navegación está disponible en temporada alta, pero el horario está sujeto a confirmación. Puedes enviar tu solicitud normalmente.
           </div>
+          <div class="form-group booking-price-cell">
+            <div class="booking-price-summary" id="booking-price-summary" aria-live="polite">
+              <small id="booking-price-label">Total estimado</small>
+              <strong id="booking-price-total">—</strong>
+            </div>
+          </div>
           <div class="form-group full">
-            <label class="form-label" for="f-notas" data-i18n="form.notas">Comentarios o peticiones especiales</label>
-            <textarea class="form-textarea" id="f-notas" placeholder="Alergias, celebración especial, necesidades particulares..."></textarea>
+            <label class="form-label" for="f-notas" data-i18n="form.notas">¿Hay algo que debamos saber?</label>
+            <textarea class="form-textarea" id="f-notas" placeholder="Fecha flexible, celebración, alergias o alguna petición especial..." data-i18n-placeholder="form.notas_ph"></textarea>
           </div>
         </div>
-        <button class="form-submit" id="submit-btn" data-i18n="form.submit" onclick="submitForm()">Enviar solicitud de reserva</button>
-        <div class="form-or">o</div>
-        <a class="form-wa" href="https://wa.me/529842411410" target="_blank">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          <span data-i18n="form.whatsapp_btn">Contactar por WhatsApp</span>
+
+        <div class="booking-actions">
+          <button class="form-submit" id="submit-btn" data-i18n="form.submit" onclick="submitForm()">Enviar solicitud</button>
+          <p class="booking-privacy" data-i18n="form.privacy">Tus datos se usan únicamente para coordinar esta solicitud.</p>
+        </div>
+
+        <div class="booking-human-note">
+          <span class="booking-human-mark">L</span>
+          <p data-i18n="form.note">Una persona de nuestro equipo revisará tu solicitud y te escribirá para confirmar disponibilidad, horario y punto de salida.</p>
+        </div>
+
+        <div class="form-or" data-i18n="form.or">o, si lo prefieres</div>
+        <a class="form-wa" href="https://wa.me/529842411410" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span data-i18n="form.whatsapp_btn">Prefiero escribir por WhatsApp</span>
         </a>
-        <p class="form-note" style="margin-top:12px" data-i18n-html="form.note">Confirmación en menos de <strong>24 horas</strong> · Reembolso total con +24 hrs de anticipación</p>
       </div>
+    </div>
+
+    <div class="booking-reassurance reveal">
+      <div><span>24h</span><strong data-i18n="booking.reassure1.title">Respuesta personal</strong><p data-i18n="booking.reassure1.text">Normalmente confirmamos en menos de 24 horas.</p></div>
+      <div><span>→</span><strong data-i18n="booking.reassure2.title">Punto de salida</strong><p data-i18n="booking.reassure2.text">Te compartimos la ubicación exacta al confirmar.</p></div>
+      <div><span>?</span><strong data-i18n="booking.reassure3.title">¿Necesitas ayuda?</strong><p data-i18n="booking.reassure3.text">Te orientamos para elegir la experiencia que mejor se adapte a tu estancia.</p></div>
+      <div><span>AM</span><strong data-i18n="booking.reassure4.title">Atención local</strong><p data-i18n="booking.reassure4.text">Coordinamos con proveedores seleccionados en Bacalar.</p></div>
     </div>
   </div>
 </section>
@@ -2955,22 +3087,45 @@ const translations = {
     "moment.bar": "🍸 Bares & Noche",
     // BOOKING
     "booking.label": "Proceso de Reserva",
+    "booking.kicker": "EXPERIENCIAS EN BACALAR",
+    "booking.hero.prefix": "Reserva una experiencia",
+    "booking.hero.em": "elegida para ti",
+    "booking.trust1": "Experiencias seleccionadas",
+    "booking.trust2": "Asistencia personal",
+    "booking.trust3": "Equipo local",
+    "booking.card.kicker": "SOLICITUD DE RESERVA",
+    "booking.card.caption": "Sin pagos automáticos. Primero confirmamos contigo.",
+    "booking.reassure1.title": "Respuesta personal",
+    "booking.reassure1.text": "Normalmente confirmamos en menos de 24 horas.",
+    "booking.reassure2.title": "Punto de salida",
+    "booking.reassure2.text": "Te compartimos la ubicación exacta al confirmar.",
+    "booking.reassure3.title": "¿Necesitas ayuda?",
+    "booking.reassure3.text": "Te orientamos para elegir la experiencia que mejor se adapte a tu estancia.",
+    "booking.reassure4.title": "Atención local",
+    "booking.reassure4.text": "Coordinamos con proveedores seleccionados en Bacalar.",
     "booking.title": "Reserva tu experiencia",
-    "booking.title.prefix": "Reserva tu",
+    "booking.title.prefix": "Reserva una",
     "practical.label": "Información Práctica",
     "practical.title": "Antes de zarpar",
     // FORM
-    "form.nombre": "Nombre completo",
-    "form.edificio": "Edificio / Depto",
+    "form.nombre": "Tu nombre completo",
+    "form.edificio": "Edificio y departamento",
     "form.wa": "WhatsApp",
     "form.email": "Correo Electrónico",
-    "form.tour": "Tour seleccionado",
+    "form.tour": "¿Qué experiencia te interesa?",
     "form.mod": "Modalidad",
     "form.fecha": "Fecha preferida",
-    "form.personas": "Número de personas",
-    "form.notas": "Notas adicionales",
-    "form.note": "Confirmación en menos de <strong>24 horas</strong> · Reembolso total con +24 hrs de anticipación",
-    "form.submit": "Enviar solicitud de reserva",
+    "form.personas": "¿Cuántas personas participarán?",
+    "form.notas": "¿Hay algo que debamos saber?",
+    "form.nombre_ph": "Ej. Laura Méndez",
+    "form.edificio_ph": "Ej. Balché 403",
+    "form.email_ph": "tu@correo.com",
+    "form.personas_ph": "Ej. 2 adultos, 1 menor",
+    "form.notas_ph": "Fecha flexible, celebración, alergias o alguna petición especial...",
+    "form.privacy": "Tus datos se usan únicamente para coordinar esta solicitud.",
+    "form.or": "o, si lo prefieres",
+    "form.note": "Una persona de nuestro equipo revisará tu solicitud y te escribirá para confirmar disponibilidad, horario y punto de salida.",
+    "form.submit": "Enviar solicitud",
     "badge.private": "Tour Privado",
         "badge1": "Kayak · SUP · 3 hrs",
     "badge2": "Velero · 3 hrs",
@@ -3050,8 +3205,8 @@ const translations = {
     "stop4.desc": "Baño & snorkel",
     "stop5.name": "Canal de los Piratas",
     "stop5.desc": "Historia maya",
-    "booking.intro": "Completa el formulario y nuestro equipo confirmará tu reserva en menos de 24 horas. El punto de salida depende de la experiencia y modalidad seleccionadas.",
-    "form.select_tour": "Selecciona un tour",
+    "booking.intro": "Cuéntanos un poco sobre tu plan y nuestro equipo te ayudará a coordinar la mejor opción para tu estancia. Revisaremos disponibilidad, horario y punto de salida contigo personalmente.",
+    "form.select_tour": "Selecciona una experiencia",
     "form.mod_placeholder": "Compartido o Privado",
     "form.mod_shared": "Compartido (me uno a grupo)",
     "form.mod_private": "Privado (solo mi grupo)",
@@ -3059,7 +3214,7 @@ const translations = {
     "form.time_label": "Horario preferido",
     "form.time_placeholder": "Seleccionar horario",
     "form.wednesday_warning": "Los miércoles la navegación está disponible en temporada alta, pero el horario está sujeto a confirmación. Puedes enviar tu solicitud normalmente.",
-    "form.whatsapp_btn": "Contactar por WhatsApp",
+    "form.whatsapp_btn": "Prefiero escribir por WhatsApp",
     "form.success_title": "¡Solicitud enviada!",
     "form.success_msg": "Nuestro equipo se pondrá en contacto contigo en menos de 24 horas para confirmar los detalles de tu reserva.",
     "form.wa_btn": "Escribir al WhatsApp",
@@ -3128,7 +3283,7 @@ const translations = {
     "tours.em": "aventura",
     "recorrido.em": "recorrido",
     "recorrido.title.prefix": "El",
-    "booking.em": "experiencia",
+    "booking.em": "experiencia elegida para ti",
     "practical.em": "zarpar",
     "practical.title.prefix": "Antes de",
     "kayak.em": "a tu ritmo",
@@ -3344,21 +3499,44 @@ const translations = {
     "moment.bar": "🍸 Bars & Nightlife",
     // BOOKING
     "booking.label": "Booking Process",
+    "booking.kicker": "EXPERIENCES IN BACALAR",
+    "booking.hero.prefix": "Reserve a curated",
+    "booking.hero.em": "experience",
+    "booking.trust1": "Handpicked experiences",
+    "booking.trust2": "Personal assistance",
+    "booking.trust3": "Local team",
+    "booking.card.kicker": "BOOKING REQUEST",
+    "booking.card.caption": "No automatic payment. We confirm everything with you first.",
+    "booking.reassure1.title": "Personal response",
+    "booking.reassure1.text": "We normally confirm within 24 hours.",
+    "booking.reassure2.title": "Departure point",
+    "booking.reassure2.text": "We share the exact location once confirmed.",
+    "booking.reassure3.title": "Need help?",
+    "booking.reassure3.text": "We help you choose the experience that best fits your stay.",
+    "booking.reassure4.title": "Local care",
+    "booking.reassure4.text": "We coordinate with selected local providers in Bacalar.",
     "booking.title": "Book your experience",
-    "booking.title.prefix": "Book your",
+    "booking.title.prefix": "Reserve a curated",
     "practical.label": "Practical Info",
     "practical.title": "Before setting sail",
     // FORM
-    "form.nombre": "Full name",
-    "form.edificio": "Building and unit",
+    "form.nombre": "Your full name",
+    "form.edificio": "Building & unit number",
     "form.wa": "WhatsApp",
     "form.email": "Email address",
-    "form.tour": "Selected tour",
+    "form.tour": "Which experience are you interested in?",
     "form.mod": "Modality",
     "form.fecha": "Preferred date",
-    "form.personas": "Number of guests",
-    "form.notas": "Additional notes",
-    "form.submit": "Send booking request",
+    "form.personas": "How many guests will join?",
+    "form.notas": "Is there anything we should know?",
+    "form.nombre_ph": "e.g. Laura Méndez",
+    "form.edificio_ph": "e.g. Balché 403",
+    "form.email_ph": "you@email.com",
+    "form.personas_ph": "e.g. 2 adults, 1 child",
+    "form.notas_ph": "Flexible date, celebration, allergies or any special request...",
+    "form.privacy": "Your information is used only to coordinate this request.",
+    "form.or": "or, if you prefer",
+    "form.submit": "Send request",
     "badge.private": "Private Tour",
         "badge1": "Kayak · SUP · 3 hrs",
     "badge2": "Sailboat · 3 hrs",
@@ -3438,17 +3616,17 @@ const translations = {
     "stop4.desc": "Swim & snorkel",
     "stop5.name": "Pirates' Canal",
     "stop5.desc": "Mayan history",
-    "booking.intro": "Fill out the form and our team will confirm your booking within 24 hours. The departure point depends on the selected experience and option.",
-    "form.select_tour": "Select a tour",
+    "booking.intro": "Share a few details and our team will help you coordinate the best option for your stay. We’ll confirm availability, timing and departure details with you personally.",
+    "form.select_tour": "Select an experience",
     "form.mod_placeholder": "Shared or Private",
     "form.mod_shared": "Shared (join a group)",
     "form.mod_private": "Private (my group only)",
     "form.notes_placeholder": "Comments or special requests",
-    "form.note": "Confirmation within <strong>24 hours</strong> · Full refund with +24 hrs notice",
+    "form.note": "A member of our team will review your request and message you to confirm availability, timing and departure point.",
     "form.time_label": "Preferred time",
     "form.time_placeholder": "Select a time",
     "form.wednesday_warning": "Wednesday navigation is available during high season, but the selected time is subject to confirmation. You may submit your request normally.",
-    "form.whatsapp_btn": "Contact via WhatsApp",
+    "form.whatsapp_btn": "I prefer WhatsApp",
     "form.success_title": "Request sent!",
     "form.success_msg": "Our team will contact you within 24 hours to confirm your booking details.",
     "form.wa_btn": "Message on WhatsApp",
@@ -3694,6 +3872,12 @@ function applyLang(lang) {
       el.innerHTML = t[key];
     }
   });
+  // Placeholders bilingües
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key] !== undefined) el.setAttribute('placeholder', t[key]);
+  });
+
  // Elementos con HTML interno (data-i18n-html)
   document.querySelectorAll('[data-i18n-html]').forEach(el => {
     const key = el.getAttribute('data-i18n-html');
