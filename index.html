@@ -1743,7 +1743,7 @@ body.tour-modal-lock{overflow:hidden}
       <div class="rental-intro">
         <p class="section-label" data-i18n="kayak.label">Exploración Libre</p>
         <h2 class="section-title">Kayak<br><em data-i18n="kayak.em">a tu ritmo</em></h2>
-        <p class="section-copy" data-i18n="kayak.desc">Kayaks inflables individuales y dobles para recorrer la laguna a tu ritmo. Ligeros, fáciles de transportar y disponibles durante todo el día.</p>
+        <p class="section-copy" data-i18n="kayak.desc">Kayaks inflables individuales y dobles para recorrer la laguna a tu ritmo. Se entregan directamente en tu departamento para disfrutarlos durante todo el día.</p>
       </div>
 
       <img class="kayak-photo" src="Img/kayak-bacalar.jpg" alt="Renta de kayaks inflables individuales y dobles" loading="lazy">
@@ -1838,7 +1838,7 @@ body.tour-modal-lock{overflow:hidden}
       <div class="rental-intro">
         <p class="section-label" data-i18n="paddleboard.label">Exploración sobre el agua</p>
         <h2 class="section-title"><span data-i18n="paddleboard.title">Renta de</span><br><em data-i18n="paddleboard.em">Paddleboards</em></h2>
-        <p class="section-copy" data-i18n="paddleboard.desc">Tablas inflables para explorar la laguna a tu ritmo. Cada tabla se entrega con bomba manual para transportarla y prepararla fácilmente donde prefieras.</p>
+        <p class="section-copy" data-i18n="paddleboard.desc">Tablas inflables para explorar la laguna a tu ritmo. Se entregan directamente en tu departamento con bomba manual, remo, quilla y correa.</p>
       </div>
 
       <img class="paddleboard-photo" src="Img/tourpaddle.png" alt="Renta de paddleboards inflables" loading="lazy">
@@ -3060,7 +3060,7 @@ const translations = {
     "paddleboard.label": "Exploración sobre el agua",
     "paddleboard.title": "Renta de",
     "paddleboard.em": "Paddleboards",
-    "paddleboard.desc": "Tablas inflables para explorar la laguna a tu ritmo. Cada tabla se entrega con bomba manual para transportarla y prepararla fácilmente donde prefieras.",
+    "paddleboard.desc": "Tablas inflables para explorar la laguna a tu ritmo. Se entregan directamente en tu departamento con bomba manual, remo, quilla y correa.",
     "paddleboard.type": "Tabla inflable + bomba",
     "paddleboard.sub": "Día completo · MXN",
     "paddleboard.includes.label": "La renta incluye",
@@ -3278,7 +3278,7 @@ const translations = {
     "footer.sub": "Curated Vacation Homes · Aldea Mayab",
     "footer.location": "Bacalar, Quintana Roo, México",
     "footer.copy": "© Lagoona Curated Vacation Homes · Todos los derechos reservados",
-    "kayak.desc": "Kayaks inflables individuales y dobles para recorrer la laguna a tu ritmo. Ligeros, fáciles de transportar y disponibles durante todo el día.",
+    "kayak.desc": "Kayaks inflables individuales y dobles para recorrer la laguna a tu ritmo. Se entregan directamente en tu departamento para disfrutarlos durante todo el día.",
     "kayak.reserve": "Reservar →",
     "tours.em": "aventura",
     "recorrido.em": "recorrido",
@@ -3472,7 +3472,7 @@ const translations = {
     "paddleboard.label": "Explore on the water",
     "paddleboard.title": "Inflatable",
     "paddleboard.em": "Paddleboard Rental",
-    "paddleboard.desc": "Inflatable boards to explore the lagoon at your own pace. Each board includes a manual pump for easy transport and setup wherever you prefer.",
+    "paddleboard.desc": "Inflatable boards for exploring the lagoon at your own pace. They are delivered directly to your apartment with a manual pump, paddle, fin and leash.",
     "paddleboard.type": "Inflatable board + pump",
     "paddleboard.sub": "Full day · MXN",
     "paddleboard.includes.label": "Rental includes",
@@ -3691,7 +3691,7 @@ const translations = {
     "footer.sub": "Curated Vacation Homes · Aldea Mayab",
     "footer.location": "Bacalar, Quintana Roo, Mexico",
     "footer.copy": "© Lagoona Curated Vacation Homes · All rights reserved",
-    "kayak.desc": "Single and double inflatable kayaks to explore the lagoon at your own pace. Lightweight, easy to transport and available for the full day.",
+    "kayak.desc": "Single and double inflatable kayaks for exploring the lagoon at your own pace. They are delivered directly to your apartment for you to enjoy throughout the day.",
     "kayak.reserve": "Book now →",
     "tours.em": "adventure",
     "recorrido.em": "route",
@@ -3895,6 +3895,11 @@ function applyLang(lang) {
 }
 function toggleLang() {
   applyLang(currentLang === 'es' ? 'en' : 'es');
+
+  const selectorTour = document.getElementById('f-tour');
+  if (selectorTour) {
+    selectorTour.dispatchEvent(new Event('change', { bubbles: true }));
+  }
 }
 </script> 
 <script>
@@ -3912,17 +3917,21 @@ const horariosMap = {
   "Tour Catamarán Premium — $15,000 privado":  ["10:00 AM", "3:00 PM"],
   "Laguna Grill — $6,000 privado":             ["10:00 AM", "3:00 PM"],
   "Tour Velero Vip — $6,000 privado":          ["10:00 AM", "3:00 PM"],
-  "Kayak individual inflable — $500 / día":    ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM"],
-  "Kayak doble inflable — $600 / día":         ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM"],
-  "Paddleboard inflable — $500 / día":         ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM"],
+ "Kayak individual inflable — $500 / día": ["Solicitar entrega"],
+"Kayak doble inflable — $600 / día":      ["Solicitar entrega"],
+"Paddleboard inflable — $500 / día":      ["Solicitar entrega"],
   "Jet Ski (30 min) — $1,500 (1 pax)":         ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"],
   "Jet Ski (30 min) — $1,600 (2 pax)":         ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"],
   "Jet Ski (1 hora) — $2,300 (1 pax)":         ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"],
   "Jet Ski (1 hora) — $2,500 (2 pax)":         ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"],
   "Tour a Los Rápidos — $1,200 colectivo":     ["12:00 PM"],
-  "Tour a Los Rápidos — $8,500 privado":       ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"]
+  "Tour a Los Rápidos — $8,500 privado":       ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM"]
 };
-
+const productosConEntrega = new Set([
+  "Kayak individual inflable — $500 / día",
+  "Kayak doble inflable — $600 / día",
+  "Paddleboard inflable — $500 / día"
+]);
 /*
  * Tours de navegación cuya disponibilidad debe confirmarse los miércoles.
  * En temporada alta pueden reservarse todos los días.
@@ -3982,23 +3991,50 @@ function tourRequiereConfirmacionMiercoles(tour) {
     const tour = elTour.value;
     const fecha = elFecha.value;
     const horarios = horariosMap[tour] || [];
+    const esEntrega = productosConEntrega.has(tour);
+    const etiquetaHora = document.querySelector('label[for="f-hora"]');
 
     elHora.innerHTML = "";
 
     const requiereConfirmacion =
       fecha && esMiercoles(fecha) && tourRequiereConfirmacionMiercoles(tour);
-    elAvisoMiercoles.classList.toggle("active", Boolean(requiereConfirmacion));
+
+    elAvisoMiercoles.classList.toggle(
+      "active",
+      Boolean(requiereConfirmacion)
+    );
+
+    if (etiquetaHora) {
+      etiquetaHora.textContent = esEntrega
+        ? (currentLang === "en" ? "Delivery request" : "Solicitud de entrega")
+        : (currentLang === "en" ? "Preferred time" : "Horario preferido");
+    }
 
     if (!tour || horarios.length === 0) {
-      elHora.innerHTML =
-        '<option value="">— Selecciona primero un tour —</option>';
+      elHora.innerHTML = currentLang === "en"
+        ? '<option value="">— Select an experience first —</option>'
+        : '<option value="">— Selecciona primero una experiencia —</option>';
       elHora.disabled = true;
+      return;
+    }
+
+    if (esEntrega) {
+      const opcionEntrega = document.createElement("option");
+      opcionEntrega.value = "Solicitar entrega";
+      opcionEntrega.textContent = currentLang === "en"
+        ? "Request delivery to the apartment"
+        : "Solicitar entrega en el departamento";
+      opcionEntrega.selected = true;
+      elHora.appendChild(opcionEntrega);
+      elHora.disabled = false;
       return;
     }
 
     const placeholder = document.createElement("option");
     placeholder.value = "";
-    placeholder.textContent = "Seleccionar horario";
+    placeholder.textContent = currentLang === "en"
+      ? "Select a time"
+      : "Seleccionar horario";
     elHora.appendChild(placeholder);
 
     horarios.forEach(horario => {
@@ -4076,11 +4112,27 @@ const TOUR_MODAL_ROUTES = {
     noteEn:"The itinerary may include two additional exclusive areas. The order is subject to operations and lagoon conditions."
   },
   "rapidos": {
-    es:["Canal de los Piratas","Isla de los Pájaros","Cenote Negro","Cenote Esmeralda","Cenote Cocalitos","Hotel Abandonado","Los Rápidos"],
-    en:["Pirates Canal","Bird Island","Black Cenote","Emerald Cenote","Cocalitos Cenote","Abandoned Hotel","Los Rápidos"],
-    noteEs:"Colectivo: salida desde Marina Papitos. Privado: pick up exclusivo en el muelle de Aldea Mayab. El orden puede cambiar por operación y clima.",
-    noteEn:"Shared: departure from Marina Papitos. Private: exclusive pickup at the Aldea Mayab pier. The order may change due to operations and weather."
-  }
+  es: [
+    "Canal de los Piratas",
+    "Isla de los Pájaros",
+    "Cenote Negro",
+    "Cenote Esmeralda",
+    "Cenote Cocalitos",
+    "Hotel Abandonado",
+    "Los Rápidos"
+  ],
+  en: [
+    "Pirates Canal",
+    "Bird Island",
+    "Black Cenote",
+    "Emerald Cenote",
+    "Cocalitos Cenote",
+    "Abandoned Hotel",
+    "Los Rápidos"
+  ],
+  noteEs: "Colectivo: salida desde Marina Papitos. Privado: pick up exclusivo en el muelle de Aldea Mayab. Por tratarse de un recorrido de 5 horas, las salidas privadas están disponibles únicamente de 9:00 AM a 12:00 PM para regresar antes de las 6:00 PM, de acuerdo con las condiciones de navegabilidad.",
+  noteEn: "Shared: departure from Marina Papitos. Private: exclusive pickup at the Aldea Mayab pier. As this is a 5-hour tour, private departures are available only from 9:00 AM to 12:00 PM to ensure guests return before 6:00 PM, in accordance with navigation conditions."
+}
 };
 
 let tourModalChoice = "";
@@ -4164,7 +4216,22 @@ function openTourModal(card,key){
   document.getElementById("tour-modal-kicker").textContent = kicker ? kicker.textContent.trim() : "";
   document.getElementById("tour-modal-description").textContent = description ? description.textContent.trim() : "";
   document.getElementById("tour-modal-hours-label").textContent = tourModalText("Horarios","Schedule");
-  document.getElementById("tour-modal-hours").textContent = times.length ? times.join(" · ") : tourModalText("Sujeto a disponibilidad","Subject to availability");
+  const textoHorarios =
+  key === "rapidos"
+    ? tourModalText(
+        "Colectivo: 12:00 PM · Privado: 9:00 AM, 10:00 AM, 11:00 AM y 12:00 PM",
+        "Shared: 12:00 PM · Private: 9:00 AM, 10:00 AM, 11:00 AM and 12:00 PM"
+      )
+    : (
+        times.length
+          ? times.join(" · ")
+          : tourModalText(
+              "Sujeto a disponibilidad",
+              "Subject to availability"
+            )
+      );
+
+document.getElementById("tour-modal-hours").textContent = textoHorarios;
   document.getElementById("tour-modal-departure-label").textContent = tourModalText("Punto de salida","Departure point");
   document.getElementById("tour-modal-departure").textContent = pickup ? pickup.textContent.trim() : tourModalText("Por confirmar con recepción","To be confirmed with reception");
   document.getElementById("tour-modal-route-title").textContent = tourModalText("Lugares que visitarás","Places you will visit");
