@@ -1012,6 +1012,63 @@ body.tour-modal-lock{overflow:hidden}
 .lagoona-whatsapp-result p {margin:0 0 12px;}
 .lagoona-whatsapp-result a {display:inline-block;background:#1a4a4a;color:#fff!important;padding:9px 17px;border-radius:22px;text-decoration:none;font-weight:400;}
 .lagoona-whatsapp-result a:hover {background:#2d6b6b;}
+
+/* LAGOONA · Formulario de reservas v1.3 — layout editorial */
+.booking-section-warm .lagoona-form-sections{display:flex;flex-direction:column;gap:0}
+.booking-section-warm .lagoona-form-section{padding:22px 0 27px;border-bottom:1px solid rgba(184,149,90,.2)}
+.booking-section-warm .lagoona-form-section:first-child{padding-top:0}
+.booking-section-warm .lagoona-form-section:last-of-type{border-bottom:0}
+.booking-section-warm .lagoona-section-heading{display:flex;align-items:flex-start;gap:15px;margin-bottom:20px}
+.booking-section-warm .lagoona-step{font-family:'Cormorant Garamond',serif;display:inline-flex;align-items:center;justify-content:center;flex:none;width:38px;height:38px;border:1px solid #d9c5a7;border-radius:50%;color:#9d7b4a;font-size:20px}
+.booking-section-warm .lagoona-section-heading h3{font-family:'Cormorant Garamond',serif;font-size:25px;line-height:1.15;font-weight:400;letter-spacing:-.01em;color:#244d4b}
+.booking-section-warm .lagoona-section-heading p{font-size:12px;line-height:1.6;color:#86796d;margin-top:5px}
+.booking-section-warm .lagoona-fields{display:grid;gap:19px 26px}
+.booking-section-warm .lagoona-fields.two-col{grid-template-columns:repeat(2,minmax(0,1fr))}
+.booking-section-warm .lagoona-fields.three-col{grid-template-columns:repeat(3,minmax(0,1fr))}
+.booking-section-warm .lagoona-fields .full{grid-column:1/-1}
+.booking-section-warm .lagoona-fields .form-group{min-width:0}
+.booking-section-warm .lagoona-fields .form-input,.booking-section-warm .lagoona-fields .form-select{min-height:52px;width:100%}
+.booking-section-warm .lagoona-fields .form-select:disabled{opacity:.62;cursor:not-allowed}
+.booking-section-warm .lagoona-location-hint{font-size:11px;line-height:1.55;color:#8a806f;margin-top:12px}
+.booking-section-warm .lagoona-party-footer{display:flex;align-items:center;gap:24px;justify-content:space-between;margin-top:15px}
+.booking-section-warm .lagoona-party-total{display:flex;align-items:center;gap:12px;color:#3e605d;font-size:12px}
+.booking-section-warm .lagoona-party-total strong{font:500 25px/1 'Cormorant Garamond',serif;color:#b08a54}
+.booking-section-warm .lagoona-party-footer p{font-size:11px;line-height:1.5;color:#8b8073;max-width:400px}
+.booking-section-warm .lagoona-child-ages{margin-top:16px}
+.booking-section-warm .lagoona-child-ages[hidden]{display:none}
+.booking-section-warm .lagoona-price-disclaimer{font-size:11px;color:#8a7e70;line-height:1.6;margin-top:9px}
+.booking-section-warm .lagoona-request-summary{display:flex;align-items:center;justify-content:space-between;gap:25px;margin:10px 0 26px;padding:20px 24px;background:linear-gradient(135deg,#eef3ee,#f8f5ee);border:1px solid #dfe6da;border-radius:12px}
+.booking-section-warm .lagoona-summary-kicker{font-size:9px;letter-spacing:.2em;color:#967647;margin-bottom:9px}
+.booking-section-warm .lagoona-summary-experience{display:block;font:400 23px/1.18 'Cormorant Garamond',serif;color:#234c4b}
+.booking-section-warm .lagoona-summary-details{display:flex;flex-direction:column;gap:6px;min-width:150px;text-align:right;font-size:12px;color:#5a665f}
+.booking-section-warm .booking-actions{border-top:1px solid rgba(184,149,90,.18);padding-top:24px}
+@media(max-width:670px){
+ .booking-section-warm .lagoona-fields.two-col{grid-template-columns:1fr}
+ .booking-section-warm .lagoona-fields.three-col{gap:9px}
+ .booking-section-warm .lagoona-fields.three-col .form-label{font-size:14px}
+ .booking-section-warm .lagoona-section-heading h3{font-size:23px}
+ .booking-section-warm .lagoona-party-footer{align-items:flex-start;flex-direction:column;gap:8px}
+ .booking-section-warm .lagoona-request-summary{align-items:flex-start;flex-direction:column;gap:15px;padding:20px 18px}
+ .booking-section-warm .lagoona-summary-details{text-align:left;min-width:0;gap:5px}
+}
+
+/* v1.3 · Ajustes de jerarquía y separación en portada de reserva */
+@media(min-width:821px){
+ .booking-section-warm .booking-inner{margin-top:-18px}
+ .booking-scene-copy{width:min(690px,72%)}
+ .booking-scene{height:485px}
+ .booking-trust-row{padding-top:14px;border-top:1px solid rgba(169,124,66,.24);margin-top:23px}
+}
+@media(min-width:561px) and (max-width:820px){
+ .booking-section-warm .booking-inner{margin-top:-10px}
+ .booking-trust-row{padding-top:12px;border-top:1px solid rgba(169,124,66,.24)}
+}
+@media(max-width:560px){
+ .booking-scene{height:auto;min-height:405px}
+ .booking-scene-copy{min-height:405px;height:auto;padding:52px 22px 54px}
+ .booking-trust-row{margin-top:22px;padding-top:12px;border-top:1px solid rgba(169,124,66,.2)}
+ .booking-section-warm .booking-inner{margin-top:12px}
+}
 </style>
 </head>
 <body>
@@ -1903,26 +1960,38 @@ body.tour-modal-lock{overflow:hidden}
       </div>
 
       <div id="booking-form-wrap">
-        <div class="form-grid form-grid-warm">
-          <div class="form-group">
-            <label class="form-label" for="f-nombre" data-i18n="form.nombre">Tu nombre completo</label>
-            <input class="form-input" type="text" id="f-nombre" placeholder="Ej. Laura Méndez" data-i18n-placeholder="form.nombre_ph" autocomplete="name">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f-unidad" data-i18n="form.edificio">Edificio y departamento</label>
-            <input class="form-input" type="text" id="f-unidad" placeholder="Ej. Balché 403" data-i18n-placeholder="form.edificio_ph" autocomplete="off">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f-whatsapp" data-i18n="form.wa">WhatsApp</label>
-            <input class="form-input" type="tel" id="f-whatsapp" placeholder="+52 55 1234 5678" autocomplete="tel">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f-personas" data-i18n="form.personas">¿Cuántas personas participarán?</label>
-            <input class="form-input" type="number" id="f-personas" min="1" max="20" placeholder="Ej. 2 adultos, 1 menor" data-i18n-placeholder="form.personas_ph">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f-tour" data-i18n="form.tour">¿Qué experiencia te interesa?</label>
-            <select class="form-select" id="f-tour">
+        <div class="lagoona-form-sections">
+          <section class="lagoona-form-section" aria-labelledby="lf-contact-title">
+            <div class="lagoona-section-heading"><span class="lagoona-step">01</span><div><h3 id="lf-contact-title" data-i18n="form.section.contact">Tus datos</h3><p data-i18n="form.section.contact_desc">Para comunicarnos contigo y confirmar la experiencia.</p></div></div>
+            <div class="lagoona-fields two-col">
+              <div class="form-group"><label class="form-label" for="f-nombre" data-i18n="form.nombre">Nombre completo</label><input class="form-input" type="text" id="f-nombre" placeholder="Ej. Laura Méndez" data-i18n-placeholder="form.nombre_ph" autocomplete="name" maxlength="100"></div>
+              <div class="form-group"><label class="form-label" for="f-whatsapp" data-i18n="form.wa">WhatsApp con código de país</label><input class="form-input" type="tel" id="f-whatsapp" placeholder="+52 55 1234 5678" autocomplete="tel" inputmode="tel" maxlength="25"></div>
+            </div>
+          </section>
+          <section class="lagoona-form-section" aria-labelledby="lf-location-title">
+            <div class="lagoona-section-heading"><span class="lagoona-step">02</span><div><h3 id="lf-location-title" data-i18n="form.section.location">¿Dónde te hospedas?</h3><p data-i18n="form.section.location_desc">Elige tu torre y después el número que aparece en tu departamento.</p></div></div>
+            <div class="lagoona-fields two-col">
+              <div class="form-group"><label class="form-label" for="f-torre" data-i18n="form.torre">Torre / Building</label>
+                <select class="form-select" id="f-torre"><option value="" data-i18n="form.select_tower">Seleccionar torre</option><option value="Chaká">Chaká · Torre 1</option><option value="Chechén">Chechén · Torre 2</option><option value="Yaxché">Yaxché · Torre 3</option><option value="Balché">Balché · Torre 4</option><option value="Otra ubicación" data-i18n="form.other_stay">No me hospedo en Aldea Mayab</option></select>
+              </div>
+              <div class="form-group"><label class="form-label" for="f-departamento" data-i18n="form.depto">Departamento / Unit</label><select class="form-select" id="f-departamento" disabled><option value="" data-i18n="form.select_tower_first">Primero selecciona tu torre</option></select></div>
+            </div>
+            <div class="lagoona-location-hint" id="lagoona-location-hint" data-i18n="form.location_hint">Ejemplo: Balché 501. Lo enviaremos en un solo renglón.</div>
+          </section>
+          <section class="lagoona-form-section" aria-labelledby="lf-guests-title">
+            <div class="lagoona-section-heading"><span class="lagoona-step">03</span><div><h3 id="lf-guests-title" data-i18n="form.section.guests">¿Quiénes participarán?</h3><p data-i18n="form.section.guests_desc">Incluye a todos los participantes para poder comprobar cupo y equipo.</p></div></div>
+            <div class="lagoona-fields three-col">
+              <div class="form-group"><label class="form-label" for="f-adultos" data-i18n="form.adults">Adultos</label><input class="form-input lagoona-count" type="number" id="f-adultos" min="1" max="20" step="1" value="2" inputmode="numeric"></div>
+              <div class="form-group"><label class="form-label" for="f-ninos" data-i18n="form.children">Niños</label><input class="form-input lagoona-count" type="number" id="f-ninos" min="0" max="20" step="1" value="0" inputmode="numeric"></div>
+              <div class="form-group"><label class="form-label" for="f-bebes" data-i18n="form.infants">Bebés</label><input class="form-input lagoona-count" type="number" id="f-bebes" min="0" max="20" step="1" value="0" inputmode="numeric"></div>
+            </div>
+            <div class="lagoona-party-footer"><div class="lagoona-party-total"><span data-i18n="form.total_guests">Total de participantes</span><strong id="lagoona-party-count">2</strong></div><p data-i18n="form.minors_note">Con menores, el equipo confirmará tarifas y condiciones de seguridad.</p></div>
+            <div class="form-group lagoona-child-ages" id="lagoona-child-ages" hidden><label class="form-label" for="f-edades" data-i18n="form.child_ages">Edades de los menores (opcional)</label><input class="form-input" id="f-edades" type="text" maxlength="90" placeholder="Ej. 4 y 9 años; bebé de 8 meses" data-i18n-placeholder="form.child_ages_ph"></div>
+          </section>
+          <section class="lagoona-form-section" aria-labelledby="lf-experience-title">
+            <div class="lagoona-section-heading"><span class="lagoona-step">04</span><div><h3 id="lf-experience-title" data-i18n="form.section.experience">Tu experiencia</h3><p data-i18n="form.section.experience_desc">Indica la fecha y el horario que prefieres; verificaremos disponibilidad.</p></div></div>
+            <div class="lagoona-fields two-col">
+              <div class="form-group full"><label class="form-label" for="f-tour" data-i18n="form.tour">¿Qué experiencia te interesa?</label><select class="form-select" id="f-tour">
               <option value="" data-i18n="form.select_tour">Selecciona una experiencia</option>
               <option value="Tour Paddle — $550 compartido">Tour Paddle — $550 compartido</option>
               <option value="Tour Paddle — $3,000 privado">Tour Paddle — $3,000 privado</option>
@@ -1946,33 +2015,20 @@ body.tour-modal-lock{overflow:hidden}
               <option value="Jet Ski (1 hora) — $2,500 (2 pax)">Jet Ski (1 hora) — $2,500 (2 pax)</option>
               <option value="Tour a Los Rápidos — $1,200 colectivo">Tour a Los Rápidos — $1,200 colectivo</option>
               <option value="Tour a Los Rápidos — $8,500 privado">Tour a Los Rápidos — $8,500 privado</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f-fecha" data-i18n="form.fecha">Fecha preferida</label>
-            <input class="form-input" type="date" id="f-fecha">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f-hora" data-i18n="form.time_label">Horario preferido</label>
-            <select class="form-select" id="f-hora" disabled>
+            </select></div>
+              <div class="form-group"><label class="form-label" for="f-fecha" data-i18n="form.fecha">Fecha preferida</label><input class="form-input" type="date" id="f-fecha"></div>
+              <div class="form-group"><label class="form-label" for="f-hora" data-i18n="form.time_label">Horario preferido</label><select class="form-select" id="f-hora" disabled>
               <option value="">— Selecciona primero una experiencia —</option>
-            </select>
-          </div>
-          <div class="wednesday-warning" id="wednesday-warning" role="status" aria-live="polite" data-i18n="form.wednesday_warning">
+            </select></div>
+              <div class="wednesday-warning" id="wednesday-warning" role="status" aria-live="polite" data-i18n="form.wednesday_warning">
             Los miércoles la navegación está disponible en temporada alta, pero el horario está sujeto a confirmación. Puedes enviar tu solicitud normalmente.
           </div>
-          <div class="form-group booking-price-cell">
-            <div class="booking-price-summary" id="booking-price-summary" aria-live="polite">
-              <small id="booking-price-label">Total estimado</small>
-              <strong id="booking-price-total">—</strong>
+              <div class="form-group full"><div class="booking-price-summary" id="booking-price-summary" aria-live="polite"><small id="booking-price-label">Total estimado</small><strong id="booking-price-total">—</strong></div><p class="lagoona-price-disclaimer" data-i18n="form.price_caveat">Tarifa estimada para el grupo. Si viajan menores, confirmaremos el precio final antes de reservar.</p></div>
+              <div class="form-group full"><label class="form-label" for="f-notas" data-i18n="form.notas">¿Hay algo que debamos saber?</label><textarea class="form-textarea" id="f-notas" placeholder="Fecha flexible, celebración, alergias o alguna petición especial..." data-i18n-placeholder="form.notas_ph"></textarea></div>
             </div>
-          </div>
-          <div class="form-group full">
-            <label class="form-label" for="f-notas" data-i18n="form.notas">¿Hay algo que debamos saber?</label>
-            <textarea class="form-textarea" id="f-notas" placeholder="Fecha flexible, celebración, alergias o alguna petición especial..." data-i18n-placeholder="form.notas_ph"></textarea>
-          </div>
+          </section>
+          <div class="lagoona-request-summary" aria-live="polite"><div><p class="lagoona-summary-kicker" data-i18n="form.summary_label">RESUMEN DE TU SOLICITUD</p><strong id="lagoona-summary-experience" class="lagoona-summary-experience">Selecciona una experiencia</strong></div><div class="lagoona-summary-details"><span id="lagoona-summary-date">—</span><span id="lagoona-summary-group">2 participantes</span><span id="lagoona-summary-unit">Selecciona tu torre</span></div></div>
         </div>
-
         <div class="booking-actions">
           <button class="form-submit" id="submit-btn" data-i18n="form.submit" onclick="submitForm()">Continuar por WhatsApp</button>
           <p class="booking-privacy" data-i18n="form.privacy">Al continuar abriremos WhatsApp con los datos de tu solicitud. Deberás pulsar Enviar para contactar a Lagoona.</p>
@@ -2138,43 +2194,51 @@ function registrarReservaPublica(datos) {
 
 // Número confirmado por Lagoona. WhatsApp requiere que el cliente presione Enviar.
 const LAGOONA_WHATSAPP_DESTINO = "529842411410";
+function lagoonaFormatShortDate(dateString, english) {
+  const parts = String(dateString || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!parts) return dateString || "";
+  const esMonths = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+  const enMonths = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const month = Number(parts[2]) - 1;
+  return parts[3] + "/" + (english ? enMonths[month] : esMonths[month]) + "/" + parts[1].slice(-2);
+}
 function crearTextoSolicitudWhatsApp(datos, numeroReserva) {
   const ingles = typeof currentLang !== "undefined" && currentLang === "en";
-  const fecha = /^\d{4}-\d{2}-\d{2}$/.test(datos.fecha || "")
-    ? datos.fecha.slice(8,10) + "/" + datos.fecha.slice(5,7) + "/" + datos.fecha.slice(0,4)
-    : (datos.fecha || "");
+  const fecha = lagoonaFormatShortDate(datos.fecha, ingles);
   const dinero = Number(datos.precioTotal);
   const total = datos.precioTotal !== "" && Number.isFinite(dinero)
     ? "$" + dinero.toLocaleString(ingles ? "en-US" : "es-MX") + " MXN"
     : (ingles ? "To be confirmed" : "Por confirmar");
+  const participantes = ingles
+    ? [datos.adultos + (datos.adultos === 1 ? " adult" : " adults"), datos.ninos > 0 ? datos.ninos + (datos.ninos === 1 ? " child" : " children") : "", datos.bebes > 0 ? datos.bebes + (datos.bebes === 1 ? " infant" : " infants") : ""].filter(Boolean).join(" · ") + " (" + datos.personas + " total)"
+    : [datos.adultos + (datos.adultos === 1 ? " adulto" : " adultos"), datos.ninos > 0 ? datos.ninos + (datos.ninos === 1 ? " niño" : " niños") : "", datos.bebes > 0 ? datos.bebes + (datos.bebes === 1 ? " bebé" : " bebés") : ""].filter(Boolean).join(" · ") + " (" + datos.personas + " en total)";
   const lineas = ingles ? [
     "Hello Lagoona, I would like to request a booking:", "",
-    "Experience: " + datos.tour,
+    "*Experience: " + datos.tour + "*",
     "Date: " + fecha,
     "Preferred time: " + datos.hora,
-    "Guests: " + datos.personas,
+    "Guests: " + participantes,
     "Estimated price: " + total,
     "Name: " + datos.nombre,
-    "Unit: " + (datos.unidad || "Not provided"),
+    "Unit: " + datos.unidad,
     "My WhatsApp: " + datos.whatsapp
   ] : [
     "Hola, me gustaría solicitar una reserva con Lagoona:", "",
-    "Experiencia: " + datos.tour,
+    "*Experiencia: " + datos.tour + "*",
     "Fecha: " + fecha,
     "Horario preferido: " + datos.hora,
-    "Personas: " + datos.personas,
+    "Participantes: " + participantes,
     "Precio estimado: " + total,
     "Nombre: " + datos.nombre,
-    "Departamento: " + (datos.unidad || "No indicado"),
+    "Departamento: " + datos.unidad,
     "Mi WhatsApp: " + datos.whatsapp
   ];
-  if (datos.notas) lineas.push((ingles ? "Notes: " : "Observaciones: ") + datos.notas);
+  if (datos.edades) lineas.push((ingles ? "Children's ages: " : "Edades de menores: ") + datos.edades);
+  if (datos.notasOriginales) lineas.push((ingles ? "Notes: " : "Observaciones: ") + datos.notasOriginales);
   if (numeroReserva !== null && numeroReserva !== undefined && String(numeroReserva).trim()) {
     lineas.push((ingles ? "Request number: " : "Número de solicitud: ") + numeroReserva);
   }
-  lineas.push("", ingles
-    ? "Please confirm availability. Thank you."
-    : "¿Podrían confirmarme disponibilidad? Gracias.");
+  lineas.push("", ingles ? "Please confirm availability. Thank you." : "¿Podrían confirmarme disponibilidad? Gracias.");
   return lineas.join("\n");
 }
 function urlSolicitudWhatsApp(datos, numeroReserva) {
@@ -2279,67 +2343,142 @@ function setLagoonaSendingState(active) {
     box.replaceChildren();
   }
 }
+function lagoonaUnidadSeleccionada() {
+  const torre = document.getElementById("f-torre").value;
+  const depto = document.getElementById("f-departamento").value;
+  if (torre === "Otra ubicación") return "Otro alojamiento";
+  return torre && depto ? torre + " " + depto : "";
+}
+function lagoonaParty() {
+  const getN = id => Number(document.getElementById(id)?.value || 0);
+  const adultos = getN("f-adultos"), ninos = getN("f-ninos"), bebes = getN("f-bebes");
+  return { adultos, ninos, bebes, total: adultos + ninos + bebes };
+}
+function lagoonaValidParty() {
+  const party = lagoonaParty();
+  return Number.isInteger(party.adultos) && party.adultos >= 1 &&
+    Number.isInteger(party.ninos) && party.ninos >= 0 &&
+    Number.isInteger(party.bebes) && party.bebes >= 0 && party.total <= 20;
+}
+function lagoonaPopulateUnits() {
+  const torre = document.getElementById("f-torre");
+  const depto = document.getElementById("f-departamento");
+  if (!torre || !depto) return;
+  const old = depto.value;
+  depto.replaceChildren();
+  const option = document.createElement("option");
+  option.value = "";
+  option.textContent = currentLang === "en" ? "Select your unit" : "Seleccionar departamento";
+  depto.appendChild(option);
+  if (torre.value && torre.value !== "Otra ubicación") {
+    for (let floor = 1; floor <= 6; floor++) {
+      for (let number = 1; number <= 3; number++) {
+        const unit = String(floor) + "0" + number;
+        const op = document.createElement("option");
+        op.value = unit;
+        op.textContent = unit;
+        depto.appendChild(op);
+      }
+    }
+    depto.disabled = false;
+    if ([...depto.options].some(op => op.value === old)) depto.value = old;
+  } else {
+    option.textContent = torre.value === "Otra ubicación"
+      ? (currentLang === "en" ? "Not applicable" : "No aplica")
+      : (currentLang === "en" ? "Choose your tower first" : "Primero selecciona tu torre");
+    depto.disabled = true;
+  }
+  lagoonaRefreshSummary();
+}
+function lagoonaRefreshSummary() {
+  const party = lagoonaParty();
+  const minors = party.ninos > 0 || party.bebes > 0;
+  const ages = document.getElementById("lagoona-child-ages");
+  if (ages) ages.hidden = !minors;
+  if (!minors) document.getElementById("f-edades").value = "";
+  const total = document.getElementById("lagoona-party-count");
+  if (total) total.textContent = party.total;
+  const en = currentLang === "en";
+  const tour = document.getElementById("f-tour")?.value || "";
+  const fecha = document.getElementById("f-fecha")?.value || "";
+  const unidad = lagoonaUnidadSeleccionada();
+  const tourLabel = document.getElementById("lagoona-summary-experience");
+  if (tourLabel) tourLabel.textContent = tour || (en ? "Choose an experience" : "Selecciona una experiencia");
+  const dateLabel = document.getElementById("lagoona-summary-date");
+  if (dateLabel) dateLabel.textContent = fecha ? lagoonaFormatShortDate(fecha,en) : (en ? "Date not selected" : "Fecha sin seleccionar");
+  const peopleLabel = document.getElementById("lagoona-summary-group");
+  if (peopleLabel) peopleLabel.textContent = party.total + (en ? " guests" : " participantes");
+  const unitLabel = document.getElementById("lagoona-summary-unit");
+  if (unitLabel) unitLabel.textContent = unidad || (en ? "Choose your tower" : "Selecciona tu torre");
+  updateBookingPrice();
+}
 async function submitForm() {
   const nombre = document.getElementById("f-nombre").value.trim();
-  const unidad = document.getElementById("f-unidad").value.trim();
+  const torre = document.getElementById("f-torre").value;
+  const unidad = lagoonaUnidadSeleccionada();
   const whatsapp = document.getElementById("f-whatsapp").value.trim();
-  const personas = document.getElementById("f-personas").value.trim();
+  const party = lagoonaParty();
   const tour = document.getElementById("f-tour").value.trim();
   const fecha = document.getElementById("f-fecha").value.trim();
   const hora = document.getElementById("f-hora").value.trim();
-  const notas = document.getElementById("f-notas").value.trim();
-  const precio = calculateTourPrice(tour, personas);
-  const ingles = typeof currentLang !== "undefined" && currentLang === "en";
-
-  if (!nombre || !whatsapp || !tour || !personas || !fecha || !hora || Number(personas) < 1) {
+  const edades = document.getElementById("f-edades").value.trim();
+  const notasOriginales = document.getElementById("f-notas").value.trim();
+  const precio = calculateTourPrice(tour,party.total);
+  const ingles = currentLang === "en";
+  if (!nombre || !torre || !unidad || !/^\+?[\d\s().-]{8,25}$/.test(whatsapp) || !lagoonaValidParty() || !tour || !fecha || !hora) {
     alert(ingles
-      ? "Please complete your name, WhatsApp, experience, guests, date and time."
-      : "Completa nombre, WhatsApp, experiencia, personas, fecha y horario.");
+      ? "Complete your name, valid WhatsApp, tower, unit, guest counts, experience, date and time."
+      : "Completa nombre, WhatsApp válido, torre, departamento, participantes, experiencia, fecha y horario.");
     return;
   }
   if (precio && precio.error) { alert(tourPriceNote(precio)); return; }
-
+  const desglose = "Adultos: " + party.adultos + " · Niños: " + party.ninos + " · Bebés: " + party.bebes;
+  const notas = [desglose, edades ? "Edades de menores: " + edades : "", notasOriginales].filter(Boolean).join(" | ");
   const datos = {
     requestId: lagoonaRequestId(), website: "", nombre, unidad, whatsapp,
-    email: "", personas, tour,
-    precioTotal: precio ? precio.total : "", fecha, hora, notas
+    email: "", personas: party.total, adultos: party.adultos, ninos: party.ninos, bebes: party.bebes,
+    edades, notasOriginales, tour, precioTotal: precio ? precio.total : "", fecha, hora, notas
   };
-
   const ventanaWhatsApp = prepararVentanaWhatsApp();
   setLagoonaSendingState(true);
-  let numeroReserva = null;
-  let fallo = false;
+  let numeroReserva = null, fallo = false;
   try {
     const result = await registrarReservaPublica(datos);
     numeroReserva = String(result.numeroReserva);
   } catch (error) {
     console.error("No se confirmó registro de solicitud pública:", error);
     fallo = true;
-  } finally {
-    setLagoonaSendingState(false);
-  }
-
+  } finally { setLagoonaSendingState(false); }
   const url = urlSolicitudWhatsApp(datos, numeroReserva);
   mostrarResultadoWhatsApp(url, numeroReserva, fallo);
   if (ventanaWhatsApp && !ventanaWhatsApp.closed) {
     try { ventanaWhatsApp.location.replace(url); }
     catch (_) { try { ventanaWhatsApp.location.href = url; } catch (_) {} }
   }
-
-  // Solo limpiar después de confirmación real del servidor. Conservamos el formulario
-  // ante problemas de red para que el cliente no pierda la información.
   if (!fallo) {
-    ["f-nombre", "f-unidad", "f-whatsapp", "f-personas", "f-tour", "f-fecha", "f-hora", "f-notas"]
-      .forEach(id => { document.getElementById(id).value = ""; });
+    ["f-nombre", "f-whatsapp", "f-tour", "f-fecha", "f-hora", "f-notas", "f-edades", "f-torre", "f-departamento"].forEach(id => { document.getElementById(id).value = ""; });
+    document.getElementById("f-adultos").value = "2";
+    document.getElementById("f-ninos").value = "0";
+    document.getElementById("f-bebes").value = "0";
     const elHora = document.getElementById("f-hora");
-    if (elHora) {
-      elHora.innerHTML = '<option value="">— Selecciona primero una experiencia —</option>';
-      elHora.disabled = true;
-    }
-    updateBookingPrice();
+    if (elHora) { elHora.innerHTML = '<option value="">— Selecciona primero una experiencia —</option>'; elHora.disabled = true; }
+    lagoonaPopulateUnits();
     const aviso = document.getElementById("wednesday-warning");
     if (aviso) aviso.classList.remove("active");
+    lagoonaRefreshSummary();
   }
+}
+function lagoonaBindBookingForm() {
+  const tower = document.getElementById("f-torre");
+  if (!tower) return;
+  tower.addEventListener("change", lagoonaPopulateUnits);
+  ["f-departamento","f-adultos","f-ninos","f-bebes","f-fecha","f-tour"].forEach(id => {
+    document.getElementById(id)?.addEventListener("change",lagoonaRefreshSummary);
+  });
+  ["f-adultos","f-ninos","f-bebes"].forEach(id => {
+    document.getElementById(id)?.addEventListener("input",lagoonaRefreshSummary);
+  });
+  lagoonaPopulateUnits();
 }
 
 // ── SCROLL REVEAL ──
@@ -2986,12 +3125,12 @@ function tourPriceNote(result){
 
 function updateBookingPrice(){
   const choice = document.getElementById("f-tour")?.value || "";
-  const persons = document.getElementById("f-personas")?.value || 1;
+  const persons = typeof lagoonaParty === "function" ? lagoonaParty().total : 1;
   const box = document.getElementById("booking-price-summary");
   const total = document.getElementById("booking-price-total");
   const label = document.getElementById("booking-price-label");
   if(!box || !total) return null;
-  if(label) label.textContent = tourModalText("Total estimado","Estimated total");
+  if(label) label.textContent = tourModalText("Total estimado · sujeto a confirmación","Estimated total · subject to confirmation");
   const result = calculateTourPrice(choice,persons);
   box.classList.toggle("active",Boolean(result));
   total.textContent = result ? (result.error ? tourPriceNote(result) : formatTourMoney(result.total) + " · " + result.pax + (result.pax === 1 ? " persona" : " personas")) : "—";
@@ -3010,8 +3149,11 @@ function selectTour(tourName, persons) {
       sel.dispatchEvent(new Event('change', { bubbles: true }));
     }
 
-    const people = document.getElementById('f-personas');
+    const people = document.getElementById('f-adultos');
     if (people && persons) people.value = persons;
+    document.getElementById('f-ninos').value = 0;
+    document.getElementById('f-bebes').value = 0;
+    lagoonaRefreshSummary();
     updateBookingPrice();
 
     document.getElementById('reservar').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -3020,7 +3162,7 @@ function selectTour(tourName, persons) {
 
 (function bindBookingPrice(){
   document.getElementById("f-tour")?.addEventListener("change",updateBookingPrice);
-  document.getElementById("f-personas")?.addEventListener("input",updateBookingPrice);
+  window.addEventListener("DOMContentLoaded", lagoonaBindBookingForm, { once: true });
 })();
 // ═══════════════════════════════════════════════
 //  LAGOONA · i18n ENGINE
@@ -3131,6 +3273,29 @@ const translations = {
     "practical.label": "Información Práctica",
     "practical.title": "Antes de zarpar",
     // FORM
+    "form.section.contact": "Tus datos",
+    "form.section.contact_desc": "Para comunicarnos contigo y confirmar la experiencia.",
+    "form.section.location": "¿Dónde te hospedas?",
+    "form.section.location_desc": "Elige tu torre y después el número de departamento.",
+    "form.section.guests": "¿Quiénes participarán?",
+    "form.section.guests_desc": "Incluye a todos los participantes para comprobar cupo y equipo.",
+    "form.section.experience": "Tu experiencia",
+    "form.section.experience_desc": "Indica la fecha y el horario preferidos. Confirmaremos disponibilidad.",
+    "form.torre": "Torre / Building",
+    "form.depto": "Departamento / Unit",
+    "form.select_tower": "Seleccionar torre",
+    "form.select_tower_first": "Primero selecciona tu torre",
+    "form.other_stay": "No me hospedo en Aldea Mayab",
+    "form.location_hint": "Ejemplo: Balché 501. Lo enviaremos en un solo renglón.",
+    "form.adults": "Adultos",
+    "form.children": "Niños",
+    "form.infants": "Bebés",
+    "form.total_guests": "Total de participantes",
+    "form.minors_note": "Si hay menores, confirmaremos tarifas y condiciones de seguridad.",
+    "form.child_ages": "Edades de los menores (opcional)",
+    "form.child_ages_ph": "Ej. 4 y 9 años; bebé de 8 meses",
+    "form.price_caveat": "Tarifa estimada para el grupo. Con menores, confirmaremos el precio final antes de reservar.",
+    "form.summary_label": "RESUMEN DE TU SOLICITUD",
     "form.nombre": "Tu nombre completo",
     "form.edificio": "Edificio y departamento",
     "form.wa": "WhatsApp",
@@ -3535,6 +3700,29 @@ const translations = {
     "practical.label": "Practical Info",
     "practical.title": "Before setting sail",
     // FORM
+    "form.section.contact": "Your details",
+    "form.section.contact_desc": "So we can contact you and confirm your experience.",
+    "form.section.location": "Where are you staying?",
+    "form.section.location_desc": "Choose your building, then select your apartment number.",
+    "form.section.guests": "Who is joining?",
+    "form.section.guests_desc": "Include all guests so we can check capacity and equipment.",
+    "form.section.experience": "Your experience",
+    "form.section.experience_desc": "Choose your preferred date and time. We will confirm availability.",
+    "form.torre": "Tower / Building",
+    "form.depto": "Apartment / Unit",
+    "form.select_tower": "Select a building",
+    "form.select_tower_first": "Choose your building first",
+    "form.other_stay": "I'm not staying at Aldea Mayab",
+    "form.location_hint": "Example: Balché 501. We will send it on a single line.",
+    "form.adults": "Adults",
+    "form.children": "Children",
+    "form.infants": "Infants",
+    "form.total_guests": "Total guests",
+    "form.minors_note": "For minors, we will confirm prices and safety requirements.",
+    "form.child_ages": "Children's ages (optional)",
+    "form.child_ages_ph": "e.g. ages 4 & 9; baby 8 months",
+    "form.price_caveat": "Estimated price for the group. We will confirm the final price for minors before booking.",
+    "form.summary_label": "YOUR REQUEST AT A GLANCE",
     "form.nombre": "Your full name",
     "form.edificio": "Building & unit number",
     "form.wa": "WhatsApp",
@@ -3902,6 +4090,8 @@ function applyLang(lang) {
 }
 function toggleLang() {
   applyLang(currentLang === 'es' ? 'en' : 'es');
+  lagoonaPopulateUnits();
+  lagoonaRefreshSummary();
 
   const selectorTour = document.getElementById('f-tour');
   if (selectorTour) {
@@ -4160,7 +4350,7 @@ function chooseTourModalPrice(button,choice,label){
   document.querySelectorAll(".tour-modal-price").forEach(el=>el.classList.remove("selected"));
   button.classList.add("selected");
   tourModalChoice = choice;
-  const currentPeople = Number(document.getElementById("f-personas")?.value || 1);
+  const currentPeople = typeof lagoonaParty === "function" ? lagoonaParty().total : 1;
   tourModalPersons = Math.max(1,currentPeople);
   const rule = TOUR_PRICING[choice];
   if(rule?.max) tourModalPersons = Math.min(tourModalPersons,rule.max);
